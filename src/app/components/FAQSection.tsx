@@ -179,7 +179,7 @@ export function FAQSection() {
             Still have questions?
           </p>
           <p className="text-white/80 text-sm mb-6">
-            Our wedding specialists are available to help you plan every detail of your destination wedding in Kerala.
+            Our specialists are available to help you plan every detail of your destination wedding in Kerala.
           </p>
           <button
             onClick={() => {
@@ -188,7 +188,7 @@ export function FAQSection() {
             }}
             className="px-8 py-3 bg-[var(--gold)] text-[var(--green-dark)] rounded-md hover:bg-[var(--gold-light)] transition-all duration-300 hover:shadow-lg"
           >
-            Contact Our Wedding Team
+            Contact Our Team
           </button>
         </motion.div>
       </div>

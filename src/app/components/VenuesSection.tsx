@@ -14,9 +14,13 @@ const venues = [
       "Large outdoor riverside celebration space perfect for grand weddings and receptions",
     longDescription:
       "The Grand Lawn is Kanjira's Luxeves Pavilion's crown jewel — a sprawling riverside outdoor wedding lawn capable of hosting up to 2,000 guests in grand style. Nestled along the tranquil Kerala backwaters, this open-air wedding venue offers a natural canopy of towering palms and a panoramic waterfront backdrop ideal for large Hindu wedding ceremonies, grand reception events, and multi-day celebrations. As one of Kerala's most expansive destination wedding lawns, the Grand Lawn is the preferred choice for families seeking a breathtaking outdoor setting that blends tropical nature with sophisticated event planning.",
-    image:
-      "/images/kanjiras-pavilion-backwater-view-wedding-venue.webp",
-    idealFor: ["Grand Hindu Weddings", "Reception Events", "Sangeet Nights", "Corporate Galas"],
+    image: "/images/kanjiras-pavilion-backwater-view-wedding-venue.webp",
+    idealFor: [
+      "Grand Evening Weddings",
+      "Reception Events",
+      "DJ Parties",
+      "Corporate Galas",
+    ],
     features: [
       "Riverside location with stunning views",
       "Spacious lawn for 1000+ guests",
@@ -33,9 +37,13 @@ const venues = [
       "Covered venue ideal for ceremonies and receptions with elegant architecture",
     longDescription:
       "The Celebration Pavilion is a fully covered wedding venue accommodating up to 400 guests, offering the perfect balance between open-air ambiance and weather-protected luxury. With its soaring architectural ceilings, chandelier lighting, and integrated audio-visual systems, this pavilion is one of Kerala's most versatile destination wedding venues. Whether you're hosting a traditional Kerala wedding ceremony, a modern reception dinner, or a themed cocktail event, the Celebration Pavilion delivers an atmosphere of timeless elegance amidst the backwater landscapes of Kerala.",
-    image:
-      "/images/kanjiras-pavilion-backwater-wedding-stage.webp",
-    idealFor: ["Wedding Ceremonies", "Reception Dinners", "Cocktail Events", "Naming Ceremonies"],
+    image: "/images/kanjiras-pavilion-backwater-wedding-stage.webp",
+    idealFor: [
+      "Wedding Ceremonies",
+      "Reception Dinners",
+      "Cocktail Events",
+      "Naming Ceremonies",
+    ],
     features: [
       "Climate-controlled comfort",
       "Elegant chandelier lighting",
@@ -52,9 +60,13 @@ const venues = [
       "Smaller venue perfect for engagement, mehndi, and private celebrations",
     longDescription:
       "The Intimate Pavilion is a charming, private event space accommodating up to 100 guests, designed for close-knit celebrations that require an exclusive and personalized setting. Surrounded by lush landscaped gardens and natural backwater views, this venue is ideal for pre-wedding events such as engagement ceremonies, mehendi celebrations, haldi rituals, and bridal brunches. As Kerala's most sought-after intimate wedding venue, it offers flexible seating arrangements, soft natural lighting, and a serene garden atmosphere that transforms every small celebration into a cherished memory.",
-    image:
-      "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp",
-    idealFor: ["Engagement Parties", "Mehendi Ceremonies", "Haldi Functions", "Bridal Brunches"],
+    image: "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp",
+    idealFor: [
+      "Birthday Parties",
+      "Mehendi Ceremonies",
+      "Haldi Functions",
+      "Bridal Brunches",
+    ],
     features: [
       "Cozy and intimate setting",
       "Garden views and natural light",
@@ -100,7 +112,10 @@ export function VenuesSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            From grand outdoor wedding lawns to intimate garden pavilions, Kanjira's Luxeves Pavilion offers Kerala's finest destination wedding venue spaces — each crafted to create extraordinary celebrations.
+            From grand outdoor wedding lawns to intimate garden pavilions,
+            Kanjira's Luxeves Pavilion offers Kerala's finest destination
+            wedding venue spaces — each crafted to create extraordinary
+            celebrations.
           </motion.p>
         </div>
 

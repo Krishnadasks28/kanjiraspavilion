@@ -18,7 +18,7 @@ const galleryImages = [
     alt: "Backwater wedding pavilion at Kanjira’s Luxeves Pavilion Kerala",
   },
   {
-    src: "/images/kanjiras-pavilion-destination-wedding-venue-thrissur.jpeg",
+    src: "/images/kanjiras-pavilion-destination-wedding-venue-thrissur.webp",
     alt: "Wedding lawn at Kanjira’s Luxeves Pavilion Thrissur Kerala",
   },
   {

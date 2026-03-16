@@ -130,7 +130,6 @@ export function VenuesSection() {
                     alt={`${venue.name} – ${venue.tagline}`}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   {/* Capacity Badge */}
                   <div className="absolute top-4 right-4 bg-[var(--gold)] text-[var(--green-dark)] px-4 py-2 rounded-full flex items-center space-x-2 shadow-lg">
                     <Users size={18} />

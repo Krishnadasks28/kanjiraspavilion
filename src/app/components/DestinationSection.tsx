@@ -116,14 +116,14 @@ export function DestinationSection() {
                 <div className="space-y-4">
                   <div className="h-48 rounded-lg overflow-hidden shadow-xl">
                     <ImageWithFallback
-                      src="/images/BackwaterWeddingDestination.png"
+                      src="/images/BackwaterWeddingDestination.webp"
                       alt="Backwater sunset"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="h-64 rounded-lg overflow-hidden shadow-xl">
                     <ImageWithFallback
-                      src="/images/kanjiras-luxeves-pavilion-garden.jpeg"
+                      src="/images/kanjiras-luxeves-pavilion-garden.webp"
                       alt="Kerala backwaters"
                       className="w-full h-full object-cover"
                     />

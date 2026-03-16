@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import heroImg from '/images/BackwaterWeddingDestination.png'
+import heroImg from "/images/BackwaterWeddingDestination.webp";
 
 export function HeroSection() {
   const scrollToAbout = () => {
@@ -23,7 +23,7 @@ export function HeroSection() {
         <div
           className="w-full h-full bg-cover bg-center"
           style={{
-            backgroundImage:`url(${heroImg})`
+            backgroundImage: `url(${heroImg})`,
           }}
         >
           {/* Dark Overlay */}
@@ -60,7 +60,9 @@ export function HeroSection() {
           {/* SEO H1 */}
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-white mb-4 px-4 leading-tight">
             {/* Destination Wedding Venue in Kerala –{" "} */}
-            <span className="text-[var(--gold-light)]">Kanjira's Luxeves Pavilion</span>
+            <span className="text-[var(--gold-light)]">
+              Kanjira's Luxeves Pavilion
+            </span>
           </h1>
 
           <motion.p
@@ -79,7 +81,10 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 1 }}
           >
-            Experience the magic of Kerala's serene backwaters as the backdrop to your once-in-a-lifetime celebration. A premier outdoor wedding lawn and destination wedding location in Kerala — offering unmatched elegance amidst nature.
+            Experience the magic of Kerala's serene backwaters as the backdrop
+            to your once-in-a-lifetime celebration. A premier outdoor wedding
+            lawn and destination wedding location in Kerala — offering unmatched
+            elegance amidst nature.
           </motion.p>
 
           {/* SEO keyword tags */}
@@ -89,7 +94,11 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.6, duration: 0.8 }}
           >
-            {["Backwater Wedding Venue", "Outdoor Wedding Lawn", "Destination Wedding Kerala"].map((tag) => (
+            {[
+              "Backwater Wedding Venue",
+              "Outdoor Wedding Lawn",
+              "Destination Wedding Kerala",
+            ].map((tag) => (
               <span
                 key={tag}
                 className="text-xs px-4 py-1.5 border border-[var(--gold)]/60 text-[var(--gold-light)] rounded-full backdrop-blur-sm"

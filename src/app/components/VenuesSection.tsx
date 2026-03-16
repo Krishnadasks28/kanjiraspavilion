@@ -30,13 +30,13 @@ const venues = [
   },
   {
     id: 2,
-    name: "Celebration Pavilion",
+    name: "Backwater Pavilion",
     capacity: 400,
     tagline: "Elegant Covered Venue for Ceremonies & Receptions",
     description:
       "Covered venue ideal for ceremonies and receptions with elegant architecture",
     longDescription:
-      "The Celebration Pavilion is a fully covered wedding venue accommodating up to 400 guests, offering the perfect balance between open-air ambiance and weather-protected luxury. With its soaring architectural ceilings, chandelier lighting, and integrated audio-visual systems, this pavilion is one of Kerala's most versatile destination wedding venues. Whether you're hosting a traditional Kerala wedding ceremony, a modern reception dinner, or a themed cocktail event, the Celebration Pavilion delivers an atmosphere of timeless elegance amidst the backwater landscapes of Kerala.",
+      "The Backwater Pavilion is a fully covered wedding venue accommodating up to 400 guests, offering the perfect balance between open-air ambiance and weather-protected luxury. With its soaring architectural ceilings, chandelier lighting, and integrated audio-visual systems, this pavilion is one of Kerala's most versatile destination wedding venues. Whether you're hosting a traditional Kerala wedding ceremony, a modern reception dinner, or a themed cocktail event, the Celebration Pavilion delivers an atmosphere of timeless elegance amidst the backwater landscapes of Kerala.",
     image: "/images/kanjiras-pavilion-backwater-wedding-stage.webp",
     idealFor: [
       "Wedding Ceremonies",

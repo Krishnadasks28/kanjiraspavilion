@@ -27,19 +27,34 @@ export function Navigation() {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
-    }
+    const id = href.replace("#", "");
+    const element = document.getElementById(id);
+
+    if (!element) return;
+
+    const navbarOffset = 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - navbarOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+
+    const handleScrollEnd = () => {
+      if (Math.abs(window.scrollY - offsetPosition) < 5) {
+        setIsMobileMenuOpen(false);
+        window.removeEventListener("scroll", handleScrollEnd);
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollEnd);
   };
 
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md"
-          : "bg-transparent"
+        isScrolled ? "bg-white/95 backdrop-blur-md shadow-md" : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}

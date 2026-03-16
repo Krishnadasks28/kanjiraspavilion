@@ -47,7 +47,7 @@ export function AboutSection() {
             />
 
             <h2 className="text-4xl md:text-5xl text-[var(--green-dark)] mb-6">
-              A Paradise for a Perfect Stay
+              A Paradise for a Perfect Getaway
             </h2>
 
             <p className="text-lg text-[var(--green-medium)] mb-6 leading-relaxed">

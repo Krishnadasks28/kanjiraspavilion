@@ -66,14 +66,6 @@ export function AboutSection() {
               amenities to create an unforgettable experience.
             </p>
 
-            <p className="text-lg text-[var(--green-medium)] mb-8 leading-relaxed">
-              Wake up to the gentle sounds of flowing backwaters and enjoy
-              serene views that capture the essence of Kerala's tropical beauty.
-              Whether you're planning a relaxing getaway, a family stay, or a
-              private celebration, our venue blends natural charm with modern
-              amenities to create an unforgettable experience.
-            </p>
-
             {/* Features */}
             <div className="grid grid-cols-2 gap-4">
               {[

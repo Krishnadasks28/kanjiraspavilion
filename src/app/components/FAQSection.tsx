@@ -6,7 +6,7 @@ const faqs = [
   {
     question: "What is the total guest capacity at Kanjira's Luxeves Pavilion?",
     answer:
-      "Kanjira's Luxeves Pavilion offers three distinct wedding venue spaces to accommodate celebrations of every scale. The Grand Lawn — our flagship outdoor wedding lawn — can host up to 1,000 guests and is ideal for large grand wedding ceremonies and receptions. The Celebration Pavilion accommodates up to 400 guests in a covered, climate-controlled setting. The Intimate Pavilion is designed for up to 100 guests and is perfect for private pre-wedding events. In total, our destination wedding venue in Kerala can comfortably host wedding celebrations for groups of any size.",
+      "Kanjira's Luxeves Pavilion offers three distinct wedding venue spaces to accommodate celebrations of every scale. The Grand Lawn — our flagship outdoor wedding lawn — can host up to 2,000 guests and is ideal for large grand wedding ceremonies and receptions. The Celebration Pavilion accommodates up to 400 guests in a roof covered open venue. The Intimate Pavilion is designed for up to 100 guests and is perfect for private pre-wedding events, Birthday parties etc. In total, our destination wedding venue in Kerala can comfortably host wedding celebrations for groups of any size.",
   },
   {
     question: "Is Kanjira's Luxeves Pavilion suitable for destination weddings in Kerala?",
@@ -48,7 +48,7 @@ export function FAQSection() {
     <section
       id="faq"
       ref={ref}
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-[var(--ivory)]"
+      className="pb-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-[var(--ivory)]"
     >
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}

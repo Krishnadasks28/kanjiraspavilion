@@ -157,7 +157,7 @@ export function TestimonialsSection() {
         </div>
 
         {/* Trust Badges */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1 }}
@@ -179,7 +179,7 @@ export function TestimonialsSection() {
             <p className="text-4xl text-[var(--gold)] mb-2">15+</p>
             <p className="text-[var(--green-medium)]">Years of Excellence</p>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

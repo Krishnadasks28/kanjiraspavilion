@@ -69,14 +69,13 @@ export function Navigation() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <h1
-              className={`text-xl sm:text-2xl md:text-3xl transition-colors duration-300 ${
-                isScrolled ? "text-[var(--green-dark)]" : "text-white"
+            <img
+              src="/images/Logo.PNG" // 👈 replace with your logo path
+              alt="Kanjira's Luxeves Pavilion"
+              className={`h-8 sm:h-10 md:h-12 w-auto transition-all duration-300 ${
+                isScrolled ? "brightness-0" : "brightness-100"
               }`}
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Kanjira's Luxeves
-            </h1>
+            />
           </motion.div>
 
           {/* Desktop Navigation */}

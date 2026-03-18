@@ -9,7 +9,7 @@ export function MetaTags() {
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     const description =
-      "Kanjira's Luxeves Pavilion is Kerala's premier destination wedding venue set amidst the iconic backwaters. Offering Grand Lawn (1000 guests), Celebration Pavilion (400 guests) & Intimate Pavilion (100 guests). Book your backwater wedding in Kerala today.";
+      "Kanjira's Luxeves Pavilion is Kerala's premier destination wedding venue set amidst the iconic backwaters. Offering Grand Lawn (2000 guests), Celebration Pavilion (400 guests) & Intimate Pavilion (100 guests). Book your backwater wedding in Kerala today.";
     if (metaDescription) {
       metaDescription.setAttribute("content", description);
     } else {

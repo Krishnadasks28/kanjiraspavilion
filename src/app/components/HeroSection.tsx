@@ -1,9 +1,20 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { ChevronDown } from "lucide-react";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useRef } from "react";
 import heroImg from "/images/BackwaterWeddingDestination.webp";
 
 export function HeroSection() {
+  const ref = useRef(null);
+
+  // Scroll-based animation
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax movement (smooth & subtle)
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+
   const scrollToAbout = () => {
     const element = document.querySelector("#about");
     if (element) {
@@ -12,16 +23,15 @@ export function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative h-screen w-full overflow-hidden">
-      {/* Background Image with Parallax Effect */}
-      <motion.div
-        className="absolute inset-0"
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
+    <section
+      ref={ref}
+      id="home"
+      className="relative h-screen w-full overflow-hidden"
+    >
+      {/* Background Image with TRUE Parallax */}
+      <motion.div className="absolute inset-0" style={{ y }}>
         <div
-          className="w-full h-full bg-cover bg-center"
+          className="w-full h-[120%] bg-cover bg-center scale-110"
           style={{
             backgroundImage: `url(${heroImg})`,
           }}
@@ -39,32 +49,14 @@ export function HeroSection() {
           transition={{ delay: 0.5, duration: 1 }}
           className="max-w-5xl"
         >
-          {/* Decorative Line */}
-          {/* <motion.div
-            className="w-24 h-px bg-[var(--gold)] mx-auto mb-8"
-            initial={{ width: 0 }}
-            animate={{ width: 96 }}
-            transition={{ delay: 1, duration: 0.8 }}
-          /> */}
-
-          {/* SEO Subtitle above H1 */}
-          {/* <motion.p
-            className="text-xs sm:text-sm tracking-[0.3em] text-[var(--gold-light)] uppercase mb-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-          >
-            Backwater Wedding Venue · Kerala, India
-          </motion.p> */}
-
-          {/* SEO H1 */}
+          {/* Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-white mb-4 px-4 leading-tight">
-            {/* Destination Wedding Venue in Kerala –{" "} */}
             <span className="text-[var(--gold-light)]">
               Kanjira's Luxeves Pavilion
             </span>
           </h1>
 
+          {/* Tagline */}
           <motion.p
             className="text-lg sm:text-xl md:text-2xl text-[var(--gold-light)] mb-4 px-4"
             initial={{ opacity: 0 }}
@@ -75,6 +67,7 @@ export function HeroSection() {
             Where Backwaters Meet Beautiful Beginnings
           </motion.p>
 
+          {/* Description */}
           <motion.p
             className="text-sm sm:text-base md:text-lg text-white/90 max-w-3xl mx-auto mb-4 px-4 leading-relaxed"
             initial={{ opacity: 0 }}
@@ -87,7 +80,7 @@ export function HeroSection() {
             elegance amidst nature.
           </motion.p>
 
-          {/* SEO keyword tags */}
+          {/* SEO Tags */}
           <motion.div
             className="flex flex-wrap justify-center gap-3 mb-10 px-4"
             initial={{ opacity: 0 }}

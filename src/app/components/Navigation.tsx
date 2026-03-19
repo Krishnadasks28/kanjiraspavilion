@@ -72,7 +72,7 @@ export function Navigation() {
             <img
               src="/images/Logo.PNG" // 👈 replace with your logo path
               alt="Kanjira's Luxeves Pavilion"
-              className={`h-8 sm:h-10 md:h-12 w-auto transition-all duration-300 ${
+              className={`h-12 sm:h-12 md:h-14 w-auto transition-all duration-300 ${
                 isScrolled ? "brightness-0" : "brightness-100"
               }`}
             />

@@ -1,98 +1,176 @@
-import { motion, useInView } from "motion/react";
-import { useRef, useState } from "react";
-import Masonry from "react-responsive-masonry";
-import { X } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "motion/react";
+import { useRef, useState, useEffect } from "react";
+import { X, ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useLocation, Link } from "react-router";
 
-const galleryImages = [
-  {
-    src: "/images/backwater-wedding-pavilion-kerala-kanjiras.webp",
-    alt: "Kanjira’s Luxeves Pavilion backwater wedding venue in Thrissur Kerala",
-  },
-  {
-    src: "/images/kanjiras-luxeves-pavilion-bridal-entry-wedding.webp",
-    alt: "Destination wedding venue at Kanjira’s Luxeves Pavilion near Thriprayar Thrissur.",
-  },
-  {
-    src: "/images/kanjiras-pavilion-reception-event.webp",
-    alt: "Backwater wedding pavilion at Kanjira’s Luxeves Pavilion Kerala",
-  },
-  {
-    src: "/images/kanjiras-pavilion-destination-wedding-venue-thrissur.webp",
-    alt: "Wedding lawn at Kanjira’s Luxeves Pavilion Thrissur Kerala",
-  },
-  {
-    src: "/images/kanjiras-luxeves-pavilion-wedding-lawn-thrissur.webp",
-    alt: "Luxury backwater wedding venue in Kerala at Kanjira’s Luxeves Pavilion",
-  },
-  {
-    src: "/images/kanjiras-luxeves-pavilion-wedding-reception-area.webp",
-    alt: "Wedding ceremony setup with backwater view at Kanjira’s Luxeves Pavilion",
-  },
-  {
-    src: "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp",
-    alt: "Outdoor destination wedding venue at Kanjira’s Luxeves Pavilion Kerala",
-  },
-  {
-    src: "/images/kanjiras-pavilion-evening-wedding-decoration.webp",
-    alt: "Evening wedding decoration at Kanjira’s Luxeves Pavilion backwater venue",
-  },
+const allImages = [
+  { id: 1, src: "/images/backwater-wedding-pavilion-kerala-kanjiras.webp", alt: "Kanjira’s Luxeves Pavilion backwater wedding venue", category: "Ceremony" },
+  { id: 2, src: "/images/kanjiras-luxeves-pavilion-bridal-entry-wedding.webp", alt: "Destination wedding venue", category: "Ceremony" },
+  { id: 3, src: "/images/kanjiras-pavilion-reception-event.webp", alt: "Backwater wedding pavilion", category: "Reception" },
+  { id: 4, src: "/images/kanjiras-pavilion-destination-wedding-venue-thrissur.webp", alt: "Wedding lawn", category: "Venue" },
+  { id: 5, src: "/images/kanjiras-luxeves-pavilion-wedding-lawn-thrissur.webp", alt: "Luxury backwater wedding venue", category: "Venue" },
+  { id: 6, src: "/images/kanjiras-luxeves-pavilion-wedding-reception-area.webp", alt: "Wedding ceremony setup", category: "Reception" },
+  { id: 7, src: "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp", alt: "Outdoor destination wedding", category: "Ceremony" },
+  { id: 8, src: "/images/kanjiras-pavilion-evening-wedding-decoration.webp", alt: "Evening wedding decoration", category: "Reception" },
 ];
 
-const galleryImages2 = [
-  {
-    src: "/images/kanjiras-pavilion-drone-view-backwater-venue.webp",
-    alt: "Wedding mandap setup overlooking backwaters at Kanjira’s Luxeves Pavilion",
-  },
-  {
-    src: "/images/kanjiras-pavilion-wedding-ceremony-backwater-view.webp",
-    alt: "Scenic backwater destination wedding venue near Thriprayar Thrissur",
-  },
-  {
-    src: "/images/kanjiras-luxeves-pavilion-backwater-wedding-venue-kerala.webp",
-    alt: "Aerial drone view of Kanjira’s Luxeves Pavilion backwater wedding venue",
-  },
-  {
-    src: "/images/luxury-backwater-wedding-venue-kerala-kanjiras.webp",
-    alt: "Wedding reception setup at Kanjira’s Luxeves Pavilion Thrissur",
-  },
-  {
-    src: "/images/kanjiras-pavilion-luxury-wedding-location-kerala.webp",
-    alt: "Luxury waterfront wedding location at Kanjira’s Luxeves Pavilion Kerala",
-  },
-  {
-    src: "/images/kanjiras-pavilion-sunset-backwater-wedding-venue.webp",
-    alt: "Bridal entry setup at Kanjira’s Luxeves Pavilion wedding venue",
-  },
-  {
-    src: "/images/kanjiras-luxeves-pavilion-outdoor-wedding-venue.webp",
-    alt: "Sunset view of Kanjira’s Luxeves Pavilion backwater wedding venue in Kerala",
-  },
-  {
-    src: "/images/thrissur-backwater-destination-wedding-venue.webp",
-    alt: "Destination wedding Thrissur",
-  },
-  {
-    src: "/images/kanjiras-luxeves-pavilion-ear-piercing.webp",
-    alt: "Best wedding venue in kerala",
-  }
-];
+const categories = ["All", "Ceremony", "Reception", "Venue"];
 
 export function GallerySection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
+  const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const filteredImages = activeCategory === "All" 
+    ? allImages 
+    : allImages.filter(img => img.category === activeCategory);
+
+  // Constants for carousel math
+  const ITEM_WIDTH = typeof window !== "undefined" && window.innerWidth < 768 ? 300 : 500;
+  const GAP = 24; // space-x-6
+
+  // Auto-play logic with pause/resume
+  useEffect(() => {
+    if (isHomePage && isInView && !isAutoPlayPaused) {
+      autoPlayTimerRef.current = setInterval(() => {
+        setCarouselIndex((prev) => (prev + 1) % allImages.length);
+      }, 2000);
+    }
+    return () => {
+      if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
+    };
+  }, [isHomePage, isInView, isAutoPlayPaused]);
+
+  const handleDragStart = () => {
+    setIsAutoPlayPaused(true);
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+  };
+
+  const handleDragEnd = (event: any, info: any) => {
+    // Snap to nearest index based on drag offset
+    const offset = info.offset.x;
+    const threshold = ITEM_WIDTH / 4;
+    
+    if (offset < -threshold) {
+      setCarouselIndex((prev) => Math.min(prev + 1, allImages.length - 1));
+    } else if (offset > threshold) {
+      setCarouselIndex((prev) => Math.max(prev - 1, 0));
+    }
+
+    // Set 5s timeout to resume auto-play
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsAutoPlayPaused(false);
+    }, 5000);
+  };
+
+  if (isHomePage) {
+    // Center logic: Correct x to keep active index in center
+    // Math: -(index * (width + gap)) + (containerWidth / 2) - (itemWidth / 2)
+    // We'll use a dynamic calculation based on window width
+    const centerOffset = typeof window !== "undefined" ? (window.innerWidth / 2) - (ITEM_WIDTH / 2) : 0;
+    const xPosition = - (carouselIndex * (ITEM_WIDTH + GAP)) + centerOffset;
+
+    return (
+      <section
+        id="gallery"
+        ref={containerRef}
+        className="py-32 md:py-48 bg-[var(--ivory)] overflow-hidden"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+          <div className="text-left">
+            <motion.div
+              className="w-16 h-1 bg-[var(--gold)] mb-6"
+              initial={{ width: 0 }}
+              animate={isInView ? { width: 64 } : {}}
+              transition={{ duration: 0.8 }}
+            />
+            <motion.h2
+              className="text-4xl md:text-6xl text-[var(--green-dark)] font-serif mb-4"
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+            >
+              Visual Journey
+            </motion.h2>
+            <p className="text-lg text-[var(--green-medium)] max-w-xl font-light">
+              Explore the breathtaking landscapes and curated moments at Kanjira's Luxeves Pavilion.
+            </p>
+          </div>
+        </div>
+
+        {/* Panoramic Carousel - Perfectly Centered */}
+        <div className="relative w-full overflow-visible cursor-grab active:cursor-grabbing">
+          <motion.div 
+            className="flex items-center space-x-6 h-[450px] md:h-[650px] px-[10vw]"
+            drag="x"
+            dragConstraints={{ right: centerOffset, left: -((allImages.length - 1) * (ITEM_WIDTH + GAP)) + centerOffset }}
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+            animate={{ x: xPosition }}
+            transition={{ type: "spring", damping: 30, stiffness: 120 }}
+          >
+            {allImages.map((image, index) => {
+              const isActive = carouselIndex === index;
+              return (
+                <motion.div
+                  key={image.id}
+                  className={`flex-shrink-0 w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-[2.5rem] overflow-hidden shadow-2xl relative group transition-all duration-700 ${
+                    isActive ? "scale-110 opacity-100 z-10" : "scale-85 opacity-40 grayscale-[40%]"
+                  }`}
+                  onClick={() => {
+                    setCarouselIndex(index);
+                    handleDragStart(); // Pause on click too
+                    resumeTimeoutRef.current = setTimeout(() => setIsAutoPlayPaused(false), 5000);
+                  }}
+                >
+                  <ImageWithFallback
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
+                  />
+                  {isActive && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
+                       <span className="text-white font-serif text-xl">{image.category}</span>
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        {/* View More Button */}
+        <div className="max-w-7xl mx-auto px-4 mt-24 flex justify-center">
+          <Link
+            to="/gallery"
+            className="group flex items-center space-x-6 px-12 py-5 bg-[var(--green-dark)] text-white rounded-full hover:bg-[var(--gold)] transition-all shadow-xl hover:-translate-y-1"
+          >
+            <span className="text-sm uppercase tracking-[0.3em] font-bold">View All Memories</span>
+            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-[var(--green-dark)] transition-all">
+              <ArrowRight size={20} />
+            </div>
+          </Link>
+        </div>
+      </section>
+    );
+  }
+
+  // Gallery Page Layout remains same...
   return (
     <section
       id="gallery"
-      ref={ref}
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-[var(--ivory)]"
+      ref={containerRef}
+      className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-[var(--ivory)]"
     >
       <div className="max-w-7xl mx-auto">
-        
-        {/* Header */}
         <div className="text-center mb-16">
           <motion.div
             className="w-16 h-1 bg-[var(--gold)] mx-auto mb-6"
@@ -100,128 +178,91 @@ export function GallerySection() {
             animate={isInView ? { width: 64 } : {}}
             transition={{ duration: 0.8 }}
           />
-
           <motion.h2
-            className="text-4xl md:text-5xl text-[var(--green-dark)] mb-4"
+            className="text-4xl md:text-5xl text-[var(--green-dark)] font-serif mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Gallery
+            Visual Journey
           </motion.h2>
-
-          <motion.p
-            className="text-lg text-[var(--green-medium)] max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Witness the magic of celebrations at our venue
+          <motion.p className="text-lg text-[var(--green-medium)] max-w-3xl mx-auto font-light">
+            Capturing the magic and elegance of celebrations at Kanjira's Luxeves Pavilion
           </motion.p>
         </div>
 
-        {/* Gallery */}
+        <div className="flex flex-wrap justify-center gap-4 mb-20 px-4">
+          {categories.map((category) => (
+            <motion.button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-500 ${
+                activeCategory === category
+                  ? "bg-[var(--gold)] text-[var(--green-dark)] shadow-2xl"
+                  : "bg-white/50 backdrop-blur-md text-[var(--green-dark)] hover:bg-[var(--gold)]/20"
+              }`}
+            >
+              {category}
+            </motion.button>
+          ))}
+        </div>
+
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
         >
-
-          {/* Mobile */}
-          <Masonry columnsCount={1} gutter="16px" className="md:hidden">
-            {galleryImages.map((image, index) => (
-              <GalleryItem
-                key={index}
-                image={image}
-                index={index}
-                isInView={isInView}
+          <AnimatePresence mode="popLayout">
+            {filteredImages.map((image) => (
+              <motion.div
+                key={image.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.6 }}
+                className="relative aspect-[4/3] cursor-pointer group rounded-[2.5rem] overflow-hidden shadow-xl"
                 onClick={() => setSelectedImage(image)}
-              />
+              >
+                <ImageWithFallback
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
+                />
+              </motion.div>
             ))}
-          </Masonry>
-
-          {/* Tablet */}
-          <Masonry columnsCount={2} gutter="16px" className="hidden md:block lg:hidden">
-            {galleryImages2.map((image, index) => (
-              <GalleryItem
-                key={index}
-                image={image}
-                index={index}
-                isInView={isInView}
-                onClick={() => setSelectedImage(image)}
-              />
-            ))}
-          </Masonry>
-
-          {/* Desktop */}
-          {/* <Masonry columnsCount={3} gutter="16px" className="hidden lg:block">
-            {galleryImages2.map((image, index) => (
-              <GalleryItem
-                key={index}
-                image={image}
-                index={index}
-                isInView={isInView}
-                onClick={() => setSelectedImage(image)}
-              />
-            ))}
-          </Masonry> */}
-
+          </AnimatePresence>
         </motion.div>
       </div>
 
-      {/* Lightbox */}
-      {selectedImage && (
-        <motion.div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          onClick={() => setSelectedImage(null)}
-        >
-          <button
-            className="absolute top-4 right-4 text-white hover:text-[var(--gold)]"
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 z-[100] bg-[var(--green-dark)]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
           >
-            <X size={32} />
-          </button>
-
-          <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            className="max-w-5xl w-full"
-          >
-            <ImageWithFallback
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="w-full h-auto rounded-lg"
-            />
+            <motion.button
+              className="absolute top-8 right-8 text-white hover:text-[var(--gold)]"
+              onClick={() => setSelectedImage(null)}
+            >
+              <X size={48} strokeWidth={1} />
+            </motion.button>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="max-w-6xl w-full"
+            >
+              <ImageWithFallback
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                className="w-full h-auto max-h-[85vh] object-contain rounded-[2rem] shadow-2xl"
+              />
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
-  );
-}
-
-function GalleryItem({ image, index, isInView, onClick }: any) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-      className="cursor-pointer group relative overflow-hidden rounded-lg"
-      onClick={onClick}
-      whileHover={{ scale: 1.02 }}
-    >
-      <ImageWithFallback
-        src={image.src}
-        alt={image.alt}
-        className="w-full h-auto rounded-lg"
-      />
-
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-        <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity">
-          View Image
-        </span>
-      </div>
-    </motion.div>
   );
 }

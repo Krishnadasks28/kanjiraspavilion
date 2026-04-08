@@ -15,9 +15,9 @@ export function Home() {
     <main className="overflow-hidden">
       <MetaTags />
       <HeroSection />
-      <AboutSection />
+      <AboutSection title="About Us" />
       <VenuesSection />
-      <AmenitiesSection />
+      <AmenitiesSection layout="grid" />
       <GallerySection />
       <DestinationSection />
       <TestimonialsSection />

@@ -4,18 +4,20 @@ import { Footer } from "../components/Footer";
 import { ScrollProgress } from "../components/ScrollProgress";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { PageLoader } from "../components/PageLoader";
-import { WhatsAppButton } from "../components/WhatsAppButton";
+import { FloatingActions } from "../components/FloatingActions";
+import { ScrollToTopOnNavigate } from "../components/ScrollToTopOnNavigate";
 
 export function Root() {
   return (
     <div className="min-h-screen">
+      <ScrollToTopOnNavigate />
       <PageLoader />
       <ScrollProgress />
       <Navigation />
+      <FloatingActions />
       <Outlet />
       <Footer />
       <ScrollToTop />
-      <WhatsAppButton />
     </div>
   );
 }

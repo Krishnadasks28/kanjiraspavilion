@@ -1,7 +1,7 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useInView } from "motion/react";
-import { useRef } from "react";
-import { Quote, Star } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
@@ -27,7 +27,7 @@ const testimonials = [
     event: "Three-Day Wedding Celebration",
     date: "February 2026",
     location: "All Three Venues",
-    text: "We hosted our entire three-day wedding celebration here — mehendi in the Intimate Pavilion, the ceremony in the Celebration Pavilion, and the grand reception on the Grand Lawn. Each venue was perfect. The combination of tradition and luxury is truly unmatched in Kerala!",
+    text: "We hosted our entire three-day wedding celebration here — mehendi in the Intimate Pavilion, the ceremony in the Celebration Pavilion, and the grand reception on the Grand Lawn. Each venue was perfect.",
     rating: 5,
     avatar: "AR",
   },
@@ -36,150 +36,133 @@ const testimonials = [
     event: "Traditional Kerala Wedding",
     date: "January 2026",
     location: "Grand Lawn",
-    text: "For a traditional Kerala wedding with over 600 guests, finding the right outdoor wedding lawn was critical. Kanjira's Luxeves Pavilion was the only venue that matched our vision — backwater views, tropical greenery, and flawless hospitality.",
+    text: "For a traditional Kerala wedding with over 600 guests, finding the right outdoor wedding lawn was critical. Kanjira's Luxeves Pavilion was the only venue that matched our vision — backwater views and flawless hospitality.",
     rating: 5,
     avatar: "DV",
-  },
-  {
-    name: "Meera & Thomas Abraham",
-    event: "Intimate Engagement Ceremony",
-    date: "November 2025",
-    location: "Intimate Pavilion",
-    text: "The Intimate Pavilion was the perfect setting for our engagement ceremony. Surrounded by lush gardens with views of the backwaters, it felt like a private paradise. The team was incredibly attentive and made every moment special.",
-    rating: 5,
-    avatar: "MT",
-  },
-  {
-    name: "Riya & Aditya Kumar",
-    event: "Destination Wedding & Reception",
-    date: "March 2026",
-    location: "Celebration Pavilion",
-    text: "Planning a destination wedding in Kerala from Mumbai felt daunting, but the team at Kanjira's Luxeves Pavilion handled everything with grace. The venue coordination, catering, and floral arrangements were all beyond world-class.",
-    rating: 5,
-    avatar: "RA",
   },
 ];
 
 export function TestimonialsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const nextThumbnail = () => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevThumbnail = () => {
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setInterval(nextThumbnail, 6000);
+      return () => clearInterval(timer);
+    }
+  }, [isInView]);
 
   return (
     <section
       id="testimonials"
       ref={ref}
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[var(--ivory)]"
+      className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[var(--ivory)] overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <motion.div
-            className="w-16 h-1 bg-[var(--gold)] mx-auto mb-6"
+            className="w-16 h-1 bg-[var(--gold)] mx-auto mb-8"
             initial={{ width: 0 }}
             animate={isInView ? { width: 64 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1 }}
           />
 
           <motion.h2
-            className="text-4xl md:text-5xl text-[var(--green-dark)] mb-4"
+            className="text-4xl md:text-6xl text-[var(--green-dark)] font-serif mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8 }}
           >
-            Love Stories at Our Venue
+            Love Stories
           </motion.h2>
 
           <motion.p
-            className="text-lg text-[var(--green-medium)] max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-lg text-[var(--green-medium)] max-w-2xl mx-auto font-light"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Hundreds of couples have celebrated their special day at Kanjira's Luxeves Pavilion, Kerala's most beloved destination wedding venue. Here's what they say about their experience.
+            Real moments from couples who chose our backwater paradise for their journey together.
           </motion.p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+        {/* Spotlight Carousel */}
+        <div className="relative group">
+          <AnimatePresence mode="wait">
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 relative flex flex-col"
+              key={activeIndex}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white rounded-[3rem] p-10 md:p-20 shadow-2xl relative border border-[var(--gold)]/10"
             >
-              {/* Quote Icon */}
-              <div className="absolute -top-4 -left-4 w-12 h-12 bg-[var(--gold)] rounded-full flex items-center justify-center shadow-lg">
-                <Quote className="text-white" size={20} />
+              <div className="absolute top-10 right-10 opacity-10 text-[var(--gold)]">
+                <Quote size={80} strokeWidth={1} />
               </div>
 
-              {/* Stars */}
-              <div className="flex space-x-1 mb-4 mt-2">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className="fill-[var(--gold)] text-[var(--gold)]"
-                  />
-                ))}
-              </div>
+              <div className="flex flex-col items-center text-center">
+                {/* Text */}
+                <blockquote className="text-2xl md:text-3xl text-[var(--green-dark)] font-serif italic leading-relaxed mb-12">
+                  "{testimonials[activeIndex].text}"
+                </blockquote>
 
-              {/* Location Badge */}
-              <span className="inline-block text-xs px-3 py-1 bg-[var(--gold)]/10 text-[var(--gold)] rounded-full mb-4 self-start">
-                📍 {testimonial.location}
-              </span>
-
-              {/* Testimonial Text */}
-              <p className="text-[var(--green-medium)] mb-6 leading-relaxed italic flex-1">
-                "{testimonial.text}"
-              </p>
-
-              {/* Author Info */}
-              <div className="border-t border-[var(--gold)]/20 pt-4 flex items-center space-x-3">
-                <div className="w-10 h-10 bg-[var(--green-dark)] rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-[var(--gold)] text-xs">{testimonial.avatar}</span>
-                </div>
-                <div>
-                  <p className="text-[var(--green-dark)] text-sm">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-xs text-[var(--green-medium)]">
-                    {testimonial.event}
-                  </p>
-                  <p className="text-xs text-[var(--green-medium)]/60 mt-0.5">
-                    {testimonial.date}
-                  </p>
+                {/* Profile */}
+                <div className="flex flex-col items-center">
+                   <div className="w-16 h-16 bg-[var(--gold)]/10 rounded-full flex items-center justify-center mb-4 border-2 border-[var(--gold)]/20">
+                      <span className="text-[var(--gold)] font-bold text-xl">{testimonials[activeIndex].avatar}</span>
+                   </div>
+                   <h4 className="text-xl text-[var(--green-dark)] font-bold tracking-tight">
+                      {testimonials[activeIndex].name}
+                   </h4>
+                   <div className="flex items-center space-x-2 text-sm text-[var(--green-medium)] mt-1">
+                      <span>{testimonials[activeIndex].event}</span>
+                      <span className="opacity-40">•</span>
+                      <span>{testimonials[activeIndex].location}</span>
+                   </div>
                 </div>
               </div>
             </motion.div>
-          ))}
+          </AnimatePresence>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevThumbnail}
+            className="absolute left-0 md:-left-12 top-1/2 -translate-y-1/2 w-14 h-14 bg-white md:bg-transparent rounded-full flex items-center justify-center text-[var(--green-dark)] hover:text-[var(--gold)] transition-colors shadow-xl md:shadow-none z-10"
+          >
+            <ChevronLeft size={40} strokeWidth={1.5} />
+          </button>
+          <button
+            onClick={nextThumbnail}
+            className="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2 w-14 h-14 bg-white md:bg-transparent rounded-full flex items-center justify-center text-[var(--green-dark)] hover:text-[var(--gold)] transition-colors shadow-xl md:shadow-none z-10"
+          >
+            <ChevronRight size={40} strokeWidth={1.5} />
+          </button>
         </div>
 
-        {/* Trust Badges */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="mt-16 flex flex-wrap justify-center items-center gap-8 md:gap-16"
-        >
-          <div className="text-center">
-            <p className="text-4xl text-[var(--gold)] mb-2">500+</p>
-            <p className="text-[var(--green-medium)]">Celebrations Hosted</p>
-          </div>
-          <div className="text-center">
-            <p className="text-4xl text-[var(--gold)] mb-2">5 Star</p>
-            <p className="text-[var(--green-medium)]">Average Rating</p>
-          </div>
-          <div className="text-center">
-            <p className="text-4xl text-[var(--gold)] mb-2">100%</p>
-            <p className="text-[var(--green-medium)]">Couple Satisfaction</p>
-          </div>
-          <div className="text-center">
-            <p className="text-4xl text-[var(--gold)] mb-2">15+</p>
-            <p className="text-[var(--green-medium)]">Years of Excellence</p>
-          </div>
-        </motion.div> */}
+        {/* Carousel Indicators */}
+        <div className="flex justify-center space-x-3 mt-12">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`h-1.5 transition-all duration-500 rounded-full ${
+                activeIndex === index ? "w-8 bg-[var(--gold)]" : "w-2 bg-[var(--gold)]/20"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

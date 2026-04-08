@@ -107,7 +107,7 @@ export function HeroSection() {
               const element = document.querySelector("#contact");
               if (element) element.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-block px-10 py-4 bg-[var(--gold)] text-[var(--green-dark)] hover:bg-[var(--gold-light)] transition-all duration-300 rounded-md shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="inline-block px-8 py-3.5 bg-[var(--gold)] text-[var(--green-dark)] hover:bg-[var(--gold-light)] transition-all duration-500 rounded-2xl shadow-xl hover:shadow-2xl font-bold tracking-widest uppercase text-xs transform hover:-translate-y-1"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8, duration: 0.8 }}

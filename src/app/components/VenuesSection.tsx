@@ -1,91 +1,20 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
-import { useRef, useState } from "react";
-import { Users, Check } from "lucide-react";
+import { useRef } from "react";
+import { Users, ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-
-const venues = [
-  {
-    id: 1,
-    name: "Grand Lawn",
-    capacity: 2000,
-    tagline: "The Premier Outdoor Wedding Lawn in Kerala",
-    description:
-      "Large outdoor riverside celebration space perfect for grand weddings and receptions",
-    longDescription:
-      "The Grand Lawn is Kanjira's Luxeves Pavilion's crown jewel — a sprawling riverside outdoor wedding lawn capable of hosting up to 2,000 guests in grand style. Nestled along the tranquil Kerala backwaters, this open-air wedding venue offers a natural canopy of towering palms and a panoramic waterfront backdrop ideal for large Hindu wedding ceremonies, grand reception events, and multi-day celebrations. As one of Kerala's most expansive destination wedding lawns, the Grand Lawn is the preferred choice for families seeking a breathtaking outdoor setting that blends tropical nature with sophisticated event planning.",
-    image: "/images/kanjiras-pavilion-backwater-view-wedding-venue.webp",
-    idealFor: [
-      "Grand Evening Weddings",
-      "Reception Events",
-      "DJ Parties",
-      "Corporate Galas",
-    ],
-    features: [
-      "Riverside location with stunning views",
-      "Spacious lawn for 1000+ guests",
-      "Natural canopy of palm trees",
-      "Perfect for outdoor ceremonies",
-    ],
-  },
-  {
-    id: 2,
-    name: "Backwater Pavilion",
-    capacity: 400,
-    tagline: "Elegant Covered Venue for Ceremonies & Receptions",
-    description:
-      "Covered venue ideal for ceremonies and receptions with elegant architecture",
-    longDescription:
-      "The Backwater Pavilion is a roof covered, open wedding venue accommodating up to 400 guests, offering the perfect balance between open-air ambiance and weather-protected luxury. With its soaring architectural ceilings, chandelier lighting, and integrated audio-visual systems, this pavilion is one of Kerala's most versatile destination wedding venues. Whether you're hosting a traditional Kerala wedding ceremony, a modern reception dinner, or a themed cocktail event, the Celebration Pavilion delivers an atmosphere of timeless elegance amidst the backwater landscapes of Kerala.",
-    image: "/images/kanjiras-pavilion-backwater-wedding-stage.webp",
-    idealFor: [
-      "Wedding Ceremonies",
-      "Reception Dinners",
-      "Cocktail Events",
-      "Naming Ceremonies",
-    ],
-    features: [
-      "Climate-controlled comfort",
-      "Elegant chandelier lighting",
-      "Integrated audio-visual systems",
-      "Weather-protected venue",
-    ],
-  },
-  {
-    id: 3,
-    name: "Intimate Pavilion",
-    capacity: 100,
-    tagline: "Private Celebrations in a Garden Setting",
-    description:
-      "Smaller venue perfect for engagement, mehndi, and private celebrations",
-    longDescription:
-      "The Intimate Pavilion is a charming, private event space accommodating up to 100 guests, designed for close-knit celebrations that require an exclusive and personalized setting. Surrounded by lush landscaped gardens and natural backwater views, this venue is ideal for pre-wedding events such as engagement ceremonies, mehendi celebrations, haldi rituals, and bridal brunches. As Kerala's most sought-after intimate wedding venue, it offers flexible seating arrangements, soft natural lighting, and a serene garden atmosphere that transforms every small celebration into a cherished memory.",
-    image: "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp",
-    idealFor: [
-      "Birthday Parties",
-      "Mehendi Ceremonies",
-      "Haldi Functions",
-      "Bridal Brunches",
-    ],
-    features: [
-      "Cozy and intimate setting",
-      "Garden views and natural light",
-      "Flexible seating arrangements",
-      "Ideal for pre-wedding events",
-    ],
-  },
-];
+import { venues } from "../data/venues";
+import { Link } from "react-router";
 
 export function VenuesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [expandedVenue, setExpandedVenue] = useState<number | null>(null);
 
   return (
     <section
       id="venues"
       ref={ref}
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-[var(--ivory)]"
+      className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-[var(--ivory)]"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -103,7 +32,7 @@ export function VenuesSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Our Wedding Venues
+            Our Wedding Venues & Services
           </motion.h2>
 
           <motion.p
@@ -112,10 +41,9 @@ export function VenuesSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            From grand outdoor wedding lawns to intimate garden pavilions,
+            From grand outdoor wedding lawns to intimate garden pavilions and luxury resort stays,
             Kanjira's Luxeves Pavilion offers Kerala's finest destination
-            wedding venue spaces — each crafted to create extraordinary
-            celebrations.
+            wedding spaces.
           </motion.p>
         </div>
 
@@ -130,13 +58,14 @@ export function VenuesSection() {
               className="group"
             >
               <div
-                className={`grid lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 ${
+                className={`grid lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 bg-white ${
                   index % 2 === 1 ? "lg:grid-flow-dense" : ""
                 }`}
               >
                 {/* Image */}
-                <div
-                  className={`relative h-72 sm:h-96 lg:h-auto overflow-hidden ${
+                <Link
+                  to={`/venues/${venue.slug}`}
+                  className={`relative h-72 sm:h-96 lg:h-auto overflow-hidden block ${
                     index % 2 === 1 ? "lg:col-start-2" : ""
                   }`}
                 >
@@ -146,72 +75,52 @@ export function VenuesSection() {
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
                   {/* Capacity Badge */}
-                  <div className="absolute top-4 right-4 bg-[var(--gold)] text-[var(--green-dark)] px-4 py-2 rounded-full flex items-center space-x-2 shadow-lg">
+                  <div className="absolute top-4 right-4 bg-[var(--gold)] text-[var(--green-dark)] px-4 py-2 rounded-full flex items-center space-x-2 shadow-lg z-10">
                     <Users size={18} />
-                    <span className="text-sm">{venue.capacity} guests</span>
+                    <span className="text-sm font-medium">{venue.capacity} guests</span>
                   </div>
-                  {/* Bottom label */}
-                  <div className="absolute bottom-4 left-4">
-                    <span className="text-xs tracking-widest text-[var(--gold-light)] uppercase">
-                      {venue.tagline}
-                    </span>
+                  {/* Overlay for hover */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                     <span className="bg-white/90 text-[var(--green-dark)] px-6 py-2 rounded-full font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        View Venue Details
+                     </span>
                   </div>
-                </div>
+                </Link>
 
                 {/* Content */}
                 <div
-                  className={`bg-white p-8 lg:p-12 flex flex-col justify-center ${
+                  className={`p-8 lg:p-12 flex flex-col justify-center ${
                     index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
                   }`}
                 >
-                  <h3 className="text-3xl md:text-4xl text-[var(--green-dark)] mb-2">
+                  <span className="text-xs tracking-widest text-[var(--gold)] uppercase font-bold mb-3 block">
+                      {venue.tagline}
+                  </span>
+                  <h3 className="text-3xl md:text-4xl text-[var(--green-dark)] mb-4">
                     {venue.name}
                   </h3>
-                  <p className="text-[var(--gold)] mb-4 tracking-wide text-sm uppercase">
-                    Up to {venue.capacity} Guests
-                  </p>
-                  <p className="text-[var(--green-medium)] leading-relaxed mb-6 text-base">
-                    {venue.longDescription}
+                  <p className="text-[var(--green-medium)] leading-relaxed mb-8 text-base">
+                    {venue.description}
                   </p>
 
-                  {/* Ideal For */}
-                  <div className="mb-6">
-                    <p className="text-sm text-[var(--green-dark)] mb-3 tracking-wide uppercase">
-                      Ideal For:
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {venue.idealFor.map((item) => (
+                  <div className="flex flex-wrap gap-2 mb-8">
+                      {venue.idealFor.slice(0, 3).map((item) => (
                         <span
                           key={item}
-                          className="text-xs px-3 py-1.5 bg-[var(--gold)]/10 text-[var(--green-dark)] border border-[var(--gold)]/30 rounded-full"
+                          className="text-[10px] px-2 py-1 bg-[var(--ivory)] text-[var(--green-dark)] border border-[var(--gold)]/20 rounded-md uppercase tracking-wider"
                         >
                           {item}
                         </span>
                       ))}
-                    </div>
                   </div>
 
-                  {/* Features */}
-                  <div
-                    className="border-t border-[var(--gold)]/20 pt-6"
-                    onMouseEnter={() => setExpandedVenue(venue.id)}
-                    onMouseLeave={() => setExpandedVenue(null)}
+                  <Link
+                    to={`/venues/${venue.slug}`}
+                    className="inline-flex items-center text-[var(--gold)] font-bold tracking-widest uppercase text-sm group/btn"
                   >
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {venue.features.map((feature) => (
-                        <li
-                          key={feature}
-                          className="flex items-start space-x-2 text-sm text-[var(--green-medium)]"
-                        >
-                          <Check
-                            size={16}
-                            className="text-[var(--gold)] mt-0.5 flex-shrink-0"
-                          />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    Explore Venue 
+                    <ArrowRight size={18} className="ml-2 transform group-hover/btn:translate-x-2 transition-transform" />
+                  </Link>
                 </div>
               </div>
             </motion.article>

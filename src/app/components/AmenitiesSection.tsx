@@ -1,150 +1,155 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
-import { useRef, useState } from "react";
-import {
-  ParkingCircle,
-  Home,
-  Sparkles,
-  UtensilsCrossed,
-  Trees,
-  Users,
-  Music,
-  Wifi,
-} from "lucide-react";
+import { useRef } from "react";
+import { ArrowRight, ParkingCircle, Home, Trees, Utensils } from "lucide-react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const amenities = [
   {
     icon: ParkingCircle,
+    badge: "Convenience",
     title: "Ample Guest Parking",
-    description: "Spacious parking area for 200+ vehicles",
-    detail: "Our venue provides dedicated parking for over 200 vehicles, ensuring smooth arrival and departure for all your wedding guests. Valet parking attendants are on standby for large events, making the experience seamless and stress-free from the very first moment of arrival.",
+    description: "Our venue provides dedicated, secure parking for over 200 vehicles, ensuring a seamless arrival experience for every guest.",
+    image: "/images/kanjiras-pavilion-drone-view-backwater-venue.webp",
   },
   {
     icon: Home,
-    title: "Premium Washrooms",
-    description: "Luxurious, well-maintained restroom facilities",
-    detail: "Kanjira's Luxeves Pavilion features premium washroom facilities fitted with high-end fixtures and ambient lighting. Our dedicated housekeeping team maintains these spaces throughout your event, ensuring pristine comfort for every guest.",
-  },
-  {
-    icon: Sparkles,
-    title: "Bridal Suite & Rooms",
-    description: "Elegant private suite for bridal preparations",
-    detail: "Our exclusive bridal suite is a beautifully appointed private space where the bride and her entourage can prepare in luxury. Equipped with vanity mirrors, climate control, and tasteful décor, it provides the perfect sanctuary before the ceremony begins.",
+    badge: "Luxury",
+    title: "Premium Bridal Suites",
+    description: "Elegant, climate-controlled suites designed for relaxation and preparation, featuring private vanities and luxury amenities.",
+    image: "/images/kanjiras-pavilion-luxury-wedding-location-kerala.webp",
   },
   {
     icon: Trees,
-    title: "Landscaped Gardens",
-    description: "Beautifully manicured gardens and tropical greenery",
-    detail: "Our award-winning landscaped gardens form the tropical heart of the venue, featuring native Kerala flora, curated water features, and winding pathways perfect for wedding photo sessions. The gardens provide a lush, natural backdrop that accentuates the backwater wedding destination experience.",
+    badge: "Nature",
+    title: "Landscaped Tropical Gardens",
+    description: "Lush, manicured greenery and curated pathways that offer a breathtaking natural backdrop for your photography and ceremonies.",
+    image: "/images/kanjiras-luxeves-pavilion-garden.webp",
   },
-
+  {
+    icon: Utensils,
+    badge: "Service",
+    title: "Professional Catering Spaces",
+    description: "World-class facilities for external catering teams, designed to maintain the highest standards of food service and hygiene.",
+    image: "/images/kanjiras-pavilion-reception-event.webp",
+  },
 ];
 
-export function AmenitiesSection() {
+export function AmenitiesSection({ 
+  layout = "editorial" 
+}: { 
+  layout?: "grid" | "editorial" 
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [hoveredAmenity, setHoveredAmenity] = useState<string | null>(null);
 
+  if (layout === "grid") {
+    return (
+      <section
+        id="amenities"
+        ref={ref}
+        className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-white"
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-24">
+            <motion.div
+              className="w-16 h-1 bg-[var(--gold)] mx-auto mb-6"
+              initial={{ width: 0 }}
+              animate={isInView ? { width: 64 } : {}}
+              transition={{ duration: 0.8 }}
+            />
+            <h2 className="text-4xl md:text-5xl text-[var(--green-dark)] font-serif mb-4">
+              Premium Amenities
+            </h2>
+            <p className="text-lg text-[var(--green-medium)] max-w-3xl mx-auto">
+              Every detail thoughtfully designed for your comfort and convenience
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {amenities.map((amenity, index) => {
+              const Icon = amenity.icon;
+              return (
+                <motion.div
+                  key={amenity.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                  className="group bg-[var(--ivory)] p-8 rounded-[2rem] hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-[var(--gold)]/20"
+                >
+                  <div className="w-14 h-14 bg-[var(--gold)]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[var(--gold)] transition-all duration-300">
+                    <Icon className="text-[var(--gold)] group-hover:text-white" size={28} />
+                  </div>
+                  <h3 className="text-xl text-[var(--green-dark)] mb-4 font-bold">{amenity.title}</h3>
+                  <p className="text-[var(--green-medium)] leading-relaxed text-sm">
+                    {amenity.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Editorial Layout (Base 11 style)
   return (
     <section
       id="amenities"
       ref={ref}
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-white"
+      className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-32">
           <motion.div
-            className="w-16 h-1 bg-[var(--gold)] mx-auto mb-6"
+            className="w-16 h-1 bg-[var(--gold)] mx-auto mb-8"
             initial={{ width: 0 }}
             animate={isInView ? { width: 64 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1 }}
           />
-
-          <motion.h2
-            className="text-4xl md:text-5xl text-[var(--green-dark)] mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Premium Amenities
-          </motion.h2>
-
-          <motion.p
-            className="text-lg text-[var(--green-medium)] max-w-3xl mx-auto mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Every detail thoughtfully designed for your comfort and convenience
-          </motion.p>
+          <h2 className="text-4xl md:text-6xl text-[var(--green-dark)] font-serif mb-8">
+            Beyond Ordinary <br />
+            <span className="text-[var(--gold)] italic">Experiences</span>
+          </h2>
         </div>
 
-        {/* SEO Intro Text */}
-        <motion.div
-          className="max-w-4xl mx-auto text-center mb-16 px-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.35 }}
-        >
-          <p className="text-[var(--green-medium)] leading-relaxed text-base">
-            As a premier destination wedding venue in Kerala, Kanjira's Luxeves Pavilion provides a full suite of world-class facilities — from spacious guest parking and luxurious bridal preparation rooms to professional catering spaces, beautifully landscaped gardens, and premium washrooms. Every amenity is crafted to ensure that your wedding event is seamless, beautiful, and memorable for every guest.
-          </p>
-        </motion.div>
-
-        {/* Amenities Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {amenities.map((amenity, index) => {
-            const Icon = amenity.icon;
-            const isHovered = hoveredAmenity === amenity.title;
-            return (
-              <motion.div
-                key={amenity.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                className="group"
-                onMouseEnter={() => setHoveredAmenity(amenity.title)}
-                onMouseLeave={() => setHoveredAmenity(null)}
-              >
-                <div className="bg-[var(--ivory)] p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                  {/* Icon */}
-                  <motion.div
-                    className="w-16 h-16 bg-[var(--gold)]/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-[var(--gold)] transition-all duration-300"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  >
-                    <Icon
-                      className="text-[var(--gold)] group-hover:text-white transition-colors duration-300"
-                      size={32}
-                    />
-                  </motion.div>
-
-                  {/* Content */}
-                  <h3 className="text-lg text-[var(--green-dark)] mb-2">
-                    {amenity.title}
-                  </h3>
-                  <p className="text-[var(--green-medium)] text-sm leading-relaxed mb-3 flex-1">
-                    {amenity.description}
-                  </p>
-
-                  {/* Expanded detail on hover */}
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{
-                      height: isHovered ? "auto" : 0,
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <p className="text-xs text-[var(--green-medium)]/80 leading-relaxed border-t border-[var(--gold)]/20 pt-3 mt-2">
-                      {amenity.detail}
-                    </p>
-                  </motion.div>
+        {/* Feature Sections */}
+        <div className="space-y-32 md:space-y-48">
+          {amenities.map((item, index) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className={`flex flex-col md:flex-row items-center gap-12 lg:gap-20 ${
+                index % 2 === 1 ? "md:flex-row-reverse" : ""
+              }`}
+            >
+              <div className="w-full md:w-1/2">
+                <div className="relative rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/3]">
+                  <ImageWithFallback
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </motion.div>
-            );
-          })}
+              </div>
+
+              <div className="w-full md:w-1/2 space-y-6 text-left">
+                <span className="text-xs uppercase tracking-[0.2em] font-bold text-[var(--gold)]">{item.badge}</span>
+                <h3 className="text-3xl md:text-5xl text-[var(--green-dark)] font-serif leading-tight">
+                  {item.title}
+                </h3>
+                <p className="text-lg text-[var(--green-medium)] leading-relaxed max-w-lg">
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

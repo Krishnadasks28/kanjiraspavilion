@@ -11,11 +11,11 @@ export function LocationSection() {
     <section
       id="location"
       ref={ref}
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-white"
+      className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-white"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-24">
           <motion.div
             className="w-16 h-1 bg-[var(--gold)] mx-auto mb-6"
             initial={{ width: 0 }}
@@ -48,18 +48,18 @@ export function LocationSection() {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-10 mb-20">
           {/* Location Details */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-[var(--ivory)] p-6 rounded-lg"
+            className="bg-[var(--ivory)] p-8 rounded-[2rem] border border-[var(--gold)]/10"
           >
-            <div className="w-12 h-12 bg-[var(--gold)]/20 rounded-full flex items-center justify-center mb-4">
-              <MapPin className="text-[var(--gold)]" size={24} />
+            <div className="w-14 h-14 bg-[var(--gold)]/20 rounded-full flex items-center justify-center mb-6">
+              <MapPin className="text-[var(--gold)]" size={28} />
             </div>
-            <h3 className="text-xl text-[var(--green-dark)] mb-3">Address</h3>
+            <h3 className="text-xl text-[var(--green-dark)] mb-4 font-bold tracking-tight">Address</h3>
             <p className="text-[var(--green-medium)] leading-relaxed">
               Kanjira's Luxeves Pavilion
               <br />
@@ -73,19 +73,20 @@ export function LocationSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="bg-[var(--ivory)] p-6 rounded-lg"
+            className="bg-[var(--ivory)] p-8 rounded-[2rem] border border-[var(--gold)]/10"
           >
-            <div className="w-12 h-12 bg-[var(--gold)]/20 rounded-full flex items-center justify-center mb-4">
-              <Navigation className="text-[var(--gold)]" size={24} />
+            <div className="w-14 h-14 bg-[var(--gold)]/20 rounded-full flex items-center justify-center mb-6">
+              <Navigation className="text-[var(--gold)]" size={28} />
             </div>
-            <h3 className="text-xl text-[var(--green-dark)] mb-3">
+            <h3 className="text-xl text-[var(--green-dark)] mb-4 font-bold tracking-tight">
               Directions
             </h3>
             <p className="text-[var(--green-medium)] leading-relaxed">
               Easy access from major cities
               <br />
               90 min from Kochi Airport.
-             
+              <br />
+              45 min from Thrissur Railway Station.
             </p>
           </motion.div>
 
@@ -93,16 +94,18 @@ export function LocationSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="bg-[var(--ivory)] p-6 rounded-lg"
+            className="bg-[var(--ivory)] p-8 rounded-[2rem] border border-[var(--gold)]/10"
           >
-            <div className="w-12 h-12 bg-[var(--gold)]/20 rounded-full flex items-center justify-center mb-4">
-              <Car className="text-[var(--gold)]" size={24} />
+            <div className="w-14 h-14 bg-[var(--gold)]/20 rounded-full flex items-center justify-center mb-6">
+              <Car className="text-[var(--gold)]" size={28} />
             </div>
-            <h3 className="text-xl text-[var(--green-dark)] mb-3">Parking</h3>
+            <h3 className="text-xl text-[var(--green-dark)] mb-4 font-bold tracking-tight">Parking</h3>
             <p className="text-[var(--green-medium)] leading-relaxed">
               Ample parking space
               <br />
               200+ vehicle capacity
+              <br />
+              Valet service available upon request.
             </p>
           </motion.div>
         </div>
@@ -112,7 +115,7 @@ export function LocationSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="w-full h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-2xl"
+          className="w-full h-[400px] md:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl border border-[var(--gold)]/20"
         >
           {/* Google Maps Placeholder */}
           <div className="w-full h-full bg-gradient-to-br from-[var(--green-light)] to-[var(--green-medium)] flex items-center justify-center relative">

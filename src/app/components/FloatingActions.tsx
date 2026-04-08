@@ -3,8 +3,8 @@ import { Phone, MapPin, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
 const actions = [
-  { icon: Phone, label: "Call Us", href: "tel:+911234567890", color: "bg-[var(--green-dark)]" },
-  { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/911234567890", color: "bg-[#25D366]" },
+  { icon: Phone, label: "Call Us", href: "tel:+919995427799", color: "bg-[var(--green-dark)]" },
+  { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/919995427799", color: "bg-[#25D366]" },
   { icon: MapPin, label: "Location", href: "/location", color: "bg-[var(--gold)]" },
 ];
 

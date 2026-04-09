@@ -35,10 +35,10 @@ const amenities = [
   },
 ];
 
-export function AmenitiesSection({ 
-  layout = "editorial" 
-}: { 
-  layout?: "grid" | "editorial" 
+export function AmenitiesSection({
+  layout = "editorial"
+}: {
+  layout?: "grid" | "editorial"
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -48,21 +48,21 @@ export function AmenitiesSection({
       <section
         id="amenities"
         ref={ref}
-        className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-white"
+        className="py-20 md:py-48 px-4 sm:px-6 lg:px-8 bg-white"
       >
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-24">
+          <div className="text-center mb-8">
             <motion.div
-              className="w-16 h-1 bg-[var(--gold)] mx-auto mb-6"
+              className="w-16 h-1 bg-accent mx-auto mb-6"
               initial={{ width: 0 }}
               animate={isInView ? { width: 64 } : {}}
               transition={{ duration: 0.8 }}
             />
-            <h2 className="text-4xl md:text-5xl text-[var(--green-dark)] font-serif mb-4">
+            <h2 className="text-4xl md:text-5xl text-primary font-serif mb-4">
               Premium Amenities
             </h2>
-            <p className="text-lg text-[var(--green-medium)] max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Every detail thoughtfully designed for your comfort and convenience
             </p>
           </div>
@@ -76,13 +76,13 @@ export function AmenitiesSection({
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                  className="group bg-[var(--ivory)] p-8 rounded-[2rem] hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-[var(--gold)]/20"
+                  className="group bg-secondary p-8 rounded-lg hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-accent/20"
                 >
-                  <div className="w-14 h-14 bg-[var(--gold)]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[var(--gold)] transition-all duration-300">
-                    <Icon className="text-[var(--gold)] group-hover:text-white" size={28} />
+                  <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-accent transition-all duration-300">
+                    <Icon className="text-accent group-hover:text-white" size={28} />
                   </div>
-                  <h3 className="text-xl text-[var(--green-dark)] mb-4 font-bold">{amenity.title}</h3>
-                  <p className="text-[var(--green-medium)] leading-relaxed text-sm">
+                  <h3 className="text-xl text-primary mb-4 font-bold">{amenity.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm">
                     {amenity.description}
                   </p>
                 </motion.div>
@@ -105,14 +105,14 @@ export function AmenitiesSection({
         {/* Section Header */}
         <div className="text-center mb-32">
           <motion.div
-            className="w-16 h-1 bg-[var(--gold)] mx-auto mb-8"
+            className="w-16 h-1 bg-accent mx-auto mb-8"
             initial={{ width: 0 }}
             animate={isInView ? { width: 64 } : {}}
             transition={{ duration: 1 }}
           />
-          <h2 className="text-4xl md:text-6xl text-[var(--green-dark)] font-serif mb-8">
+          <h2 className="text-4xl md:text-6xl text-primary font-serif mb-8">
             Beyond Ordinary <br />
-            <span className="text-[var(--gold)] italic">Experiences</span>
+            <span className="text-accent italic">Experiences</span>
           </h2>
         </div>
 
@@ -125,12 +125,11 @@ export function AmenitiesSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, delay: 0.2 }}
-              className={`flex flex-col md:flex-row items-center gap-12 lg:gap-20 ${
-                index % 2 === 1 ? "md:flex-row-reverse" : ""
-              }`}
+              className={`flex flex-col md:flex-row items-center gap-12 lg:gap-20 ${index % 2 === 1 ? "md:flex-row-reverse" : ""
+                }`}
             >
               <div className="w-full md:w-1/2">
-                <div className="relative rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/3]">
+                <div className="relative rounded-lg overflow-hidden shadow-2xl aspect-[4/3]">
                   <ImageWithFallback
                     src={item.image}
                     alt={item.title}
@@ -140,11 +139,11 @@ export function AmenitiesSection({
               </div>
 
               <div className="w-full md:w-1/2 space-y-6 text-left">
-                <span className="text-xs uppercase tracking-[0.2em] font-bold text-[var(--gold)]">{item.badge}</span>
-                <h3 className="text-3xl md:text-5xl text-[var(--green-dark)] font-serif leading-tight">
+                <span className="text-xs uppercase tracking-[0.2em] font-bold text-accent">{item.badge}</span>
+                <h3 className="text-3xl md:text-5xl text-primary font-serif leading-tight">
                   {item.title}
                 </h3>
-                <p className="text-lg text-[var(--green-medium)] leading-relaxed max-w-lg">
+                <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
                   {item.description}
                 </p>
               </div>

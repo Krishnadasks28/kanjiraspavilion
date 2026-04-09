@@ -30,14 +30,14 @@ export function ScrollToTop() {
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-[var(--gold)] text-[var(--green-dark)] rounded-full shadow-lg hover:bg-[var(--gold-light)] flex items-center justify-center"
+          className="fixed bottom-8 right-8 z-50 w-10 h-10 md:w-11 md:h-11 bg-[var(--gold)] text-[var(--green-dark)] rounded-full shadow-lg hover:bg-[var(--gold-light)] flex items-center justify-center transition-colors"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <ArrowUp size={24} />
+          <ArrowUp size={18} strokeWidth={2} />
         </motion.button>
       )}
     </AnimatePresence>

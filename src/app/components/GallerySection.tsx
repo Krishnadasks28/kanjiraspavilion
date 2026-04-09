@@ -27,11 +27,11 @@ export function GallerySection() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
-  const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoPlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const filteredImages = activeCategory === "All" 
-    ? allImages 
+  const filteredImages = activeCategory === "All"
+    ? allImages
     : allImages.filter(img => img.category === activeCategory);
 
   // Constants for carousel math
@@ -59,7 +59,7 @@ export function GallerySection() {
     // Snap to nearest index based on drag offset
     const offset = info.offset.x;
     const threshold = ITEM_WIDTH / 4;
-    
+
     if (offset < -threshold) {
       setCarouselIndex((prev) => Math.min(prev + 1, allImages.length - 1));
     } else if (offset > threshold) {
@@ -83,33 +83,34 @@ export function GallerySection() {
       <section
         id="gallery"
         ref={containerRef}
-        className="py-32 md:py-48 bg-[var(--ivory)] overflow-hidden"
+        className="py-20 md:py-48 bg-secondary overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <div className="text-left">
             <motion.div
-              className="w-16 h-1 bg-[var(--gold)] mb-6"
+              className="w-16 h-1 bg-accent mb-6"
               initial={{ width: 0 }}
               animate={isInView ? { width: 64 } : {}}
               transition={{ duration: 0.8 }}
             />
             <motion.h2
-              className="text-4xl md:text-6xl text-[var(--green-dark)] font-serif mb-4"
+              className="text-4xl md:text-6xl text-primary font-serif mb-4"
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
             >
               Visual Journey
             </motion.h2>
-            <p className="text-lg text-[var(--green-medium)] max-w-xl font-light">
+            <p className="text-lg text-muted-foreground max-w-xl font-light">
               Explore the breathtaking landscapes and curated moments at Kanjira's Luxeves Pavilion.
             </p>
           </div>
         </div>
 
         {/* Panoramic Carousel - Perfectly Centered */}
-        <div className="relative w-full overflow-visible cursor-grab active:cursor-grabbing">
-          <motion.div 
+        <div className="relative w-full overflow-visible cursor-grab active:cursor-grabbing" style={{ perspective: "1500px" }}>
+          <motion.div
             className="flex items-center space-x-6 h-[450px] md:h-[650px] px-[10vw]"
+            style={{ transformStyle: "preserve-3d" }}
             drag="x"
             dragConstraints={{ right: centerOffset, left: -((allImages.length - 1) * (ITEM_WIDTH + GAP)) + centerOffset }}
             onDragStart={handleDragStart}
@@ -119,12 +120,37 @@ export function GallerySection() {
           >
             {allImages.map((image, index) => {
               const isActive = carouselIndex === index;
+              const isPast = index < carouselIndex;
+
+              let transformStyle = "scale(0.85) rotateY(0deg)";
+              let opacityClass = "opacity-50";
+              let shadowClass = "shadow-md";
+
+              if (isActive) {
+                // Active item pops forward
+                transformStyle = "scale(1.1) rotateY(0deg) translateZ(50px)";
+                opacityClass = "opacity-100 z-20";
+                shadowClass = "shadow-2xl shadow-black/40";
+              } else if (isPast) {
+                // Past items tilt right
+                transformStyle = "scale(0.85) rotateY(25deg) translateX(5%) translateZ(-50px)";
+                opacityClass = "opacity-60 z-0";
+                shadowClass = "";
+              } else {
+                // Future items tilt left
+                transformStyle = "scale(0.85) rotateY(-25deg) translateX(-5%) translateZ(-50px)";
+                opacityClass = "opacity-60 z-0";
+                shadowClass = "";
+              }
+
               return (
                 <motion.div
                   key={image.id}
-                  className={`flex-shrink-0 w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-[2.5rem] overflow-hidden shadow-2xl relative group transition-all duration-700 ${
-                    isActive ? "scale-110 opacity-100 z-10" : "scale-85 opacity-40 grayscale-[40%]"
-                  }`}
+                  className={`flex-shrink-0 w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-lg overflow-hidden relative group transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${opacityClass} ${shadowClass}`}
+                  style={{
+                    transform: transformStyle,
+                    transformStyle: "preserve-3d"
+                  }}
                   onClick={() => {
                     setCarouselIndex(index);
                     handleDragStart(); // Pause on click too
@@ -138,7 +164,7 @@ export function GallerySection() {
                   />
                   {isActive && (
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
-                       <span className="text-white font-serif text-xl">{image.category}</span>
+                      <span className="text-white font-serif text-xl">{image.category}</span>
                     </div>
                   )}
                 </motion.div>
@@ -151,10 +177,10 @@ export function GallerySection() {
         <div className="max-w-7xl mx-auto px-4 mt-24 flex justify-center">
           <Link
             to="/gallery"
-            className="group flex items-center space-x-6 px-12 py-5 bg-[var(--green-dark)] text-white rounded-full hover:bg-[var(--gold)] transition-all shadow-xl hover:-translate-y-1"
+            className="group flex items-center space-x-6 px-12 py-5 bg-primary text-white rounded-full hover:bg-accent transition-all shadow-xl hover:-translate-y-1"
           >
             <span className="text-sm uppercase tracking-[0.3em] font-bold">View All Memories</span>
-            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-[var(--green-dark)] transition-all">
+            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-all">
               <ArrowRight size={20} />
             </div>
           </Link>
@@ -168,25 +194,25 @@ export function GallerySection() {
     <section
       id="gallery"
       ref={containerRef}
-      className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-[var(--ivory)]"
+      className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-secondary"
     >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <motion.div
-            className="w-16 h-1 bg-[var(--gold)] mx-auto mb-6"
+            className="w-16 h-1 bg-accent mx-auto mb-6"
             initial={{ width: 0 }}
             animate={isInView ? { width: 64 } : {}}
             transition={{ duration: 0.8 }}
           />
           <motion.h2
-            className="text-4xl md:text-5xl text-[var(--green-dark)] font-serif mb-4"
+            className="text-4xl md:text-5xl text-primary font-serif mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Visual Journey
           </motion.h2>
-          <motion.p className="text-lg text-[var(--green-medium)] max-w-3xl mx-auto font-light">
+          <motion.p className="text-lg text-muted-foreground max-w-3xl mx-auto font-light">
             Capturing the magic and elegance of celebrations at Kanjira's Luxeves Pavilion
           </motion.p>
         </div>
@@ -196,11 +222,10 @@ export function GallerySection() {
             <motion.button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-500 ${
-                activeCategory === category
-                  ? "bg-[var(--gold)] text-[var(--green-dark)] shadow-2xl"
-                  : "bg-white/50 backdrop-blur-md text-[var(--green-dark)] hover:bg-[var(--gold)]/20"
-              }`}
+              className={`px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-500 ${activeCategory === category
+                  ? "bg-accent text-accent-foreground shadow-2xl"
+                  : "bg-white/50 backdrop-blur-md text-primary hover:bg-accent/20"
+                }`}
             >
               {category}
             </motion.button>
@@ -220,7 +245,7 @@ export function GallerySection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6 }}
-                className="relative aspect-[4/3] cursor-pointer group rounded-[2.5rem] overflow-hidden shadow-xl"
+                className="relative aspect-[4/3] cursor-pointer group rounded-lg overflow-hidden shadow-xl"
                 onClick={() => setSelectedImage(image)}
               >
                 <ImageWithFallback
@@ -237,14 +262,14 @@ export function GallerySection() {
       <AnimatePresence>
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 z-[100] bg-[var(--green-dark)]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12"
+            className="fixed inset-0 z-[100] bg-primary/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
           >
             <motion.button
-              className="absolute top-8 right-8 text-white hover:text-[var(--gold)]"
+              className="absolute top-8 right-8 text-white hover:text-accent"
               onClick={() => setSelectedImage(null)}
             >
               <X size={48} strokeWidth={1} />
@@ -257,7 +282,7 @@ export function GallerySection() {
               <ImageWithFallback
                 src={selectedImage.src}
                 alt={selectedImage.alt}
-                className="w-full h-auto max-h-[85vh] object-contain rounded-[2rem] shadow-2xl"
+                className="w-full h-auto max-h-[85vh] object-contain rounded-lg shadow-2xl"
               />
             </motion.div>
           </motion.div>

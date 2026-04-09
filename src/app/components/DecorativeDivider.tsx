@@ -5,7 +5,7 @@ interface DecorativeDividerProps {
 }
 
 export function DecorativeDivider({ variant = "gold" }: DecorativeDividerProps) {
-  const color = variant === "gold" ? "var(--gold)" : "var(--green-medium)";
+  const color = variant === "gold" ? "var(--accent)" : "var(--muted-foreground)";
 
   return (
     <div className="flex items-center justify-center py-8">

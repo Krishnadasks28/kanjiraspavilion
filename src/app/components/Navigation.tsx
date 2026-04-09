@@ -75,10 +75,10 @@ export function Navigation() {
                 <NavLink
                   to={item.href}
                   className={({ isActive }) =>
-                    `text-sm font-medium transition-colors duration-300 hover:text-[var(--gold)] uppercase tracking-widest ${
+                    `text-sm font-medium transition-colors duration-300 hover:text-accent uppercase tracking-widest ${
                       isActive 
-                        ? "text-[var(--gold)]" 
-                        : isScrolled ? "text-[var(--green-dark)]" : "text-white"
+                        ? "text-accent" 
+                        : isScrolled ? "text-primary" : "text-white"
                     }`
                   }
                 >
@@ -93,7 +93,7 @@ export function Navigation() {
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`p-2 rounded-full transition-colors ${
-                isScrolled ? "text-[var(--green-dark)]" : "text-white"
+                isScrolled ? "text-primary" : "text-white"
               }`}
             >
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -106,7 +106,7 @@ export function Navigation() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden bg-white shadow-2xl overflow-hidden border-t border-[var(--gold)]/10"
+            className="md:hidden bg-white shadow-2xl overflow-hidden border-t border-accent/10"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -125,8 +125,8 @@ export function Navigation() {
                     className={({ isActive }) =>
                       `block px-4 py-4 text-lg font-serif transition-all ${
                         isActive 
-                          ? "text-[var(--gold)]" 
-                          : "text-[var(--green-dark)] hover:text-[var(--gold)]"
+                          ? "text-accent" 
+                          : "text-primary hover:text-accent"
                       }`
                     }
                   >

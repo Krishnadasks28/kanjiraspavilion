@@ -64,7 +64,7 @@ export function BookingSection() {
       className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* Background with overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[var(--green-dark)] to-[var(--green-medium)]">
+      <div className="absolute inset-0 bg-primary">
         {/* Decorative pattern */}
         <div
           className="absolute inset-0 opacity-5"
@@ -83,13 +83,13 @@ export function BookingSection() {
             transition={{ duration: 0.8 }}
           >
             <motion.div
-              className="w-16 h-1 bg-[var(--gold)] mb-6"
+              className="w-16 h-1 bg-accent mb-6"
               initial={{ width: 0 }}
               animate={isInView ? { width: 64 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
             />
 
-            <h2 className="text-4xl md:text-5xl text-white mb-6">
+            <h2 className="text-4xl md:text-5xl text-white font-serif mb-6">
               Begin Your Journey
             </h2>
 
@@ -101,8 +101,8 @@ export function BookingSection() {
 
             <div className="space-y-4">
               <div className="flex items-center space-x-4 text-white/90">
-                <div className="w-12 h-12 bg-[var(--gold)]/20 rounded-full flex items-center justify-center">
-                  <Phone size={20} className="text-[var(--gold)]" />
+                <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
+                  <Phone size={20} className="text-accent" />
                 </div>
                 <div>
                   <p className="text-sm text-white/70">Call Us</p>
@@ -113,8 +113,8 @@ export function BookingSection() {
               </div>
 
               <div className="flex items-center space-x-4 text-white/90">
-                <div className="w-12 h-12 bg-[var(--gold)]/20 rounded-full flex items-center justify-center">
-                  <Calendar size={20} className="text-[var(--gold)]" />
+                <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
+                  <Calendar size={20} className="text-accent" />
                 </div>
                 <div>
                   <p className="text-sm text-white/70">Visit Hours</p>
@@ -131,19 +131,19 @@ export function BookingSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-2xl p-8">
-              <h3 className="text-2xl text-[var(--green-dark)] mb-6">
+              <h3 className="text-2xl text-primary font-serif mb-6">
                 Check Availability
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Name */}
                 <div>
-                  <label className="block text-sm text-[var(--green-dark)] mb-2">
+                  <label className="block text-sm text-primary mb-2">
                     Full Name
                   </label>
                   <div className="relative">
                     <User
-                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--green-medium)]"
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"
                       size={20}
                     />
                     <input
@@ -152,7 +152,7 @@ export function BookingSection() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full pl-12 pr-4 py-3 border border-[var(--green-dark)]/20 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--gold)] bg-white"
+                      className="w-full pl-12 pr-4 py-3 border border-primary/20 rounded-md focus:outline-none focus:ring-2 focus:ring-accent bg-white"
                       placeholder="Enter your name"
                     />
                   </div>
@@ -160,12 +160,12 @@ export function BookingSection() {
 
                 {/* Phone */}
                 <div>
-                  <label className="block text-sm text-[var(--green-dark)] mb-2">
+                  <label className="block text-sm text-primary mb-2">
                     Phone Number
                   </label>
                   <div className="relative">
                     <Phone
-                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--green-medium)]"
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"
                       size={20}
                     />
                     <input
@@ -174,7 +174,7 @@ export function BookingSection() {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full pl-12 pr-4 py-3 border border-[var(--green-dark)]/20 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--gold)] bg-white"
+                      className="w-full pl-12 pr-4 py-3 border border-primary/20 rounded-md focus:outline-none focus:ring-2 focus:ring-accent bg-white"
                       placeholder="+91 XXXXX XXXXX"
                     />
                   </div>
@@ -182,12 +182,12 @@ export function BookingSection() {
 
                 {/* Event Date */}
                 <div>
-                  <label className="block text-sm text-[var(--green-dark)] mb-2">
+                  <label className="block text-sm text-primary mb-2">
                     Event Date
                   </label>
                   <div className="relative">
                     <Calendar
-                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--green-medium)]"
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"
                       size={20}
                     />
                     <input
@@ -196,19 +196,19 @@ export function BookingSection() {
                       value={formData.eventDate}
                       onChange={handleChange}
                       required
-                      className="w-full pl-12 pr-4 py-3 border border-[var(--green-dark)]/20 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--gold)] bg-white"
+                      className="w-full pl-12 pr-4 py-3 border border-primary/20 rounded-md focus:outline-none focus:ring-2 focus:ring-accent bg-white"
                     />
                   </div>
                 </div>
 
                 {/* Guest Count */}
                 <div>
-                  <label className="block text-sm text-[var(--green-dark)] mb-2">
+                  <label className="block text-sm text-primary mb-2">
                     Expected Guest Count
                   </label>
                   <div className="relative">
                     <Users
-                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--green-medium)]"
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"
                       size={20}
                     />
                     <select
@@ -216,7 +216,7 @@ export function BookingSection() {
                       value={formData.guestCount}
                       onChange={handleChange}
                       required
-                      className="w-full pl-12 pr-4 py-3 border border-[var(--green-dark)]/20 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--gold)] bg-white appearance-none"
+                      className="w-full pl-12 pr-4 py-3 border border-primary/20 rounded-md focus:outline-none focus:ring-2 focus:ring-accent bg-white appearance-none"
                     >
                       <option value="">Select guest count</option>
                       <option value="50-100">50-100 guests</option>
@@ -231,7 +231,7 @@ export function BookingSection() {
                 {/* Submit Button */}
                 <motion.button
                   type="submit"
-                  className="w-full bg-[var(--gold)] text-[var(--green-dark)] py-3 rounded-md hover:bg-[var(--gold-light)] transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg"
+                  className="w-full bg-accent text-white py-3 rounded-md hover:bg-accent/80 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

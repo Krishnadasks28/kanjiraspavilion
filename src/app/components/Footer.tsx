@@ -37,13 +37,13 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[var(--green-dark)] text-white">
+    <footer className="bg-primary text-white">
       {/* SEO Content Band */}
       <div className="border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
-              <h4 className="text-[var(--gold)] text-sm mb-3 tracking-wide uppercase">
+              <h4 className="text-accent text-sm mb-3 tracking-wide uppercase">
                 Destination Wedding Venue in Kerala
               </h4>
               <p className="text-white/60 text-xs leading-relaxed">
@@ -56,7 +56,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h4 className="text-[var(--gold)] text-sm mb-3 tracking-wide uppercase">
+              <h4 className="text-accent text-sm mb-3 tracking-wide uppercase">
                 Backwater Wedding Venue
               </h4>
               <p className="text-white/60 text-xs leading-relaxed">
@@ -68,7 +68,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h4 className="text-[var(--gold)] text-sm mb-3 tracking-wide uppercase">
+              <h4 className="text-accent text-sm mb-3 tracking-wide uppercase">
                 Wedding Events We Host
               </h4>
               <p className="text-white/60 text-xs leading-relaxed">
@@ -86,12 +86,11 @@ export function Footer() {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Brand Section */}
           <div className="max-w-xl">
-            <h3
-              className="text-3xl mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Kanjira's Luxeves Pavilion
-            </h3>
+            <img
+              src="/images/Logo.PNG"
+              alt="Kanjira's Luxeves Pavilion"
+              className="h-14 md:h-16 w-auto mb-6 brightness-0 invert"
+            />
 
             <p className="text-white/80 mb-3 leading-relaxed">
               Where backwaters meet beautiful beginnings. Experience the magic
@@ -108,20 +107,20 @@ export function Footer() {
             {/* Contact */}
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-white/80">
-                <MapPin size={18} className="text-[var(--gold)]" />
+                <MapPin size={18} className="text-accent" />
                 <span className="text-sm">
                   Boattukadavu Road, Thripreyar, Kerala
                 </span>
               </div>
 
               <div className="flex items-center space-x-3 text-white/80">
-                <Phone size={18} className="text-[var(--gold)]" />
+                <Phone size={18} className="text-accent" />
                 <span className="text-sm">+91 9995427799</span>
                 <span className="text-sm">+91 9577331122</span>
               </div>
 
               <div className="flex items-center space-x-3 text-white/80">
-                <Mail size={18} className="text-[var(--gold)]" />
+                <Mail size={18} className="text-accent" />
                 <span className="text-sm">kanjiraspavilion@gmail.com</span>
               </div>
             </div>
@@ -136,7 +135,7 @@ export function Footer() {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-[var(--gold)] transition-all duration-300"
+                    className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-all duration-300"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -149,10 +148,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4
-              className="text-xl mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+            <h4 className="text-xl mb-4">
               Quick Links
             </h4>
 
@@ -161,7 +157,7 @@ export function Footer() {
                 <li key={link.href}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-white/80 hover:text-[var(--gold)] transition-colors duration-300 text-sm"
+                    className="text-white/80 hover:text-accent transition-colors duration-300 text-sm"
                   >
                     {link.label}
                   </button>
@@ -173,7 +169,7 @@ export function Footer() {
       </div>
 
       {/* Divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">

@@ -66,20 +66,20 @@ export function TestimonialsSection() {
     <section
       id="testimonials"
       ref={ref}
-      className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[var(--ivory)] overflow-hidden"
+      className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-secondary overflow-hidden"
     >
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <motion.div
-            className="w-16 h-1 bg-[var(--gold)] mx-auto mb-8"
+            className="w-16 h-1 bg-accent mx-auto mb-8"
             initial={{ width: 0 }}
             animate={isInView ? { width: 64 } : {}}
             transition={{ duration: 1 }}
           />
 
           <motion.h2
-            className="text-4xl md:text-6xl text-[var(--green-dark)] font-serif mb-6"
+            className="text-4xl md:text-6xl text-primary font-serif mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
@@ -88,7 +88,7 @@ export function TestimonialsSection() {
           </motion.h2>
 
           <motion.p
-            className="text-lg text-[var(--green-medium)] max-w-2xl mx-auto font-light"
+            className="text-lg text-muted-foreground max-w-2xl mx-auto font-light"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -106,27 +106,27 @@ export function TestimonialsSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white rounded-[3rem] p-10 md:p-20 shadow-2xl relative border border-[var(--gold)]/10"
+              className="bg-white rounded-lg p-8 md:p-12 shadow-2xl relative border border-[var(--gold)]/10 min-h-[300px] flex flex-col justify-center"
             >
-              <div className="absolute top-10 right-10 opacity-10 text-[var(--gold)]">
+              <div className="absolute top-10 right-10 opacity-10 text-accent">
                 <Quote size={80} strokeWidth={1} />
               </div>
 
               <div className="flex flex-col items-center text-center">
                 {/* Text */}
-                <blockquote className="text-2xl md:text-3xl text-[var(--green-dark)] font-serif italic leading-relaxed mb-12">
+                <blockquote className="text-xl md:text-2xl text-primary font-serif italic leading-relaxed mb-8">
                   "{testimonials[activeIndex].text}"
                 </blockquote>
 
                 {/* Profile */}
                 <div className="flex flex-col items-center">
-                   <div className="w-16 h-16 bg-[var(--gold)]/10 rounded-full flex items-center justify-center mb-4 border-2 border-[var(--gold)]/20">
-                      <span className="text-[var(--gold)] font-bold text-xl">{testimonials[activeIndex].avatar}</span>
+                   <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4 border-2 border-accent/20">
+                      <span className="text-accent font-bold text-xl">{testimonials[activeIndex].avatar}</span>
                    </div>
-                   <h4 className="text-xl text-[var(--green-dark)] font-bold tracking-tight">
+                   <h4 className="text-xl text-primary font-bold tracking-tight">
                       {testimonials[activeIndex].name}
                    </h4>
-                   <div className="flex items-center space-x-2 text-sm text-[var(--green-medium)] mt-1">
+                   <div className="flex items-center space-x-2 text-sm text-muted-foreground mt-1">
                       <span>{testimonials[activeIndex].event}</span>
                       <span className="opacity-40">•</span>
                       <span>{testimonials[activeIndex].location}</span>
@@ -139,13 +139,13 @@ export function TestimonialsSection() {
           {/* Navigation Arrows */}
           <button
             onClick={prevThumbnail}
-            className="absolute left-0 md:-left-12 top-1/2 -translate-y-1/2 w-14 h-14 bg-white md:bg-transparent rounded-full flex items-center justify-center text-[var(--green-dark)] hover:text-[var(--gold)] transition-colors shadow-xl md:shadow-none z-10"
+            className="absolute left-0 md:-left-12 top-1/2 -translate-y-1/2 w-14 h-14 bg-white md:bg-transparent rounded-full flex items-center justify-center text-primary hover:text-accent transition-colors shadow-xl md:shadow-none z-10"
           >
             <ChevronLeft size={40} strokeWidth={1.5} />
           </button>
           <button
             onClick={nextThumbnail}
-            className="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2 w-14 h-14 bg-white md:bg-transparent rounded-full flex items-center justify-center text-[var(--green-dark)] hover:text-[var(--gold)] transition-colors shadow-xl md:shadow-none z-10"
+            className="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2 w-14 h-14 bg-white md:bg-transparent rounded-full flex items-center justify-center text-primary hover:text-accent transition-colors shadow-xl md:shadow-none z-10"
           >
             <ChevronRight size={40} strokeWidth={1.5} />
           </button>
@@ -158,7 +158,7 @@ export function TestimonialsSection() {
               key={index}
               onClick={() => setActiveIndex(index)}
               className={`h-1.5 transition-all duration-500 rounded-full ${
-                activeIndex === index ? "w-8 bg-[var(--gold)]" : "w-2 bg-[var(--gold)]/20"
+                activeIndex === index ? "w-8 bg-accent" : "w-2 bg-accent/20"
               }`}
             />
           ))}

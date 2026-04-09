@@ -10,29 +10,28 @@
 
 /* Custom selection color */
 ::selection {
-  background-color: var(--gold);
-  color: var(--green-dark);
+  background-color: #C4B09A;
+  color: #1A1A1A;
 }
 
 ::-moz-selection {
-  background-color: var(--gold);
-  color: var(--green-dark);
+  background-color: #C4B09A;
+  color: #1A1A1A;
 }
 
-/* Custom scrollbar for webkit browsers */
+/* Minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--ivory);
+  background: #F8F7F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gold);
-  border-radius: 5px;
+  background: #C4B09A;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--green-medium);
+  background: #8C7B6E;
 }

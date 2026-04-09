@@ -48,13 +48,13 @@ export function FAQSection() {
     <section
       id="faq"
       ref={ref}
-      className="pb-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-[var(--ivory)]"
+      className="pb-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-secondary"
     >
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
           <motion.div
-            className="w-16 h-1 bg-[var(--gold)] mx-auto mb-6"
+            className="w-16 h-1 bg-accent mx-auto mb-6"
             initial={{ width: 0 }}
             animate={isInView ? { width: 64 } : {}}
             transition={{ duration: 0.8 }}
@@ -66,14 +66,14 @@ export function FAQSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <HelpCircle className="text-[var(--gold)]" size={28} />
-            <h2 className="text-4xl md:text-5xl text-[var(--green-dark)]">
+            <HelpCircle className="text-accent" size={28} />
+            <h2 className="text-4xl md:text-5xl text-primary font-serif">
               Frequently Asked Questions
             </h2>
           </motion.div>
 
           <motion.p
-            className="text-lg text-[var(--green-medium)] max-w-2xl mx-auto"
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -92,10 +92,10 @@ export function FAQSection() {
               transition={{ duration: 0.5, delay: 0.4 + index * 0.07 }}
             >
               <div
-                className={`bg-white rounded-xl shadow-sm overflow-hidden border transition-all duration-300 ${
+                className={`bg-white rounded-lg shadow-sm overflow-hidden border transition-all duration-300 ${
                   openIndex === index
-                    ? "border-[var(--gold)]/40 shadow-md"
-                    : "border-transparent hover:border-[var(--gold)]/20"
+                    ? "border-accent/40 shadow-md"
+                    : "border-transparent hover:border-accent/20"
                 }`}
               >
                 {/* Question Button */}
@@ -117,10 +117,9 @@ export function FAQSection() {
                     <span
                       className={`text-base leading-snug transition-colors duration-300 ${
                         openIndex === index
-                          ? "text-[var(--green-dark)]"
-                          : "text-[var(--green-dark)] group-hover:text-[var(--green-medium)]"
+                          ? "text-primary font-serif font-bold"
+                          : "text-primary group-hover:text-muted-foreground"
                       }`}
-                      style={{ fontFamily: "'Playfair Display', serif" }}
                     >
                       {faq.question}
                     </span>
@@ -134,8 +133,8 @@ export function FAQSection() {
                       size={20}
                       className={`transition-colors duration-300 ${
                         openIndex === index
-                          ? "text-[var(--gold)]"
-                          : "text-[var(--green-medium)]"
+                          ? "text-accent"
+                          : "text-muted-foreground"
                       }`}
                     />
                   </motion.div>
@@ -152,8 +151,8 @@ export function FAQSection() {
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-6 ml-11">
-                        <div className="w-full h-px bg-[var(--gold)]/20 mb-4" />
-                        <p className="text-[var(--green-medium)] leading-relaxed text-sm md:text-base">
+                        <div className="w-full h-px bg-accent/20 mb-4" />
+                        <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                           {faq.answer}
                         </p>
                       </div>
@@ -167,14 +166,13 @@ export function FAQSection() {
 
         {/* CTA below FAQ */}
         <motion.div
-          className="mt-12 text-center p-8 bg-[var(--green-dark)] rounded-2xl"
+          className="mt-12 text-center p-8 bg-primary rounded-lg"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <p
-            className="text-xl text-[var(--gold-light)] mb-3"
-            style={{ fontFamily: "'Playfair Display', serif" }}
+            className="text-xl text-accent-foreground mb-3 font-serif"
           >
             Still have questions?
           </p>
@@ -186,7 +184,7 @@ export function FAQSection() {
               const element = document.querySelector("#contact");
               if (element) element.scrollIntoView({ behavior: "smooth" });
             }}
-            className="px-8 py-3 bg-[var(--gold)] text-[var(--green-dark)] rounded-md hover:bg-[var(--gold-light)] transition-all duration-300 hover:shadow-lg"
+            className="px-8 py-3 bg-accent text-accent-foreground rounded-md hover:bg-accent/80 transition-all duration-300 hover:shadow-lg"
           >
             Contact Our Team
           </button>

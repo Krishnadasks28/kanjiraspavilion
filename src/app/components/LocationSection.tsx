@@ -17,14 +17,14 @@ export function LocationSection() {
         {/* Section Header */}
         <div className="text-center mb-24">
           <motion.div
-            className="w-16 h-1 bg-[var(--gold)] mx-auto mb-6"
+            className="w-16 h-1 bg-accent mx-auto mb-6"
             initial={{ width: 0 }}
             animate={isInView ? { width: 64 } : {}}
             transition={{ duration: 0.8 }}
           />
 
           <motion.h2
-            className="text-4xl md:text-5xl text-[var(--green-dark)] mb-4"
+            className="text-4xl md:text-5xl text-primary mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -33,7 +33,7 @@ export function LocationSection() {
           </motion.h2>
 
           <motion.p
-            className="text-lg text-[var(--green-medium)] max-w-3xl mx-auto"
+            className="text-lg text-muted-foreground max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -54,13 +54,13 @@ export function LocationSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-[var(--ivory)] p-8 rounded-[2rem] border border-[var(--gold)]/10"
+            className="bg-secondary p-8 rounded-lg border border-accent/10"
           >
-            <div className="w-14 h-14 bg-[var(--gold)]/20 rounded-full flex items-center justify-center mb-6">
-              <MapPin className="text-[var(--gold)]" size={28} />
+            <div className="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mb-6">
+              <MapPin className="text-accent" size={28} />
             </div>
-            <h3 className="text-xl text-[var(--green-dark)] mb-4 font-bold tracking-tight">Address</h3>
-            <p className="text-[var(--green-medium)] leading-relaxed">
+            <h3 className="text-xl text-primary mb-4 font-bold tracking-tight">Address</h3>
+            <p className="text-muted-foreground leading-relaxed">
               Kanjira's Luxeves Pavilion
               <br />
               Opposite to Sree Rama Temple Thripreyar,Thrissur Kerala
@@ -73,15 +73,15 @@ export function LocationSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="bg-[var(--ivory)] p-8 rounded-[2rem] border border-[var(--gold)]/10"
+            className="bg-secondary p-8 rounded-lg border border-accent/10"
           >
-            <div className="w-14 h-14 bg-[var(--gold)]/20 rounded-full flex items-center justify-center mb-6">
-              <Navigation className="text-[var(--gold)]" size={28} />
+            <div className="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mb-6">
+              <Navigation className="text-accent" size={28} />
             </div>
-            <h3 className="text-xl text-[var(--green-dark)] mb-4 font-bold tracking-tight">
+            <h3 className="text-xl text-primary mb-4 font-bold tracking-tight">
               Directions
             </h3>
-            <p className="text-[var(--green-medium)] leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed">
               Easy access from major cities
               <br />
               90 min from Kochi Airport.
@@ -94,13 +94,13 @@ export function LocationSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="bg-[var(--ivory)] p-8 rounded-[2rem] border border-[var(--gold)]/10"
+            className="bg-secondary p-8 rounded-lg border border-accent/10"
           >
-            <div className="w-14 h-14 bg-[var(--gold)]/20 rounded-full flex items-center justify-center mb-6">
-              <Car className="text-[var(--gold)]" size={28} />
+            <div className="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mb-6">
+              <Car className="text-accent" size={28} />
             </div>
-            <h3 className="text-xl text-[var(--green-dark)] mb-4 font-bold tracking-tight">Parking</h3>
-            <p className="text-[var(--green-medium)] leading-relaxed">
+            <h3 className="text-xl text-primary mb-4 font-bold tracking-tight">Parking</h3>
+            <p className="text-muted-foreground leading-relaxed">
               Ample parking space
               <br />
               200+ vehicle capacity
@@ -115,10 +115,10 @@ export function LocationSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="w-full h-[400px] md:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl border border-[var(--gold)]/20"
+          className="w-full h-[400px] md:h-[600px] rounded-lg overflow-hidden shadow-2xl border border-accent/20"
         >
           {/* Google Maps Placeholder */}
-          <div className="w-full h-full bg-gradient-to-br from-[var(--green-light)] to-[var(--green-medium)] flex items-center justify-center relative">
+          <div className="w-full h-full bg-gradient-to-br from-secondary to-accent/20 flex items-center justify-center relative">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15696.383708907695!2d76.10095944999999!3d10.41395565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7f38b1d8ba7e3%3A0xceaa113edf6b9323!2sKANJIRA%E2%80%99S%20LUXEVES%20PAVILION!5e0!3m2!1sen!2sin!4v1773574850715!5m2!1sen!2sin"
               width="100%"
@@ -131,7 +131,7 @@ export function LocationSection() {
               className="grayscale-[30%]"
             />
             {/* Map Overlay for styling */}
-            <div className="absolute inset-0 pointer-events-none bg-[var(--gold)]/5" />
+            <div className="absolute inset-0 pointer-events-none bg-accent/5" />
           </div>
         </motion.div>
       </div>

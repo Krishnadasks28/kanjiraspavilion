@@ -4,10 +4,10 @@ import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 
-export function AboutSection({ 
-  showLink = true, 
-  title 
-}: { 
+export function AboutSection({
+  showLink = true,
+  title
+}: {
   showLink?: boolean;
   title?: string;
 }) {
@@ -18,40 +18,35 @@ export function AboutSection({
     <section
       id="about"
       ref={ref}
-      className="pt-16 md:pt-24 pb-32 md:pb-48 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden"
+      className="py-10 md:py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden"
     >
-      <div className="max-w-4xl mx-auto text-center">
-        {/* Optional Title for Home Page */}
-        {title && (
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-1 lg:gap-20">
+        {/* Left Column: Headings */}
+        <div className="md:w-5/12 flex flex-col justify-start">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="mb-16"
+            className="mb-6 md:mb-10"
           >
-            <h3 className="text-[var(--gold)] uppercase tracking-[0.4em] text-sm font-bold border-b border-[var(--gold)]/20 pb-4 inline-block">
-              {title}
+            <h3 className="text-accent uppercase tracking-[0.4em] text-sm font-bold mb-6 inline-block">
+              {title || "About Us"}
             </h3>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl text-primary font-serif leading-[1.1] tracking-tight">
+              A Venue where nature meets grandeur
+            </h2>
           </motion.div>
-        )}
-
-        {/* Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="text-[var(--gold)] uppercase tracking-[0.4em] text-xs font-bold mb-6 block">
-            The Essence of Elegance
-          </span>
-
-          <h2 className="text-4xl md:text-6xl text-[var(--green-dark)] mb-12 font-serif leading-tight">
-            A Venue Where Nature Meets <br />
-            <span className="text-[var(--gold)] italic">Grandeur</span>
-          </h2>
-
-          <div className="space-y-8 text-xl text-[var(--green-medium)] leading-relaxed mb-16 max-w-3xl mx-auto">
-            <p className="font-bold text-[var(--green-dark)] text-2xl">
+        </div>
+        {/* Right Column: Content */}
+        <div className="md:w-7/12 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-4 text-lg md:text-xl text-muted-foreground leading-relaxed font-light"
+          >
+            <p>
               Experience the magic of Kerala's serene backwaters as the backdrop
               to your once-in-a-lifetime celebration.
             </p>
@@ -62,29 +57,20 @@ export function AboutSection({
               the property provides the perfect escape for guests seeking
               relaxation, nature, and comfort.
             </p>
-            <p>
-              Whether you're planning a relaxing getaway, a family stay, or a
-              grand wedding celebration, our venue blends natural charm with modern
-              amenities to create an unforgettable experience that captures the essence of Kerala's tropical beauty.
-            </p>
-          </div>
 
-          {showLink && (
-            <motion.div
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.3 }}
-              className="flex justify-center"
-            >
-              <Link
-                to="/about"
-                className="inline-flex items-center space-x-4 py-5 px-10 bg-[var(--green-dark)] text-white rounded-full hover:bg-[var(--gold)] transition-colors group shadow-xl"
-              >
-                <span className="text-sm uppercase tracking-widest font-bold">Discover Our Story</span>
-                <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
-              </Link>
-            </motion.div>
-          )}
-        </motion.div>
+            {showLink && (
+              <div className="pt-8">
+                <Link
+                  to="/about"
+                  className="inline-flex items-center space-x-4 py-4 px-8 border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-full transition-all group"
+                >
+                  <span className="text-sm uppercase tracking-widest font-bold">Discover More</span>
+                  <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                </Link>
+              </div>
+            )}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ export function PageLoader() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-50 bg-[var(--green-dark)] flex flex-col items-center justify-center"
+          className="fixed inset-0 z-50 bg-primary flex flex-col items-center justify-center"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
@@ -30,13 +30,12 @@ export function PageLoader() {
             className="text-center"
           >
             <h1
-              className="text-4xl md:text-5xl text-white mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-4xl md:text-5xl text-primary-foreground mb-4 font-serif"
             >
-              Kanjira's Luxeves
+              Kanjiras Luxeves
             </h1>
-            <div className="w-24 h-px bg-[var(--gold)] mx-auto mb-4" />
-            <p className="text-[var(--gold-light)] text-lg">
+            <div className="w-24 h-px bg-accent mx-auto mb-4" />
+            <p className="text-secondary-foreground text-lg italic font-serif">
               Loading your dream venue...
             </p>
           </motion.div>
@@ -49,7 +48,7 @@ export function PageLoader() {
             transition={{ delay: 0.5 }}
           >
             <motion.div
-              className="h-full bg-[var(--gold)] rounded-full"
+              className="h-full bg-accent rounded-full"
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 1.2, ease: "easeInOut" }}

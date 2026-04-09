@@ -42,15 +42,15 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.div
-            className="w-12 h-1 bg-[var(--gold)] mx-auto mb-6"
+            className="w-12 h-1 bg-accent mx-auto mb-6"
             initial={{ width: 0 }}
             animate={{ width: 48 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           />
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl text-white mb-4 tracking-tight">
-            <span className="text-[var(--gold-light)] block md:inline font-serif italic mr-2 text-2xl md:text-3xl lg:text-4xl normal-case mb-2 opacity-80">
-              Kanjira's Luxeves
+          <h1 className="text-4xl md:text-6xl lg:text-7xl text-white mb-4 tracking-tight drop-shadow-lg">
+            <span className="text-accent block md:inline font-serif italic mr-2 text-2xl md:text-3xl lg:text-4xl normal-case mb-2 opacity-90">
+              Kanjiras Luxeves
             </span>
             {title}
           </h1>
@@ -69,7 +69,7 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
       </div>
 
       {/* Decorative Bottom Fade - Reduced */}
-      <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[var(--ivory)] to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-secondary to-transparent z-10" />
     </section>
   );
 }

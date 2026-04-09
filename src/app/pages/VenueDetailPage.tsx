@@ -38,7 +38,7 @@ export function VenueDetailPage() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20">
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div className="bg-white rounded-lg shadow-2xl overflow-hidden">
           <div className="grid lg:grid-cols-3 gap-0">
             {/* Main Content */}
             <div className="lg:col-span-2 p-8 md:p-12">
@@ -79,7 +79,7 @@ export function VenueDetailPage() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1 }}
-                      className={`overflow-hidden rounded-xl h-64 md:h-80 ${idx === 0 ? "md:col-span-2 md:h-96" : ""}`}
+                      className={`overflow-hidden rounded-lg h-64 md:h-80 ${idx === 0 ? "md:col-span-2 md:h-96" : ""}`}
                     >
                       <ImageWithFallback
                         src={img}

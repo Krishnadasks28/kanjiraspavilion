@@ -41,7 +41,7 @@ export function DestinationSection() {
           className="w-full h-full object-cover"
         />
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--green-dark)]/90 via-[var(--green-dark)]/80 to-[var(--green-dark)]/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/70" />
       </div>
 
       {/* Content */}
@@ -55,13 +55,13 @@ export function DestinationSection() {
               transition={{ duration: 0.8 }}
             >
               <motion.div
-                className="w-16 h-1 bg-[var(--gold)] mb-6"
+                className="w-16 h-1 bg-accent mb-6"
                 initial={{ width: 0 }}
                 animate={isInView ? { width: 64 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
               />
 
-              <h2 className="text-4xl md:text-5xl text-white mb-6">
+              <h2 className="text-4xl md:text-5xl text-white font-serif mb-6">
                 The Destination Experience
               </h2>
 
@@ -90,8 +90,8 @@ export function DestinationSection() {
                       transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                       className="flex items-start space-x-4"
                     >
-                      <div className="w-12 h-12 bg-[var(--gold)]/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Icon className="text-[var(--gold)]" size={24} />
+                      <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Icon className="text-accent" size={24} />
                       </div>
                       <div>
                         <h3 className="text-white mb-1">{exp.title}</h3>
@@ -148,7 +148,7 @@ export function DestinationSection() {
               </div>
 
               {/* Decorative Gold Border */}
-              <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-[var(--gold)] rounded-lg -z-10" />
+              <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-accent rounded-lg -z-10" />
             </motion.div>
           </div>
         </div>

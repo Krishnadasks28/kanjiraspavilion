@@ -78,7 +78,7 @@ export function GallerySection() {
         {/* Header */}
         <div className="max-w-7xl mx-auto px-4 mb-16">
           <motion.h2
-            className="text-4xl md:text-6xl text-primary mb-4"
+            className="text-2xl md:text-4xl text-primary mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
           >

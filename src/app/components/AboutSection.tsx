@@ -33,7 +33,7 @@ export function AboutSection({
               {title || "About Us"}
             </h3>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl text-primary leading-[1.1]">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl text-primary leading-[1.1]">
               A Venue where nature meets grandeur
             </h2>
           </motion.div>

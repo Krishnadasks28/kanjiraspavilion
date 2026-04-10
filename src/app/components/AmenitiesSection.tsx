@@ -59,7 +59,7 @@ export function AmenitiesSection({
               animate={isInView ? { width: 64 } : {}}
               transition={{ duration: 0.8 }}
             />
-            <h2 className="text-4xl md:text-5xl text-primary mb-4">
+            <h2 className="text-2xl md:text-3xl text-primary mb-4">
               Premium Amenities
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -110,7 +110,7 @@ export function AmenitiesSection({
             animate={isInView ? { width: 64 } : {}}
             transition={{ duration: 1 }}
           />
-          <h2 className="text-4xl md:text-6xl text-primary mb-8">
+          <h2 className="text-2xl md:text-4xl text-primary mb-8">
             Beyond Ordinary <br />
             <span className="text-accent italic">Experiences</span>
           </h2>
@@ -140,7 +140,7 @@ export function AmenitiesSection({
 
               <div className="w-full md:w-1/2 space-y-6 text-left">
                 <span className="text-xs uppercase tracking-[0.25em] text-accent">{item.badge}</span>
-                <h3 className="text-3xl md:text-5xl text-primary leading-tight">
+                <h3 className="text-xl md:text-3xl text-primary leading-tight">
                   {item.title}
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">

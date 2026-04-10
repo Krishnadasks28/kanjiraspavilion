@@ -48,8 +48,8 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
             transition={{ delay: 0.5, duration: 0.8 }}
           />
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl text-white mb-4 tracking-tight drop-shadow-lg">
-            <span className="text-accent block md:inline font-serif italic mr-2 text-2xl md:text-3xl lg:text-4xl normal-case mb-2 opacity-90">
+          <h1 className="text-white mb-4 tracking-tight drop-shadow-lg">
+            <span className="text-accent block md:inline font-serif italic mr-2 text-[0.8em] normal-case mb-2 opacity-90">
               Kanjiras Luxeves
             </span>
             {title}
@@ -60,7 +60,7 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="text-lg md:text-xl text-white/90 font-light tracking-widest uppercase"
+              className="text-white/90 font-light tracking-[0.2em] uppercase text-[12px]"
             >
               {subtitle}
             </motion.p>

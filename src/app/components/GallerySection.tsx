@@ -110,13 +110,13 @@ export function GallerySection() {
               transition={{ duration: 0.8 }}
             />
             <motion.h2
-              className="text-4xl md:text-6xl text-primary font-serif mb-4"
+              className="text-primary font-serif mb-4"
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
             >
               Visual Journey
             </motion.h2>
-            <p className="text-lg text-muted-foreground max-w-xl font-light">
+            <p className="text-muted-foreground max-w-xl font-light">
               Explore the breathtaking landscapes and curated moments.
             </p>
           </div>
@@ -214,14 +214,14 @@ export function GallerySection() {
             transition={{ duration: 0.8 }}
           />
           <motion.h2
-            className="text-4xl md:text-5xl text-primary font-serif mb-4"
+            className="text-primary font-serif mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Visual Journey
           </motion.h2>
-          <motion.p className="text-lg text-muted-foreground max-w-3xl mx-auto font-light">
+          <motion.p className="text-muted-foreground max-w-3xl mx-auto font-light">
             Capturing the magic and elegance of celebrations at Kanjira's Luxeves Pavilion
           </motion.p>
         </div>

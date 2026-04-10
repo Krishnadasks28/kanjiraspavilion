@@ -48,7 +48,7 @@ export function AmenitiesSection({
       <section
         id="amenities"
         ref={ref}
-        className="py-20 md:py-48 px-4 sm:px-6 lg:px-8 bg-white"
+        className="py-20 md:py-48 px-4 sm:px-6 lg:px-8 bg-background"
       >
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
@@ -99,7 +99,7 @@ export function AmenitiesSection({
     <section
       id="amenities"
       ref={ref}
-      className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden"
+      className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}

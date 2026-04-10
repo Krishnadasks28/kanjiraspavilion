@@ -34,12 +34,6 @@ export function GallerySection() {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
 
-  const autoPlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // ✅ Responsive width (fixed issue)
-  const [itemWidth, setItemWidth] = useState(500);
-  const GAP = 24;
 
   // ✅ Sync selection index with Embla API
   useEffect(() => {
@@ -79,91 +73,67 @@ export function GallerySection() {
       <section
         id="gallery"
         ref={containerRef}
-        className="py-20 md:py-48 bg-secondary overflow-hidden"
+        className="py-20 md:py-48 bg-secondary"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-          <div className="text-left">
-            <motion.div
-              className="w-16 h-1 bg-accent mb-6"
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 64 } : {}}
-              transition={{ duration: 0.8 }}
-            />
-            <motion.h2
-              className="text-primary font-serif mb-4"
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-            >
-              Visual Journey
-            </motion.h2>
-            <p className="text-muted-foreground max-w-xl font-light">
-              Explore the breathtaking landscapes and curated moments.
-            </p>
-          </div>
-        </div>
-
-        <div className="relative w-full">
-          <Carousel
-            setApi={setApi}
-            opts={{
-              align: "center",
-              loop: true,
-            }}
-            className="w-full"
+        {/* Header */}
+        <div className="max-w-7xl mx-auto px-4 mb-16">
+          <motion.h2
+            className="text-4xl md:text-6xl font-serif text-primary mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
           >
-            <CarouselContent
-              className="flex items-center h-[450px] md:h-[650px]"
-            >
-              {allImages.map((image, index) => {
-                const isActive = carouselIndex === index;
-                const isPast = index < carouselIndex;
+            Visual Journey
+          </motion.h2>
 
-                let transformStyle = "scale(0.95)";
-                let opacityClass = "opacity-40";
-
-                if (isActive) {
-                  transformStyle = "scale(1.1)";
-                  opacityClass = "opacity-100 z-20 shadow-2xl";
-                }
-
-                return (
-                  <CarouselItem
-                    key={image.id}
-                    className="basis-auto pl-6"
-                  >
-                    <motion.div
-                      className={`w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-lg relative group transition-all duration-700 will-change-transform ${opacityClass}`}
-                      style={{ transform: transformStyle }}
-                      onClick={() => api?.scrollTo(index)}
-                    >
-                      <ImageWithFallback
-                        src={image.src}
-                        alt={image.alt}
-                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
-                      />
-                    </motion.div>
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-          </Carousel>
+          <p className="text-muted-foreground max-w-xl">
+            Explore the curated moments at Kanjira’s Luxeves Pavilion.
+          </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 mt-24 flex justify-center">
+        {/* ✅ SIMPLE CAROUSEL */}
+        <Carousel
+          setApi={setApi}
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {allImages.map((image, index) => (
+              <CarouselItem
+                key={image.id}
+                className="pl-4 basis-[80%] sm:basis-[60%] md:basis-[45%] lg:basis-[30%]"
+              >
+                <div className="overflow-hidden rounded-xl">
+                  <ImageWithFallback
+                    src={image.src}
+                    alt={image.alt}
+                    loading={index < 3 ? "eager" : "lazy"} // ✅ performance
+                    decoding="async"
+                    className="w-full h-[350px] md:h-[500px] object-cover will-change-transform transition-transform duration-700 hover:scale-[1.03]"
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+
+        {/* CTA */}
+        <div className="max-w-7xl mx-auto px-4 mt-20 flex justify-center">
           <Link
             to="/gallery"
-            className="group flex items-center space-x-6 px-12 py-5 bg-primary text-white rounded-full hover:bg-accent transition-all shadow-xl hover:-translate-y-1"
+            className="flex items-center gap-4 px-10 py-4 bg-primary text-white rounded-full hover:bg-accent transition"
           >
-            <span className="text-sm uppercase tracking-[0.3em] font-bold">
-              View All Memories
+            <span className="text-sm uppercase tracking-widest font-semibold">
+              View Gallery
             </span>
-            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-all">
-              <ArrowRight size={20} />
-            </div>
+            <ArrowRight size={18} />
           </Link>
         </div>
       </section>
     );
+
   }
   // Gallery Page Layout remains same...
   return (

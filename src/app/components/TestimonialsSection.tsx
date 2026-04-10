@@ -66,7 +66,7 @@ export function TestimonialsSection() {
     <section
       id="testimonials"
       ref={ref}
-      className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-secondary overflow-hidden"
+      className="py-24 md:py-40 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-secondary overflow-hidden"
     >
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}

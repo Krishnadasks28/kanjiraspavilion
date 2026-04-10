@@ -11,7 +11,7 @@ export function LocationSection() {
     <section
       id="location"
       ref={ref}
-      className="py-15 md:py-20 px-4 sm:px-6 lg:px-8 bg-background"
+      className="py-24 md:py-40 px-4 sm:px-6 lg:px-8 bg-background"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}

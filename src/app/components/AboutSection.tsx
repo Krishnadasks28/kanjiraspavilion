@@ -18,7 +18,7 @@ export function AboutSection({
     <section
       id="about"
       ref={ref}
-      className="py-10 md:py-20 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden"
+      className="py-24 md:py-40 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden"
     >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-1 lg:gap-20">
         {/* Left Column: Headings */}

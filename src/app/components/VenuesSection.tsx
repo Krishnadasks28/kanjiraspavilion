@@ -41,7 +41,7 @@ export function VenuesSection() {
     <section
       id="venues"
       ref={containerRef}
-      className="py-20 md:py-48 px-4 sm:px-6 lg:px-8 bg-secondary overflow-hidden"
+      className="py-24 md:py-40 px-4 sm:px-6 lg:px-8 bg-secondary overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}

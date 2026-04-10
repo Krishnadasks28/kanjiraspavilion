@@ -73,7 +73,7 @@ export function GallerySection() {
       <section
         id="gallery"
         ref={containerRef}
-        className="py-20 md:py-48 bg-secondary"
+        className="py-24 md:py-40 px-4 sm:px-6 lg:px-8 bg-secondary"
       >
         {/* Header */}
         <div className="max-w-7xl mx-auto px-4 mb-16">

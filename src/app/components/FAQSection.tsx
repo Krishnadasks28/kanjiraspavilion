@@ -48,7 +48,7 @@ export function FAQSection() {
     <section
       id="faq"
       ref={ref}
-      className="pb-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-secondary"
+      className="py-24 md:py-40 px-4 sm:px-6 lg:px-8 bg-secondary"
     >
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}

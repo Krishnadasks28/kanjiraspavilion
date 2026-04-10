@@ -12,6 +12,8 @@ export function VenuesSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
 
   // Update items per view based on screen size
   useEffect(() => {
@@ -23,11 +25,24 @@ export function VenuesSection() {
       } else {
         setItemsPerView(1);
       }
+      if (trackRef.current) {
+        setContainerWidth(trackRef.current.parentElement?.offsetWidth || 0);
+      }
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const GAP = 32; // 8rem = 32px
+  const itemWidth = containerWidth > 0 
+    ? (containerWidth - (GAP * (itemsPerView - 1))) / itemsPerView 
+    : 0;
+  
+  const centerOffset = containerWidth / 2 - itemWidth / 2;
+  const xPosition = -currentIndex * (itemWidth + GAP) + centerOffset;
+
+  const maxDragScroll = -((venues.length - 1) * (itemWidth + GAP)) + centerOffset;
 
   const next = () => {
     if (currentIndex < venues.length - itemsPerView) {
@@ -114,15 +129,33 @@ export function VenuesSection() {
               <ChevronRight size={24} />
             </button>
           </div>
-          <motion.div 
-            className="flex gap-8"
-            animate={{ x: `calc(-${currentIndex * (100 / itemsPerView)}% - ${currentIndex * (itemsPerView > 1 ? 2 : 0)}rem)` }}
-            transition={{ type: "spring", damping: 30, stiffness: 100 }}
-          >
+          <div className="overflow-visible cursor-grab active:cursor-grabbing">
+            <motion.div 
+              ref={trackRef}
+              className="flex gap-8 will-change-transform"
+              drag="x"
+              dragConstraints={{ 
+                right: centerOffset, 
+                left: maxDragScroll 
+              }}
+              dragElastic={0.2}
+              onDragEnd={(_, info) => {
+                const threshold = itemWidth / 4;
+                const velocity = info.velocity.x;
+                if (info.offset.x < -threshold || velocity < -500) {
+                  next();
+                } else if (info.offset.x > threshold || velocity > 500) {
+                  prev();
+                }
+              }}
+              animate={{ x: xPosition }}
+              transition={{ type: "spring", damping: 25, stiffness: 100 }}
+            >
             {venues.map((venue, index) => (
               <motion.article
                 key={venue.id}
-                className="flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.33rem)] group"
+                style={{ width: itemWidth > 0 ? itemWidth : "100%" }}
+                className="flex-shrink-0 group"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 whileHover={{ y: -10 }}
@@ -172,11 +205,12 @@ export function VenuesSection() {
               </motion.article>
             ))}
           </motion.div>
+          </div>
         </div>
 
         {/* Progress Indicators */}
         <div className="mt-16 flex justify-center space-x-3">
-          {Array.from({ length: venues.length - itemsPerView + 1 }).map((_, idx) => (
+          {venues.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}

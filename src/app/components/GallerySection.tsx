@@ -27,6 +27,7 @@ export function GallerySection() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
 
   const autoPlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -36,12 +37,15 @@ export function GallerySection() {
   const GAP = 24;
 
   useEffect(() => {
-    const updateWidth = () => {
+    const updateDimensions = () => {
       setItemWidth(window.innerWidth < 768 ? 300 : 500);
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
     };
-    updateWidth();
-    window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
   const filteredImages =
@@ -52,32 +56,26 @@ export function GallerySection() {
   // ✅ Smooth autoplay (no interval drift)
   useEffect(() => {
     if (isHomePage && isInView && !isAutoPlayPaused) {
-      const play = () => {
-        autoPlayTimerRef.current = setTimeout(() => {
-          setCarouselIndex((prev) => (prev + 1) % allImages.length);
-          play();
-        }, 2000);
-      };
-      play();
+      const interval = setInterval(() => {
+        setCarouselIndex((prev) => (prev + 1) % allImages.length);
+      }, 3000); // Slower interval for better UX
+      return () => clearInterval(interval);
     }
-
-    return () => {
-      if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current);
-    };
   }, [isHomePage, isInView, isAutoPlayPaused]);
 
-  const handleDragStart = () => {
+  const handleInteractionStart = () => {
     setIsAutoPlayPaused(true);
     if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
   };
 
   const handleDragEnd = (_: any, info: any) => {
     const offset = info.offset.x;
+    const velocity = info.velocity.x;
     const threshold = itemWidth / 4;
 
-    if (offset < -threshold) {
+    if (offset < -threshold || velocity < -500) {
       setCarouselIndex((prev) => Math.min(prev + 1, allImages.length - 1));
-    } else if (offset > threshold) {
+    } else if (offset > threshold || velocity > 500) {
       setCarouselIndex((prev) => Math.max(prev - 1, 0));
     }
 
@@ -87,13 +85,8 @@ export function GallerySection() {
   };
 
   if (isHomePage) {
-    // ✅ Correct center using container width
-    const containerWidth =
-      containerRef.current?.offsetWidth || window.innerWidth;
-
     const centerOffset = containerWidth / 2 - itemWidth / 2;
-    const xPosition =
-      -(carouselIndex * (itemWidth + GAP)) + centerOffset;
+    const xPosition = -(carouselIndex * (itemWidth + GAP)) + centerOffset;
 
     return (
       <section
@@ -127,19 +120,17 @@ export function GallerySection() {
           style={{ perspective: "1500px" }}
         >
           <motion.div
-            className="flex items-center space-x-6 h-[450px] md:h-[650px] px-[10vw]"
+            className="flex items-center space-x-6 h-[450px] md:h-[650px]"
             style={{ transformStyle: "preserve-3d" }}
             drag="x"
             dragConstraints={{
               right: centerOffset,
-              left:
-                -((allImages.length - 1) * (itemWidth + GAP)) +
-                centerOffset,
+              left: -((allImages.length - 1) * (itemWidth + GAP)) + centerOffset,
             }}
-            onDragStart={handleDragStart}
+            onDragStart={handleInteractionStart}
             onDragEnd={handleDragEnd}
             animate={{ x: xPosition }}
-            transition={{ type: "spring", damping: 30, stiffness: 120 }}
+            transition={{ type: "spring", damping: 25, stiffness: 100 }}
           >
             {allImages.map((image, index) => {
               const isActive = carouselIndex === index;
@@ -150,21 +141,23 @@ export function GallerySection() {
 
               if (isActive) {
                 transformStyle = "scale(1.1) translateZ(50px)";
-                opacityClass = "opacity-100 z-20";
+                opacityClass = "opacity-100 z-20 shadow-2xl";
               } else if (isPast) {
-                transformStyle = "scale(0.85) rotateY(25deg)";
+                transformStyle = "scale(0.85) rotateY(15deg) translateZ(-50px)"; // Reduced rotation
+                opacityClass = "opacity-40";
               } else {
-                transformStyle = "scale(0.85) rotateY(-25deg)";
+                transformStyle = "scale(0.85) rotateY(-15deg) translateZ(-50px)"; // Reduced rotation
+                opacityClass = "opacity-40";
               }
 
               return (
                 <motion.div
                   key={image.id}
-                  className={`flex-shrink-0 w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-lg overflow-hidden relative group transition-all duration-700 ${opacityClass}`}
+                  className={`flex-shrink-0 w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-lg overflow-hidden relative group transition-all duration-700 will-change-transform ${opacityClass}`}
                   style={{ transform: transformStyle }}
                   onClick={() => {
                     setCarouselIndex(index);
-                    handleDragStart();
+                    handleInteractionStart();
                     resumeTimeoutRef.current = setTimeout(
                       () => setIsAutoPlayPaused(false),
                       5000

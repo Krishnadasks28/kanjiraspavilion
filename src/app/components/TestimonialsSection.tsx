@@ -102,11 +102,22 @@ export function TestimonialsSection() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(_, info) => {
+                const threshold = 50;
+                if (info.offset.x < -threshold) {
+                  nextThumbnail();
+                } else if (info.offset.x > threshold) {
+                  prevThumbnail();
+                }
+              }}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white rounded-lg p-8 md:p-12 shadow-2xl relative border border-[var(--gold)]/10 min-h-[300px] flex flex-col justify-center"
+              className="bg-white rounded-lg p-8 md:p-12 shadow-2xl relative border border-[var(--gold)]/10 min-h-[300px] flex flex-col justify-center cursor-grab active:cursor-grabbing"
             >
               <div className="absolute top-10 right-10 opacity-10 text-accent">
                 <Quote size={80} strokeWidth={1} />

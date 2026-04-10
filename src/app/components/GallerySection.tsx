@@ -27,26 +27,42 @@ export function GallerySection() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
+
   const autoPlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const filteredImages = activeCategory === "All"
-    ? allImages
-    : allImages.filter(img => img.category === activeCategory);
+  // ✅ Responsive width (fixed issue)
+  const [itemWidth, setItemWidth] = useState(500);
+  const GAP = 24;
 
-  // Constants for carousel math
-  const ITEM_WIDTH = typeof window !== "undefined" && window.innerWidth < 768 ? 300 : 500;
-  const GAP = 24; // space-x-6
+  useEffect(() => {
+    const updateWidth = () => {
+      setItemWidth(window.innerWidth < 768 ? 300 : 500);
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
-  // Auto-play logic with pause/resume
+  const filteredImages =
+    activeCategory === "All"
+      ? allImages
+      : allImages.filter((img) => img.category === activeCategory);
+
+  // ✅ Smooth autoplay (no interval drift)
   useEffect(() => {
     if (isHomePage && isInView && !isAutoPlayPaused) {
-      autoPlayTimerRef.current = setInterval(() => {
-        setCarouselIndex((prev) => (prev + 1) % allImages.length);
-      }, 2000);
+      const play = () => {
+        autoPlayTimerRef.current = setTimeout(() => {
+          setCarouselIndex((prev) => (prev + 1) % allImages.length);
+          play();
+        }, 2000);
+      };
+      play();
     }
+
     return () => {
-      if (autoPlayTimerRef.current) clearInterval(autoPlayTimerRef.current);
+      if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current);
     };
   }, [isHomePage, isInView, isAutoPlayPaused]);
 
@@ -55,10 +71,9 @@ export function GallerySection() {
     if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
   };
 
-  const handleDragEnd = (event: any, info: any) => {
-    // Snap to nearest index based on drag offset
+  const handleDragEnd = (_: any, info: any) => {
     const offset = info.offset.x;
-    const threshold = ITEM_WIDTH / 4;
+    const threshold = itemWidth / 4;
 
     if (offset < -threshold) {
       setCarouselIndex((prev) => Math.min(prev + 1, allImages.length - 1));
@@ -66,18 +81,19 @@ export function GallerySection() {
       setCarouselIndex((prev) => Math.max(prev - 1, 0));
     }
 
-    // Set 5s timeout to resume auto-play
     resumeTimeoutRef.current = setTimeout(() => {
       setIsAutoPlayPaused(false);
     }, 5000);
   };
 
   if (isHomePage) {
-    // Center logic: Correct x to keep active index in center
-    // Math: -(index * (width + gap)) + (containerWidth / 2) - (itemWidth / 2)
-    // We'll use a dynamic calculation based on window width
-    const centerOffset = typeof window !== "undefined" ? (window.innerWidth / 2) - (ITEM_WIDTH / 2) : 0;
-    const xPosition = - (carouselIndex * (ITEM_WIDTH + GAP)) + centerOffset;
+    // ✅ Correct center using container width
+    const containerWidth =
+      containerRef.current?.offsetWidth || window.innerWidth;
+
+    const centerOffset = containerWidth / 2 - itemWidth / 2;
+    const xPosition =
+      -(carouselIndex * (itemWidth + GAP)) + centerOffset;
 
     return (
       <section
@@ -101,18 +117,25 @@ export function GallerySection() {
               Visual Journey
             </motion.h2>
             <p className="text-lg text-muted-foreground max-w-xl font-light">
-              Explore the breathtaking landscapes and curated moments at Kanjira's Luxeves Pavilion.
+              Explore the breathtaking landscapes and curated moments.
             </p>
           </div>
         </div>
 
-        {/* Panoramic Carousel - Perfectly Centered */}
-        <div className="relative w-full overflow-visible cursor-grab active:cursor-grabbing" style={{ perspective: "1500px" }}>
+        <div
+          className="relative w-full overflow-visible cursor-grab active:cursor-grabbing"
+          style={{ perspective: "1500px" }}
+        >
           <motion.div
             className="flex items-center space-x-6 h-[450px] md:h-[650px] px-[10vw]"
             style={{ transformStyle: "preserve-3d" }}
             drag="x"
-            dragConstraints={{ right: centerOffset, left: -((allImages.length - 1) * (ITEM_WIDTH + GAP)) + centerOffset }}
+            dragConstraints={{
+              right: centerOffset,
+              left:
+                -((allImages.length - 1) * (itemWidth + GAP)) +
+                centerOffset,
+            }}
             onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
             animate={{ x: xPosition }}
@@ -122,39 +145,30 @@ export function GallerySection() {
               const isActive = carouselIndex === index;
               const isPast = index < carouselIndex;
 
-              let transformStyle = "scale(0.85) rotateY(0deg)";
+              let transformStyle = "scale(0.85)";
               let opacityClass = "opacity-50";
-              let shadowClass = "shadow-md";
 
               if (isActive) {
-                // Active item pops forward
-                transformStyle = "scale(1.1) rotateY(0deg) translateZ(50px)";
+                transformStyle = "scale(1.1) translateZ(50px)";
                 opacityClass = "opacity-100 z-20";
-                shadowClass = "shadow-2xl shadow-black/40";
               } else if (isPast) {
-                // Past items tilt right
-                transformStyle = "scale(0.85) rotateY(25deg) translateX(5%) translateZ(-50px)";
-                opacityClass = "opacity-60 z-0";
-                shadowClass = "";
+                transformStyle = "scale(0.85) rotateY(25deg)";
               } else {
-                // Future items tilt left
-                transformStyle = "scale(0.85) rotateY(-25deg) translateX(-5%) translateZ(-50px)";
-                opacityClass = "opacity-60 z-0";
-                shadowClass = "";
+                transformStyle = "scale(0.85) rotateY(-25deg)";
               }
 
               return (
                 <motion.div
                   key={image.id}
-                  className={`flex-shrink-0 w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-lg overflow-hidden relative group transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${opacityClass} ${shadowClass}`}
-                  style={{
-                    transform: transformStyle,
-                    transformStyle: "preserve-3d"
-                  }}
+                  className={`flex-shrink-0 w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-lg overflow-hidden relative group transition-all duration-700 ${opacityClass}`}
+                  style={{ transform: transformStyle }}
                   onClick={() => {
                     setCarouselIndex(index);
-                    handleDragStart(); // Pause on click too
-                    resumeTimeoutRef.current = setTimeout(() => setIsAutoPlayPaused(false), 5000);
+                    handleDragStart();
+                    resumeTimeoutRef.current = setTimeout(
+                      () => setIsAutoPlayPaused(false),
+                      5000
+                    );
                   }}
                 >
                   <ImageWithFallback
@@ -162,24 +176,20 @@ export function GallerySection() {
                     alt={image.alt}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
                   />
-                  {isActive && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
-                      <span className="text-white font-serif text-xl">{image.category}</span>
-                    </div>
-                  )}
                 </motion.div>
               );
             })}
           </motion.div>
         </div>
 
-        {/* View More Button */}
         <div className="max-w-7xl mx-auto px-4 mt-24 flex justify-center">
           <Link
             to="/gallery"
             className="group flex items-center space-x-6 px-12 py-5 bg-primary text-white rounded-full hover:bg-accent transition-all shadow-xl hover:-translate-y-1"
           >
-            <span className="text-sm uppercase tracking-[0.3em] font-bold">View All Memories</span>
+            <span className="text-sm uppercase tracking-[0.3em] font-bold">
+              View All Memories
+            </span>
             <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-all">
               <ArrowRight size={20} />
             </div>
@@ -188,7 +198,6 @@ export function GallerySection() {
       </section>
     );
   }
-
   // Gallery Page Layout remains same...
   return (
     <section
@@ -223,8 +232,8 @@ export function GallerySection() {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-500 ${activeCategory === category
-                  ? "bg-accent text-accent-foreground shadow-2xl"
-                  : "bg-white/50 backdrop-blur-md text-primary hover:bg-accent/20"
+                ? "bg-accent text-accent-foreground shadow-2xl"
+                : "bg-white/50 backdrop-blur-md text-primary hover:bg-accent/20"
                 }`}
             >
               {category}
@@ -236,25 +245,31 @@ export function GallerySection() {
           layout
           className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
         >
-          <AnimatePresence mode="popLayout">
-            {filteredImages.map((image) => (
-              <motion.div
-                key={image.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.6 }}
-                className="relative aspect-[4/3] cursor-pointer group rounded-lg overflow-hidden shadow-xl"
-                onClick={() => setSelectedImage(image)}
-              >
-                <ImageWithFallback
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
-                />
-              </motion.div>
-            ))}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 40 }}
+              transition={{ duration: 0.4 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
+            >
+              {filteredImages.map((image) => (
+                <div
+                  key={image.id}
+                  className="relative aspect-[4/3] cursor-pointer group rounded-lg overflow-hidden shadow-xl"
+                  onClick={() => setSelectedImage(image)}
+                >
+                  <ImageWithFallback
+                    src={image.src}
+                    alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
+                  />
+                </div>
+              ))}
+            </motion.div>
           </AnimatePresence>
         </motion.div>
       </div>

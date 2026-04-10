@@ -91,19 +91,6 @@ export function Footer() {
               alt="Kanjira's Luxeves Pavilion"
               className="h-14 md:h-16 w-auto mb-6 brightness-0 invert"
             />
-
-            <p className="text-white/80 mb-3 leading-relaxed">
-              Where backwaters meet beautiful beginnings. Experience the magic
-              of Kerala's serene landscapes as the backdrop to your
-              once-in-a-lifetime celebration.
-            </p>
-
-            <p className="text-white/50 text-xs mb-6 leading-relaxed">
-              A luxury destination wedding venue in the Kerala backwaters —
-              proudly hosting grand weddings, intimate ceremonies, and
-              destination celebrations since 2025.
-            </p>
-
             {/* Contact */}
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-white/80">

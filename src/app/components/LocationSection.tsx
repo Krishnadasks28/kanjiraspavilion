@@ -11,11 +11,11 @@ export function LocationSection() {
     <section
       id="location"
       ref={ref}
-      className="py-32 md:py-48 px-4 sm:px-6 lg:px-8 bg-white"
+      className="py-15 md:py-20 px-4 sm:px-6 lg:px-8 bg-white"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-24">
+        <div className="mb-24">
           <motion.div
             className="w-16 h-1 bg-accent mx-auto mb-6"
             initial={{ width: 0 }}

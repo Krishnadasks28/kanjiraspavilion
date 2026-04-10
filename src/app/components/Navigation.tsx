@@ -75,7 +75,7 @@ export function Navigation() {
                 <NavLink
                   to={item.href}
                   className={({ isActive }) =>
-                    `text-[13px] font-medium transition-colors duration-300 hover:text-accent uppercase tracking-[0.05em] ${
+                    `text-[13px] transition-colors duration-300 hover:text-accent uppercase tracking-[0.2em] ${
                       isActive 
                         ? "text-accent" 
                         : isScrolled ? "text-primary" : "text-white"
@@ -123,7 +123,7 @@ export function Navigation() {
                   <NavLink
                     to={item.href}
                     className={({ isActive }) =>
-                      `block px-4 py-3 text-base font-serif transition-all uppercase tracking-[0.05em] ${
+                      `block px-4 py-3 text-sm transition-all uppercase tracking-[0.15em] ${
                         isActive 
                           ? "text-accent" 
                           : "text-primary hover:text-accent"

@@ -59,7 +59,7 @@ export function AmenitiesSection({
               animate={isInView ? { width: 64 } : {}}
               transition={{ duration: 0.8 }}
             />
-            <h2 className="text-4xl md:text-5xl text-primary font-serif mb-4">
+            <h2 className="text-4xl md:text-5xl text-primary mb-4">
               Premium Amenities
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -81,7 +81,7 @@ export function AmenitiesSection({
                   <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-accent transition-all duration-300">
                     <Icon className="text-accent group-hover:text-white" size={28} />
                   </div>
-                  <h3 className="text-xl text-primary mb-4 font-bold">{amenity.title}</h3>
+                  <h3 className="text-xl text-primary mb-4">{amenity.title}</h3>
                   <p className="text-muted-foreground leading-relaxed text-sm">
                     {amenity.description}
                   </p>
@@ -110,7 +110,7 @@ export function AmenitiesSection({
             animate={isInView ? { width: 64 } : {}}
             transition={{ duration: 1 }}
           />
-          <h2 className="text-4xl md:text-6xl text-primary font-serif mb-8">
+          <h2 className="text-4xl md:text-6xl text-primary mb-8">
             Beyond Ordinary <br />
             <span className="text-accent italic">Experiences</span>
           </h2>
@@ -139,8 +139,8 @@ export function AmenitiesSection({
               </div>
 
               <div className="w-full md:w-1/2 space-y-6 text-left">
-                <span className="text-xs uppercase tracking-[0.2em] font-bold text-accent">{item.badge}</span>
-                <h3 className="text-3xl md:text-5xl text-primary font-serif leading-tight">
+                <span className="text-xs uppercase tracking-[0.25em] text-accent">{item.badge}</span>
+                <h3 className="text-3xl md:text-5xl text-primary leading-tight">
                   {item.title}
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">

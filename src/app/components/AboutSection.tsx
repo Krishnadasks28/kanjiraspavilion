@@ -29,11 +29,11 @@ export function AboutSection({
             transition={{ duration: 0.8 }}
             className="mb-6 md:mb-10"
           >
-            <h3 className="text-accent uppercase tracking-[0.4em] text-sm font-bold mb-6 inline-block">
+            <h3 className="text-accent uppercase tracking-[0.4em] text-sm mb-6 inline-block">
               {title || "About Us"}
             </h3>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl text-primary font-serif leading-[1.1] tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl text-primary leading-[1.1]">
               A Venue where nature meets grandeur
             </h2>
           </motion.div>
@@ -44,7 +44,7 @@ export function AboutSection({
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-4 text-lg md:text-xl text-muted-foreground leading-relaxed font-light"
+            className="space-y-4 text-lg md:text-xl text-muted-foreground leading-relaxed"
           >
             <p>
               Experience the magic of Kerala's serene backwaters as the backdrop
@@ -62,9 +62,9 @@ export function AboutSection({
               <div className="pt-8">
                 <Link
                   to="/about"
-                  className="inline-flex items-center space-x-4 py-4 px-8 border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-full transition-all group"
+                  className="inline-flex items-center space-x-4 py-4 px-8 border border-primary text-primary hover:bg-primary hover:text-white rounded-full transition-all group"
                 >
-                  <span className="text-sm uppercase tracking-widest font-bold">Discover More</span>
+                  <span className="text-sm uppercase tracking-[0.2em]">Discover More</span>
                   <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                 </Link>
               </div>

@@ -78,7 +78,7 @@ export function GallerySection() {
         {/* Header */}
         <div className="max-w-7xl mx-auto px-4 mb-16">
           <motion.h2
-            className="text-4xl md:text-6xl font-serif text-primary mb-4"
+            className="text-4xl md:text-6xl text-primary mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
           >
@@ -125,7 +125,7 @@ export function GallerySection() {
             to="/gallery"
             className="flex items-center gap-4 px-10 py-4 bg-primary text-white rounded-full hover:bg-accent transition"
           >
-            <span className="text-sm uppercase tracking-widest font-semibold">
+            <span className="text-sm uppercase tracking-[0.2em]">
               View Gallery
             </span>
             <ArrowRight size={18} />
@@ -151,14 +151,14 @@ export function GallerySection() {
             transition={{ duration: 0.8 }}
           />
           <motion.h2
-            className="text-primary font-serif mb-4"
+            className="text-primary mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Visual Journey
           </motion.h2>
-          <motion.p className="text-muted-foreground max-w-3xl mx-auto font-light">
+          <motion.p className="text-muted-foreground max-w-3xl mx-auto">
             Capturing the magic and elegance of celebrations at Kanjira's Luxeves Pavilion
           </motion.p>
         </div>
@@ -168,7 +168,7 @@ export function GallerySection() {
             <motion.button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-500 ${activeCategory === category
+              className={`px-8 py-3 rounded-full text-[10px] tracking-[0.25em] uppercase transition-all duration-500 ${activeCategory === category
                 ? "bg-accent text-accent-foreground shadow-2xl"
                 : "bg-white/50 backdrop-blur-md text-primary hover:bg-accent/20"
                 }`}

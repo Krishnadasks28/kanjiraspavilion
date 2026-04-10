@@ -79,7 +79,7 @@ export function TestimonialsSection() {
           />
 
           <motion.h2
-            className="text-4xl md:text-6xl text-primary font-serif mb-6"
+            className="text-4xl md:text-6xl text-primary mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
@@ -88,7 +88,7 @@ export function TestimonialsSection() {
           </motion.h2>
 
           <motion.p
-            className="text-lg text-muted-foreground max-w-2xl mx-auto font-light"
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -125,7 +125,7 @@ export function TestimonialsSection() {
 
               <div className="flex flex-col items-center text-center">
                 {/* Text */}
-                <blockquote className="text-xl md:text-2xl text-primary font-serif italic leading-relaxed mb-8">
+                <blockquote className="text-xl md:text-2xl text-primary italic leading-relaxed mb-8">
                   "{testimonials[activeIndex].text}"
                 </blockquote>
 
@@ -134,7 +134,7 @@ export function TestimonialsSection() {
                    <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4 border-2 border-accent/20">
                       <span className="text-accent font-bold text-xl">{testimonials[activeIndex].avatar}</span>
                    </div>
-                   <h4 className="text-xl text-primary font-bold tracking-tight">
+                   <h4 className="text-xl text-primary tracking-tight">
                       {testimonials[activeIndex].name}
                    </h4>
                    <div className="flex items-center space-x-2 text-sm text-muted-foreground mt-1">

@@ -59,7 +59,7 @@ export function LocationSection() {
             <div className="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mb-6">
               <MapPin className="text-accent" size={28} />
             </div>
-            <h3 className="text-xl text-primary mb-4 font-bold tracking-tight">Address</h3>
+            <h3 className="text-xl text-primary mb-4 font-normal tracking-tight">Address</h3>
             <p className="text-muted-foreground leading-relaxed">
               Kanjira's Luxeves Pavilion
               <br />
@@ -78,7 +78,7 @@ export function LocationSection() {
             <div className="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mb-6">
               <Navigation className="text-accent" size={28} />
             </div>
-            <h3 className="text-xl text-primary mb-4 font-bold tracking-tight">
+            <h3 className="text-xl text-primary mb-4 font-normal tracking-tight">
               Directions
             </h3>
             <p className="text-muted-foreground leading-relaxed">
@@ -99,7 +99,7 @@ export function LocationSection() {
             <div className="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mb-6">
               <Car className="text-accent" size={28} />
             </div>
-            <h3 className="text-xl text-primary mb-4 font-bold tracking-tight">Parking</h3>
+            <h3 className="text-xl text-primary mb-4 font-normal tracking-tight">Parking</h3>
             <p className="text-muted-foreground leading-relaxed">
               Ample parking space
               <br />

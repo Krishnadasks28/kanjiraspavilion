@@ -81,7 +81,7 @@ export function AmenitiesSection({
                   <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-accent transition-all duration-300">
                     <Icon className="text-accent group-hover:text-white" size={28} />
                   </div>
-                  <h3 className="text-xl text-primary mb-4">{amenity.title}</h3>
+                  <h3 className="text-xl text-primary font-normal mb-4">{amenity.title}</h3>
                   <p className="text-muted-foreground leading-relaxed text-sm">
                     {amenity.description}
                   </p>
@@ -140,7 +140,7 @@ export function AmenitiesSection({
 
               <div className="w-full md:w-1/2 space-y-6 text-left">
                 <span className="text-xs uppercase tracking-[0.25em] text-accent">{item.badge}</span>
-                <h3 className="text-xl md:text-3xl text-primary leading-tight">
+                <h3 className="text-xl md:text-3xl font-light text-primary leading-tight">
                   {item.title}
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">

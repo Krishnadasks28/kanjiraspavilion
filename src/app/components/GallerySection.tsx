@@ -3,6 +3,12 @@ import { useRef, useState, useEffect } from "react";
 import { X, ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useLocation, Link } from "react-router";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "./ui/carousel";
 
 const allImages = [
   { id: 1, src: "/images/backwater-wedding-pavilion-kerala-kanjiras.webp", alt: "Kanjira’s Luxeves Pavilion backwater wedding venue", category: "Ceremony" },
@@ -26,8 +32,7 @@ export function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
-  const [containerWidth, setContainerWidth] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
 
   const autoPlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -36,57 +41,39 @@ export function GallerySection() {
   const [itemWidth, setItemWidth] = useState(500);
   const GAP = 24;
 
+  // ✅ Sync selection index with Embla API
   useEffect(() => {
-    const updateDimensions = () => {
-      setItemWidth(window.innerWidth < 768 ? 300 : 500);
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.offsetWidth);
-      }
+    if (!api) return;
+
+    const onSelect = () => {
+      setCarouselIndex(api.selectedScrollSnap());
     };
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
+
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
+
+  // ✅ Smooth autoplay
+  useEffect(() => {
+    if (isHomePage && isInView && api) {
+      const interval = setInterval(() => {
+        api.scrollNext();
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [isHomePage, isInView, api]);
 
   const filteredImages =
     activeCategory === "All"
       ? allImages
       : allImages.filter((img) => img.category === activeCategory);
 
-  // ✅ Smooth autoplay (no interval drift)
-  useEffect(() => {
-    if (isHomePage && isInView && !isAutoPlayPaused) {
-      const interval = setInterval(() => {
-        setCarouselIndex((prev) => (prev + 1) % allImages.length);
-      }, 3000); // Slower interval for better UX
-      return () => clearInterval(interval);
-    }
-  }, [isHomePage, isInView, isAutoPlayPaused]);
-
-  const handleInteractionStart = () => {
-    setIsAutoPlayPaused(true);
-    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
-  };
-
-  const handleDragEnd = (_: any, info: any) => {
-    const offset = info.offset.x;
-    const velocity = info.velocity.x;
-    const threshold = itemWidth / 4;
-
-    if (offset < -threshold || velocity < -500) {
-      setCarouselIndex((prev) => Math.min(prev + 1, allImages.length - 1));
-    } else if (offset > threshold || velocity > 500) {
-      setCarouselIndex((prev) => Math.max(prev - 1, 0));
-    }
-
-    resumeTimeoutRef.current = setTimeout(() => {
-      setIsAutoPlayPaused(false);
-    }, 5000);
-  };
-
   if (isHomePage) {
-    const centerOffset = containerWidth / 2 - itemWidth / 2;
-    const xPosition = -(carouselIndex * (itemWidth + GAP)) + centerOffset;
 
     return (
       <section
@@ -115,64 +102,57 @@ export function GallerySection() {
           </div>
         </div>
 
-        <div
-          className="relative w-full overflow-visible cursor-grab active:cursor-grabbing"
-          style={{ perspective: "1500px" }}
-        >
-          <motion.div
-            className="flex items-center space-x-6 h-[450px] md:h-[650px]"
-            style={{ transformStyle: "preserve-3d" }}
-            drag="x"
-            dragConstraints={{
-              right: centerOffset,
-              left: -((allImages.length - 1) * (itemWidth + GAP)) + centerOffset,
+        <div className="relative w-full">
+          <Carousel
+            setApi={setApi}
+            opts={{
+              align: "center",
+              loop: true,
             }}
-            onDragStart={handleInteractionStart}
-            onDragEnd={handleDragEnd}
-            animate={{ x: xPosition }}
-            transition={{ type: "spring", damping: 25, stiffness: 100 }}
+            className="w-full"
           >
-            {allImages.map((image, index) => {
-              const isActive = carouselIndex === index;
-              const isPast = index < carouselIndex;
+            <CarouselContent
+              className="flex items-center h-[450px] md:h-[650px]"
+              style={{ transformStyle: "preserve-3d", perspective: "1500px" }}
+            >
+              {allImages.map((image, index) => {
+                const isActive = carouselIndex === index;
+                const isPast = index < carouselIndex;
 
-              let transformStyle = "scale(0.85)";
-              let opacityClass = "opacity-50";
+                let transformStyle = "scale(0.85)";
+                let opacityClass = "opacity-40";
 
-              if (isActive) {
-                transformStyle = "scale(1.1) translateZ(50px)";
-                opacityClass = "opacity-100 z-20 shadow-2xl";
-              } else if (isPast) {
-                transformStyle = "scale(0.85) rotateY(15deg) translateZ(-50px)"; // Reduced rotation
-                opacityClass = "opacity-40";
-              } else {
-                transformStyle = "scale(0.85) rotateY(-15deg) translateZ(-50px)"; // Reduced rotation
-                opacityClass = "opacity-40";
-              }
+                if (isActive) {
+                  transformStyle = "scale(1.1) translateZ(50px)";
+                  opacityClass = "opacity-100 z-20 shadow-2xl";
+                } else if (isPast) {
+                  transformStyle = "scale(0.85) rotateY(15deg) translateZ(-50px)";
+                } else {
+                  transformStyle = "scale(0.85) rotateY(-15deg) translateZ(-50px)";
+                }
 
-              return (
-                <motion.div
-                  key={image.id}
-                  className={`flex-shrink-0 w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-lg overflow-hidden relative group transition-all duration-700 will-change-transform ${opacityClass}`}
-                  style={{ transform: transformStyle }}
-                  onClick={() => {
-                    setCarouselIndex(index);
-                    handleInteractionStart();
-                    resumeTimeoutRef.current = setTimeout(
-                      () => setIsAutoPlayPaused(false),
-                      5000
-                    );
-                  }}
-                >
-                  <ImageWithFallback
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
-                  />
-                </motion.div>
-              );
-            })}
-          </motion.div>
+                return (
+                  <CarouselItem
+                    key={image.id}
+                    className="basis-auto pl-6"
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
+                    <motion.div
+                      className={`w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-lg relative group transition-all duration-700 will-change-transform ${opacityClass}`}
+                      style={{ transform: transformStyle }}
+                      onClick={() => api?.scrollTo(index)}
+                    >
+                      <ImageWithFallback
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
+                      />
+                    </motion.div>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+          </Carousel>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 mt-24 flex justify-center">

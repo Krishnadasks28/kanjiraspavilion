@@ -33,15 +33,13 @@ export function DestinationSection() {
 
   return (
     <section ref={ref} className="relative py-20 md:py-32 overflow-hidden">
-      {/* Full-width Background Image */}
+      {/* Textured Background with Palm Shadow */}
       <div className="absolute inset-0">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1758182032661-5c176311ff28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWxtJTIwdHJlZXMlMjB0cm9waWNhbCUyMHJpdmVyc2lkZXxlbnwxfHx8fDE3NzM0MTUzMTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-          alt="Kerala backwaters"
+          src="/images/texture-destination.png"
+          alt="Luxury textured wall with palm shadow"
           className="w-full h-full object-cover"
         />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/70" />
       </div>
 
       {/* Content */}
@@ -61,18 +59,18 @@ export function DestinationSection() {
                 transition={{ duration: 0.8, delay: 0.2 }}
               />
 
-              <h2 className="text-4xl md:text-5xl text-white font-serif mb-6">
+              <h2 className="text-4xl md:text-5xl text-primary font-serif mb-6">
                 The Destination Experience
               </h2>
 
-              <p className="text-lg text-white/90 mb-8 leading-relaxed">
+              <p className="text-lg text-primary/90 mb-8 leading-relaxed">
                 More than just a venue, Kanjira's Luxeves Pavilion offers an
                 immersive destination experience in the heart of Kerala's
                 natural beauty. Your guests will be transported to a world where
                 traditional charm meets modern luxury.
               </p>
 
-              <p className="text-lg text-white/90 mb-12 leading-relaxed">
+              <p className="text-lg text-primary/90 mb-12 leading-relaxed">
                 From the gentle lapping of backwater waves to the rustling of
                 coconut palms, every moment here is infused with the magic of
                 nature, creating memories that last a lifetime.
@@ -90,12 +88,12 @@ export function DestinationSection() {
                       transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                       className="flex items-start space-x-4"
                     >
-                      <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0">
                         <Icon className="text-accent" size={24} />
                       </div>
                       <div>
-                        <h3 className="text-white mb-1">{exp.title}</h3>
-                        <p className="text-white/80 text-sm">
+                        <h3 className="text-primary font-bold mb-1">{exp.title}</h3>
+                        <p className="text-muted-foreground text-sm">
                           {exp.description}
                         </p>
                       </div>

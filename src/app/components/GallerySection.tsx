@@ -113,29 +113,23 @@ export function GallerySection() {
           >
             <CarouselContent
               className="flex items-center h-[450px] md:h-[650px]"
-              style={{ transformStyle: "preserve-3d", perspective: "1500px" }}
             >
               {allImages.map((image, index) => {
                 const isActive = carouselIndex === index;
                 const isPast = index < carouselIndex;
 
-                let transformStyle = "scale(0.85)";
+                let transformStyle = "scale(0.95)";
                 let opacityClass = "opacity-40";
 
                 if (isActive) {
-                  transformStyle = "scale(1.1) translateZ(50px)";
+                  transformStyle = "scale(1.1)";
                   opacityClass = "opacity-100 z-20 shadow-2xl";
-                } else if (isPast) {
-                  transformStyle = "scale(0.85) rotateY(15deg) translateZ(-50px)";
-                } else {
-                  transformStyle = "scale(0.85) rotateY(-15deg) translateZ(-50px)";
                 }
 
                 return (
                   <CarouselItem
                     key={image.id}
                     className="basis-auto pl-6"
-                    style={{ transformStyle: "preserve-3d" }}
                   >
                     <motion.div
                       className={`w-[300px] md:w-[500px] h-[350px] md:h-[550px] rounded-lg relative group transition-all duration-700 will-change-transform ${opacityClass}`}

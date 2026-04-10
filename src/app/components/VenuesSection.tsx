@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { Users, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
@@ -44,7 +44,7 @@ export function VenuesSection() {
       className="py-20 md:py-48 px-4 sm:px-6 lg:px-8 bg-secondary overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
+        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div className="max-w-3xl">
             <motion.div
@@ -55,114 +55,97 @@ export function VenuesSection() {
             />
 
             <motion.h2
-              className="text-4xl md:text-5xl lg:text-6xl text-primary mb-6 font-serif"
+              className="text-4xl md:text-6xl text-primary mb-6 font-serif"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.6 }}
             >
               Our Venues & Suites
             </motion.h2>
 
             <motion.p
-              className="text-lg text-muted-foreground leading-relaxed"
+              className="text-lg text-muted-foreground"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Discover the perfect setting for your celebration, from grand riverside lawns
-              to intimate garden pavilions, each crafted for timeless memories.
+              Discover the perfect setting for your celebration.
             </motion.p>
           </div>
-
         </div>
 
-        {/* Carousel Container */}
+        {/* Carousel */}
         <div className="relative group/carousel">
-          {/* Navigation Controls - Side Positioned */}
-          <div className="absolute top-1/2 left-4 -translate-y-1/2 z-30 hidden sm:block">
-            <button
-              onClick={prev}
-              disabled={!api?.canScrollPrev()}
-              className={`p-4 md:p-5 rounded-full bg-white/90 backdrop-blur-md shadow-2xl border border-primary/5 transition-all duration-300 ${!api?.canScrollPrev()
-                  ? "opacity-0 pointer-events-none"
-                  : "hover:bg-primary hover:text-white hover:scale-110 active:scale-95"
-                }`}
-              aria-label="Previous venue"
-            >
-              <ChevronLeft size={24} />
-            </button>
-          </div>
+          {/* Controls */}
+          <button
+            onClick={prev}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 hidden sm:block p-4 rounded-full bg-white shadow-xl"
+          >
+            <ChevronLeft size={22} />
+          </button>
 
-          <div className="absolute top-1/2 right-4 -translate-y-1/2 z-30 hidden sm:block">
-            <button
-              onClick={next}
-              disabled={!api?.canScrollNext()}
-              className={`p-4 md:p-5 rounded-full bg-white/90 backdrop-blur-md shadow-2xl border border-primary/5 transition-all duration-300 ${!api?.canScrollNext()
-                  ? "opacity-0 pointer-events-none"
-                  : "hover:bg-primary hover:text-white hover:scale-110 active:scale-95"
-                }`}
-              aria-label="Next venue"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
+          <button
+            onClick={next}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 hidden sm:block p-4 rounded-full bg-white shadow-xl"
+          >
+            <ChevronRight size={22} />
+          </button>
 
           <Carousel
             setApi={setApi}
             opts={{
               align: "center",
-              containScroll: false,
+              containScroll: "trimSnaps",
             }}
-            className="w-full"
           >
-            <CarouselContent className="-ml-8">
-              {venues.map((venue, index) => (
+            <CarouselContent className="-ml-6">
+              {venues.map((venue) => (
                 <CarouselItem
                   key={venue.id}
-                  className="pl-8 basis-full md:basis-1/2 lg:basis-1/3"
+                  className="pl-6 basis-full md:basis-1/2 lg:basis-1/3"
                 >
+                  {/* ❌ removed scale animation */}
                   <motion.article
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.5 }}
                     className="group"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    whileHover={{ y: -10 }}
-                    transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                   >
-                    <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl shadow-2xl bg-white border border-primary/5">
-                      <Link
-                        to={`/venues/${venue.slug}`}
-                        className="absolute inset-0 overflow-hidden block"
-                      >
+                    <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden bg-white">
+
+                      <Link to={`/venues/${venue.slug}`} className="block h-full">
+
+                        {/* ✅ optimized image */}
                         <ImageWithFallback
                           src={venue.image}
-                          alt={`${venue.name} – ${venue.tagline}`}
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
+                          alt={venue.name}
+                          loading="eager"
+                          decoding="async"
+                          className="w-full h-full object-cover will-change-transform transition-transform duration-700 group-hover:scale-[1.04]"
                         />
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                        {/* overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
 
-                        <div className="absolute inset-0 p-8 flex flex-col justify-end text-white translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500">
-                          <div className="flex items-center space-x-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            <div className="bg-accent/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center space-x-2">
-                              <Users size={14} />
-                              <span className="text-[10px] font-bold uppercase tracking-wider">{venue.capacity} Guests</span>
-                            </div>
-                            <span className="text-xs font-medium uppercase tracking-widest text-white/80">
-                              {venue.tagline.split(' ').slice(0, 2).join(' ')}
+                        {/* content */}
+                        <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+                          <div className="flex items-center gap-2 mb-3">
+                            <Users size={14} />
+                            <span className="text-xs">
+                              {venue.capacity} Guests
                             </span>
                           </div>
 
-                          <h3 className="text-3xl md:text-4xl font-serif mb-4 leading-tight">
+                          <h3 className="text-2xl md:text-3xl font-serif mb-2">
                             {venue.name}
                           </h3>
 
-                          <p className="text-sm text-white/70 line-clamp-2 md:line-clamp-3 mb-6 font-light leading-relaxed opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                          <p className="text-sm text-white/70 line-clamp-2 mb-4">
                             {venue.description}
                           </p>
 
-                          <div className="flex items-center space-x-2 text-accent uppercase text-xs font-bold tracking-[0.2em] transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 delay-300">
-                            <span>Explore Venue</span>
-                            <ArrowRight size={16} />
+                          <div className="flex items-center gap-2 text-accent text-xs uppercase tracking-wider">
+                            Explore <ArrowRight size={14} />
                           </div>
                         </div>
                       </Link>
@@ -174,17 +157,16 @@ export function VenuesSection() {
           </Carousel>
         </div>
 
-        {/* Progress Indicators */}
-        <div className="mt-16 flex justify-center space-x-3">
+        {/* Indicators */}
+        <div className="mt-12 flex justify-center gap-2">
           {venues.map((_, idx) => (
             <button
               key={idx}
               onClick={() => api?.scrollTo(idx)}
-              className={`h-1.5 transition-all duration-500 rounded-full ${currentIndex === idx
-                  ? "w-12 bg-accent shadow-lg shadow-accent/20"
-                  : "w-4 bg-primary/10 hover:bg-primary/20"
+              className={`h-1.5 rounded-full transition-all ${currentIndex === idx
+                ? "w-10 bg-accent"
+                : "w-4 bg-primary/20"
                 }`}
-              aria-label={`Go to slide ${idx + 1}`}
             />
           ))}
         </div>
@@ -192,4 +174,3 @@ export function VenuesSection() {
     </section>
   );
 }
-

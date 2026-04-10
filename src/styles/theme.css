@@ -2,17 +2,17 @@
 
 :root {
   --font-size: 16px;
-  --background: #FEFCF6;
+  --background: rgba(254, 252, 246, 0.55);
   --foreground: #1A1A1A;
-  --card: #FFFFFF;
+  --card: rgba(255,255,255,0.80);
   --card-foreground: #1A1A1A;
-  --popover: #FFFFFF;
+  --popover: rgba(255,255,255,0.90);
   --popover-foreground: #1A1A1A;
   --primary: #1A1A1A;
   --primary-foreground: #FEFCF6;
-  --secondary: #FAF8F0;
+  --secondary: rgba(250, 248, 240, 0.70);
   --secondary-foreground: #1A1A1A;
-  --muted: #F5F1E6;
+  --muted: rgba(245, 241, 230, 0.80);
   --muted-foreground: #6F6F6F;
   --accent: #8C7B6E;
   --accent-foreground: #FFFFFF;
@@ -149,13 +149,17 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-family: 'Jost', sans-serif;
     font-size: 1.125rem;
     line-height: 1.66;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image: url('/images/texture-destination.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
   }
 
   html {

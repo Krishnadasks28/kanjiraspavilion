@@ -33,14 +33,8 @@ export function DestinationSection() {
 
   return (
     <section ref={ref} className="relative py-20 md:py-32 overflow-hidden">
-      {/* Textured Background with Palm Shadow */}
-      <div className="absolute inset-0">
-        <ImageWithFallback
-          src="/images/texture-destination.png"
-          alt="Luxury textured wall with palm shadow"
-          className="w-full h-full object-cover"
-        />
-      </div>
+      {/* Subtle tint to distinguish this section over the global texture */}
+      <div className="absolute inset-0 bg-primary/5" />
 
       {/* Content */}
       <div className="relative px-4 sm:px-6 lg:px-8">

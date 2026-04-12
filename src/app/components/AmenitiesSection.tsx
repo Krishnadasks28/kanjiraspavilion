@@ -32,7 +32,7 @@ const amenities = [
   {
     icon: DoorOpen,
     badge: "Service",
-    title: "Comfort & Utility Spaces",
+    title: "Comfort Utility Spaces",
     description:
       "Well-planned spaces designed for the comfort and convenience of families and guests, ensuring a seamless and relaxed experience throughout every celebration.",
     image: "/images/kanjiras-pavilion-reception-event.webp",

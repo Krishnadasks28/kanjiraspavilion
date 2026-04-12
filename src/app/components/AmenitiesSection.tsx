@@ -15,8 +15,8 @@ const amenities = [
   {
     icon: Home,
     badge: "Luxury",
-    title: "Premium Bridal Suites",
-    description: "Elegant, climate-controlled suites designed for relaxation and preparation, featuring private vanities and luxury amenities.",
+    title: "Premium Bridal Suite",
+    description: "Elegant, climate-controlled suite designed for relaxation and preparation.",
     image: "/images/kanjiras-pavilion-luxury-wedding-location-kerala.webp",
   },
   {

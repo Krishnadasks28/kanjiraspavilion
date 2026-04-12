@@ -69,7 +69,7 @@ export function VenueDetailPage() {
               <div className="mt-16">
                 <h3 className="text-2xl text-green-dark mb-8 flex items-center gap-3">
                   <div className="w-8 h-px bg-gold" />
-                  Venue Gallery
+                  Gallery
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {venue.gallery.map((img, idx) => (
@@ -95,7 +95,7 @@ export function VenueDetailPage() {
             {/* Sidebar Details */}
             <div className="bg-primary p-8 md:p-12 text-white">
               <div className="sticky top-24">
-                <h3 className="text-2xl text-gold-light mb-8 font-serif">Venue Highlights</h3>
+                <h3 className="text-2xl text-gold-light mb-8 font-serif">Highlights</h3>
 
                 <div className="space-y-8">
                   <div>

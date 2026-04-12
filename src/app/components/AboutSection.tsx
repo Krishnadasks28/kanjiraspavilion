@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 export function AboutSection({
   showLink = true,
-  title
+  title,
 }: {
   showLink?: boolean;
   title?: string;
@@ -47,15 +47,20 @@ export function AboutSection({
             className="space-y-4 text-lg md:text-xl text-muted-foreground leading-relaxed"
           >
             <p>
-              Experience the magic of Kerala's serene backwaters as the backdrop
-              to your once-in-a-lifetime celebration.
+              Where tranquil backwaters meet timeless celebrations, Kanjira’s
+              Luxeves Pavilion offers a refined riverside setting for weddings
+              and special events Nestled along the serene Canoly Canal, just
+              minutes from the sacred Thriprayar Sree Rama Temple and a short
+              drive from Guruvayoor Temple, it brings together nature,
+              spirituality, and understated luxury in one breathtaking
+              destination.
             </p>
             <p>
-              Nestled in the heart of Kerala's enchanting backwaters, Kanjira's
-              Luxeves Pavilion offers a peaceful and luxurious riverside
-              retreat. Surrounded by lush coconut groves and tranquil waters,
-              the property provides the perfect escape for guests seeking
-              relaxation, nature, and comfort.
+              With expansive outdoor spaces, an elegant glass house, and an
+              intimate indoor venue, the pavilion is designed to host
+              celebrations of every scale. Surrounded by lush greenery and calm
+              waters, it creates a serene yet grand atmosphere where every
+              occasion feels truly special.
             </p>
 
             {showLink && (
@@ -64,8 +69,13 @@ export function AboutSection({
                   to="/about"
                   className="inline-flex items-center space-x-4 py-4 px-8 border border-primary text-primary hover:bg-primary hover:text-white rounded-full transition-all group"
                 >
-                  <span className="text-sm uppercase tracking-[0.2em]">Discover More</span>
-                  <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                  <span className="text-sm uppercase tracking-[0.2em]">
+                    Discover More
+                  </span>
+                  <ArrowRight
+                    size={20}
+                    className="group-hover:translate-x-2 transition-transform"
+                  />
                 </Link>
               </div>
             )}

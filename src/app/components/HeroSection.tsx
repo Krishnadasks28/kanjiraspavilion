@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { PageLoader } from "./PageLoader";
 
 export function HeroSection() {
   const ref = useRef(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   return (
     <section
@@ -9,12 +11,16 @@ export function HeroSection() {
       id="home"
       className="relative h-screen w-full overflow-hidden bg-primary"
     >
+      <PageLoader isLoading={!isVideoLoaded} />
+
       {/* Fullscreen Background Video */}
       <video
         autoPlay
         loop
         muted
         playsInline
+        onCanPlayThrough={() => setIsVideoLoaded(true)}
+        onLoadedData={() => setIsVideoLoaded(true)}
         className="absolute inset-0 w-full h-full object-cover"
         src="/Videos/Kanjiras-Luxeves-Pavilion-backwater-wedding-destination.webm"
       >

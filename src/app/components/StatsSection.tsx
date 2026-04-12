@@ -1,8 +1,8 @@
 import { motion } from "motion/react";
 
 const stats = [
-  { label: "Events Hosted", value: "500+" },
-  { label: "Happy Guests", value: "50k+" },
+  { label: "Events Hosted", value: "50+" },
+  { label: "Happy Guests", value: "30k+" },
   { label: "Guest Capacity", value: "2000+" },
   { label: "Parking Capacity", value: "200+" },
 ];

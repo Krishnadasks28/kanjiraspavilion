@@ -6,22 +6,23 @@ const faqs = [
   {
     question: "What is the total guest capacity at Kanjira's Luxeves Pavilion?",
     answer:
-      "Kanjira's Luxeves Pavilion offers three distinct wedding venue spaces to accommodate celebrations of every scale. The Grand Lawn — our flagship outdoor wedding lawn — can host up to 2,000 guests and is ideal for large grand wedding ceremonies and receptions. The Celebration Pavilion accommodates up to 400 guests in a roof covered open venue. The Intimate Pavilion is designed for up to 100 guests and is perfect for private pre-wedding events, Birthday parties etc. In total, our destination wedding venue in Kerala can comfortably host wedding celebrations for groups of any size.",
+      "Kanjira's Luxeves Pavilion offers three distinct wedding venue spaces to accommodate celebrations of every scale. Venue 1 — our flagship outdoor wedding lawn — can host up to 2,000 guests and is ideal for large grand wedding ceremonies and receptions. Venue 2 accommodates up to 400 guests in a roof covered open venue. Venue 3 is designed for up to 100 guests and is perfect for private pre-wedding events, Birthday parties etc. In total, our destination wedding venue in Kerala can comfortably host wedding celebrations for groups of any size.",
   },
   {
-    question: "Is Kanjira's Luxeves Pavilion suitable for destination weddings in Kerala?",
+    question:
+      "Is Kanjira's Luxeves Pavilion suitable for destination weddings in Kerala?",
     answer:
-      "Absolutely. Kanjira's Luxeves Pavilion is one of Kerala's most sought-after destination wedding venues, situated along the iconic Kerala backwaters in the Alleppey (Alappuzha) region. Our location, surrounded by tropical palm groves and serene waterways, provides the quintessential Kerala backwater wedding experience. We have hosted hundreds of destination weddings for couples flying in from across India and internationally, offering full event coordination, local accommodation arrangements, and seamless logistics support.",
+      "Absolutely. Kanjira’s Luxeves Pavilion is an ideal choice for destination weddings in Kerala, set along the serene Canoly Canal and surrounded by lush coconut groves and tranquil backwaters. Its picturesque riverside setting offers an authentic and elegant backdrop for wedding celebrations.",
   },
   {
-    question: "What wedding events can be hosted at the venue?",
+    question: "What events can be hosted at the venue?",
     answer:
-      "Kanjira's Luxeves Pavilion is equipped to host every stage of your wedding celebration. This includes traditional Hindu wedding ceremonies (Muhurtam), Christian and interfaith weddings, Muslim Nikah ceremonies, engagement functions, Mehendi and Haldi ceremonies, bridal showers and bachelor parties, wedding reception dinners, Sangeet nights, and multi-day destination wedding packages. Each of our three venue spaces can be customized for specific events with tailored décor, seating, and catering arrangements.",
+      "Kanjira’s Luxeves Pavilion is designed to host a wide range of celebrations and gatherings of every scale. From weddings, receptions, engagements, Mehendi, Haldi, and Sangeet ceremonies to corporate events, cultural programs, private parties, and social gatherings, the venue adapts seamlessly to every occasion.",
   },
   {
-    question: "Is parking available for wedding guests at the venue?",
+    question: "Is parking available for guests at the venue?",
     answer:
-      "Yes, Kanjira's Luxeves Pavilion provides ample on-site parking for all wedding guests. Our dedicated parking area can accommodate over 200 vehicles comfortably.We ensure a premium arrival experience for your guests from the moment they reach our backwater wedding venue.",
+      "Yes, Kanjira's Luxeves Pavilion provides ample on-site parking for all guests. Our dedicated parking area can accommodate over 200 vehicles comfortably.We ensure a premium arrival experience for your guests from the moment they reach our backwater wedding venue.",
   },
   {
     question: "Are bridal preparation rooms available at the venue?",
@@ -31,7 +32,7 @@ const faqs = [
   {
     question: "Can the venue be decorated according to our theme?",
     answer:
-      "Absolutely. All three venues at Kanjira's Luxeves Pavilion offer a blank-canvas setup that can be transformed to match any wedding theme — from traditional Kerala floral décor to royal Mughal-inspired setups, contemporary minimalist aesthetics, or romantic garden themes. Our in-house décor partners and our open-vendor policy allow couples to bring their preferred decorators to create the wedding environment of their dreams.",
+      "Absolutely. All three venues at Kanjira’s Luxeves Pavilion offer flexible, blank-canvas spaces that can be customized to suit your vision. With both in-house support and an open-vendor policy, you have the freedom to work with your preferred decorators and create a setting that reflects your style seamlessly.",
   },
 ];
 
@@ -78,7 +79,8 @@ export function FAQSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Everything you need to know about hosting your dream destination wedding at Kerala's most celebrated backwater venue.
+            Everything you need to know about hosting your dream destination
+            wedding at Kerala's most celebrated backwater venue.
           </motion.p>
         </div>
 
@@ -171,13 +173,12 @@ export function FAQSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          <p
-            className="text-xl text-accent-foreground mb-3 font-serif"
-          >
+          <p className="text-xl text-accent-foreground mb-3 font-serif">
             Still have questions?
           </p>
           <p className="text-white/80 text-sm mb-6">
-            Our specialists are available to help you plan every detail of your destination wedding in Kerala.
+            Our specialists are available to help you plan every detail of your
+            destination wedding in Kerala.
           </p>
           <button
             onClick={() => {

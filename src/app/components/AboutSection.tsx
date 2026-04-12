@@ -7,9 +7,11 @@ import { Link } from "react-router";
 export function AboutSection({
   showLink = true,
   title,
+  content,
 }: {
   showLink?: boolean;
   title?: string;
+  content?: React.ReactNode;
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -46,22 +48,25 @@ export function AboutSection({
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-4 text-lg md:text-xl text-muted-foreground leading-relaxed"
           >
-            <p>
-              Where tranquil backwaters meet timeless celebrations, Kanjira’s
-              Luxeves Pavilion offers a refined riverside setting for weddings
-              and special events Nestled along the serene Canoly Canal, just
-              minutes from the sacred Thriprayar Sree Rama Temple and a short
-              drive from Guruvayoor Temple, it brings together nature,
-              spirituality, and understated luxury in one breathtaking
-              destination.
-            </p>
-            <p>
-              With expansive outdoor spaces, an elegant glass house, and an
-              intimate indoor venue, the pavilion is designed to host
-              celebrations of every scale. Surrounded by lush greenery and calm
-              waters, it creates a serene yet grand atmosphere where every
-              occasion feels truly special.
-            </p>
+            {content ? (
+              content
+            ) : (
+              <>
+                <p>
+                  Where tranquil backwaters blend seamlessly with timeless
+                  celebrations, Kanjira’s Luxeves Pavilion offers an
+                  extraordinary riverside setting for weddings and grand events
+                  that deserve nothing less than perfection
+                </p>
+                <p>
+                  Nestled along the serene Canoly Canal, just minutes away from
+                  the sacred Thriprayar Sree Rama Temple, and only a 30-minute
+                  drive from Guruvayoor Temple, this destination brings together
+                  nature, spirituality, and refined luxury in one breathtaking
+                  location.
+                </p>
+              </>
+            )}
 
             {showLink && (
               <div className="pt-8">

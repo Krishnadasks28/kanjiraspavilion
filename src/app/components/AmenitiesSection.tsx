@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
-import { ArrowRight, ParkingCircle, Home, Trees, Utensils } from "lucide-react";
+import { ArrowRight, ParkingCircle, Home, Trees, DoorOpen } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const amenities = [
@@ -9,36 +9,40 @@ const amenities = [
     icon: ParkingCircle,
     badge: "Convenience",
     title: "Ample Guest Parking",
-    description: "Our venue provides dedicated, secure parking for over 200 vehicles, ensuring a seamless arrival experience for every guest.",
+    description:
+      "Our venue provides dedicated, secure parking for over 200 vehicles, ensuring a seamless arrival experience for every guest.",
     image: "/images/kanjiras-pavilion-drone-view-backwater-venue.webp",
   },
   {
     icon: Home,
     badge: "Luxury",
     title: "Premium Bridal Suite",
-    description: "Elegant, climate-controlled suite designed for relaxation and preparation.",
+    description:
+      "Elegant, climate-controlled suite designed for relaxation and preparation.",
     image: "/images/kanjiras-pavilion-luxury-wedding-location-kerala.webp",
   },
   {
     icon: Trees,
     badge: "Nature",
     title: "Landscaped Tropical Gardens",
-    description: "Lush, manicured greenery and curated pathways that offer a breathtaking natural backdrop for your photography and ceremonies.",
+    description:
+      "Lush, manicured greenery and curated pathways that offer a breathtaking natural backdrop for your photography and ceremonies.",
     image: "/images/kanjiras-luxeves-pavilion-garden.webp",
   },
   {
-    icon: Utensils,
+    icon: DoorOpen,
     badge: "Service",
-    title: "Professional Catering Spaces",
-    description: "World-class facilities for external catering teams, designed to maintain the highest standards of food service and hygiene.",
+    title: "Comfort & Utility Spaces",
+    description:
+      "Well-planned spaces designed for the comfort and convenience of families and guests, ensuring a seamless and relaxed experience throughout every celebration.",
     image: "/images/kanjiras-pavilion-reception-event.webp",
   },
 ];
 
 export function AmenitiesSection({
-  layout = "editorial"
+  layout = "editorial",
 }: {
-  layout?: "grid" | "editorial"
+  layout?: "grid" | "editorial";
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -63,7 +67,8 @@ export function AmenitiesSection({
               Premium Amenities
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Every detail thoughtfully designed for your comfort and convenience
+              Every detail thoughtfully designed for your comfort and
+              convenience
             </p>
           </div>
 
@@ -79,9 +84,14 @@ export function AmenitiesSection({
                   className="group bg-secondary p-8 rounded-lg hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-accent/20"
                 >
                   <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-accent transition-all duration-300">
-                    <Icon className="text-accent group-hover:text-white" size={28} />
+                    <Icon
+                      className="text-accent group-hover:text-white"
+                      size={28}
+                    />
                   </div>
-                  <h3 className="text-xl text-primary font-normal mb-4">{amenity.title}</h3>
+                  <h3 className="text-xl text-primary font-normal mb-4">
+                    {amenity.title}
+                  </h3>
                   <p className="text-muted-foreground leading-relaxed text-sm">
                     {amenity.description}
                   </p>
@@ -125,8 +135,9 @@ export function AmenitiesSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, delay: 0.2 }}
-              className={`flex flex-col md:flex-row items-center gap-12 lg:gap-20 ${index % 2 === 1 ? "md:flex-row-reverse" : ""
-                }`}
+              className={`flex flex-col md:flex-row items-center gap-12 lg:gap-20 ${
+                index % 2 === 1 ? "md:flex-row-reverse" : ""
+              }`}
             >
               <div className="w-full md:w-1/2">
                 <div className="relative rounded-lg overflow-hidden shadow-2xl aspect-[4/3]">
@@ -139,7 +150,9 @@ export function AmenitiesSection({
               </div>
 
               <div className="w-full md:w-1/2 space-y-6 text-left">
-                <span className="text-xs uppercase tracking-[0.25em] text-accent">{item.badge}</span>
+                <span className="text-xs uppercase tracking-[0.25em] text-accent">
+                  {item.badge}
+                </span>
                 <h3 className="text-xl md:text-3xl font-light text-primary leading-tight">
                   {item.title}
                 </h3>

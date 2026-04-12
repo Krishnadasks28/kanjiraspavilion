@@ -14,7 +14,6 @@ const navLinks = [
   { label: "Venues", href: "#venues" },
   { label: "Amenities", href: "#amenities" },
   { label: "Gallery", href: "#gallery" },
-  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -60,10 +59,11 @@ export function Footer() {
                 Backwater Event Destination
               </h4>
               <p className="text-white/60 text-xs leading-relaxed">
-                Set in the serene Kerala backwaters, our expansive outdoor lawn and elegant
-                covered pavilions offer a breathtaking setting for weddings, celebrations,
-                and curated events—surrounded by tranquil waters, lush coconut groves, and
-                timeless natural beauty.
+                Set in the serene Kerala backwaters, our expansive outdoor lawn
+                and elegant covered pavilions offer a breathtaking setting for
+                weddings, celebrations, and curated events—surrounded by
+                tranquil waters, lush coconut groves, and timeless natural
+                beauty.
               </p>
             </div>
 
@@ -72,8 +72,9 @@ export function Footer() {
                 Events We Host
               </h4>
               <p className="text-white/60 text-xs leading-relaxed">
-                Weddings · Receptions · Engagements · Mehendi & Haldi · Sangeet nights ·
-                Corporate gatherings · Cultural events · Private celebrations · Podcasts and more.
+                Weddings · Receptions · Engagements · Mehendi & Haldi · Sangeet
+                nights · Corporate gatherings · Cultural events · Private
+                celebrations · Podcasts and more.
               </p>
             </div>
           </div>
@@ -94,9 +95,7 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-white/80">
                 <MapPin size={18} className="text-accent" />
-                <span className="text-sm">
-                  Thripreyar, Thrissur, Kerala
-                </span>
+                <span className="text-sm">Thripreyar, Thrissur, Kerala</span>
               </div>
 
               <div className="flex items-center space-x-3 text-white/80">
@@ -134,9 +133,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xl mb-4">
-              Quick Links
-            </h4>
+            <h4 className="text-xl mb-4">Quick Links</h4>
 
             <ul className="space-y-2">
               {navLinks.map((link) => (

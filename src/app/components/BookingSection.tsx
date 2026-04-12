@@ -15,41 +15,41 @@ export function BookingSection() {
   });
 
   const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const templateParams = {
-    name: formData.name,
-    phone: formData.phone,
-    event_date: formData.eventDate,
-    guest_count: formData.guestCount,
+    const templateParams = {
+      name: formData.name,
+      phone: formData.phone,
+      event_date: formData.eventDate,
+      guest_count: formData.guestCount,
+    };
+
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          alert(
+            "Thank you for your enquiry! We will contact you soon to confirm availability."
+          );
+
+          setFormData({
+            name: "",
+            phone: "",
+            eventDate: "",
+            guestCount: "",
+          });
+        },
+        (error) => {
+          console.error("EmailJS Error:", error);
+          alert("Something went wrong. Please try again.");
+        }
+      );
   };
-
-  emailjs
-    .send(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      templateParams,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    )
-    .then(
-      () => {
-        alert(
-          "Thank you for your enquiry! We will contact you soon to confirm availability."
-        );
-
-        setFormData({
-          name: "",
-          phone: "",
-          eventDate: "",
-          guestCount: "",
-        });
-      },
-      (error) => {
-        console.error("EmailJS Error:", error);
-        alert("Something went wrong. Please try again.");
-      }
-    );
-};
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -132,7 +132,7 @@ export function BookingSection() {
           >
             <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-2xl p-8">
               <h3 className="text-2xl text-primary font-serif mb-6">
-                Check Availability
+                Contact Us
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-5">

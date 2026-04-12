@@ -19,11 +19,9 @@ export function Home() {
       <VenuesSection />
       <AmenitiesSection layout="grid" />
       <GallerySection />
-      <DestinationSection />
       <TestimonialsSection />
       <FAQSection />
       <BookingSection />
-      <LocationSection />
     </main>
   );
 }

@@ -84,7 +84,7 @@ export function TestimonialsSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            Love Stories
+            Happy Clients
           </motion.h2>
 
           <motion.p
@@ -93,7 +93,7 @@ export function TestimonialsSection() {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Real moments from couples who chose our backwater paradise for their journey together.
+            Experiences shared by those who chose our backwater destination for their events.
           </motion.p>
         </div>
 
@@ -131,17 +131,17 @@ export function TestimonialsSection() {
 
                 {/* Profile */}
                 <div className="flex flex-col items-center">
-                   <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4 border-2 border-accent/20">
-                      <span className="text-accent font-bold text-xl">{testimonials[activeIndex].avatar}</span>
-                   </div>
-                   <h4 className="text-xl text-primary tracking-tight">
-                      {testimonials[activeIndex].name}
-                   </h4>
-                   <div className="flex items-center space-x-2 text-sm text-muted-foreground mt-1">
-                      <span>{testimonials[activeIndex].event}</span>
-                      <span className="opacity-40">•</span>
-                      <span>{testimonials[activeIndex].location}</span>
-                   </div>
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4 border-2 border-accent/20">
+                    <span className="text-accent font-bold text-xl">{testimonials[activeIndex].avatar}</span>
+                  </div>
+                  <h4 className="text-xl text-primary tracking-tight">
+                    {testimonials[activeIndex].name}
+                  </h4>
+                  <div className="flex items-center space-x-2 text-sm text-muted-foreground mt-1">
+                    <span>{testimonials[activeIndex].event}</span>
+                    <span className="opacity-40">•</span>
+                    <span>{testimonials[activeIndex].location}</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -168,9 +168,8 @@ export function TestimonialsSection() {
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`h-1.5 transition-all duration-500 rounded-full ${
-                activeIndex === index ? "w-8 bg-accent" : "w-2 bg-accent/20"
-              }`}
+              className={`h-1.5 transition-all duration-500 rounded-full ${activeIndex === index ? "w-8 bg-accent" : "w-2 bg-accent/20"
+                }`}
             />
           ))}
         </div>

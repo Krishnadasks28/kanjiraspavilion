@@ -2,8 +2,7 @@ import { AboutSection } from "../components/AboutSection";
 import { MetaTags } from "../components/MetaTags";
 import { PageHero } from "../components/PageHero";
 import { StatsSection } from "../components/StatsSection";
-import { TestimonialsSection } from "../components/TestimonialsSection";
-import { FAQSection } from "../components/FAQSection";
+import { DestinationSection } from "../components/DestinationSection";
 import { LocationSection } from "../components/LocationSection";
 
 export function AboutPage() {
@@ -17,8 +16,7 @@ export function AboutPage() {
       />
       <AboutSection showLink={false} />
       <StatsSection />
-      <TestimonialsSection />
-      <FAQSection />
+      <DestinationSection />
       <LocationSection />
     </main>
   );

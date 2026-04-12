@@ -230,7 +230,7 @@ export function Navigation() {
 
                 <div className="text-center space-y-2 text-primary/80 mb-6">
                   <p className="text-sm font-medium tracking-wider">
-                    +91 9995427799
+                    +91 9995427799, +91 9577331122
                   </p>
                   <p className="text-sm font-medium tracking-wider">
                     klpthrissur@gmail.com
@@ -238,7 +238,7 @@ export function Navigation() {
                 </div>
 
                 <p className="text-center text-xs text-primary/50 uppercase tracking-widest">
-                  © Copyright Kanjira
+                  © Copyright Kanjira's Luxeves Pavilion
                 </p>
               </div>
             </motion.div>

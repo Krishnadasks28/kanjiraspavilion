@@ -83,7 +83,7 @@ export const venues: Venue[] = [
       "Smaller venue perfect for engagement, mehndi, and private celebrations",
     longDescription:
       "The Intimate Pavilion is a charming, private event space accommodating up to 100 guests, designed for close-knit celebrations that require an exclusive and personalized setting. Surrounded by lush landscaped gardens and natural backwater views, this venue is ideal for pre-wedding events such as engagement ceremonies, mehendi celebrations, haldi rituals, and bridal brunches. As Kerala's most sought-after intimate wedding venue, it offers flexible seating arrangements, soft natural lighting, and a serene garden atmosphere that transforms every small celebration into a cherished memory.",
-    image: "/images/kanjiras-pavilion-drone-view-backwater-venue.webp",
+    image: "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp",
     gallery: [
       "/images/kanjiras-pavilion-drone-view-backwater-venue.webp",
       "/images/kanjiras-luxeves-pavilion-garden.webp",

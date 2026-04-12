@@ -7,14 +7,15 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
+import { Link } from "react-router";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Venues", href: "#venues" },
-  { label: "Amenities", href: "#amenities" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Venues", href: "/venues" },
+  { label: "Amenities", href: "/amenities" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const socialLinks = [
@@ -138,12 +139,12 @@ export function Footer() {
             <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-white/80 hover:text-accent transition-colors duration-300 text-sm"
+                  <Link
+                    to={link.href}
+                    className="text-white/80 hover:text-accent transition-colors duration-300 text-sm block py-1"
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

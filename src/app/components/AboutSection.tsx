@@ -53,10 +53,9 @@ export function AboutSection({
             ) : (
               <>
                 <p>
-                  Where tranquil backwaters blend seamlessly with timeless
-                  celebrations, Kanjira’s Luxeves Pavilion offers an
-                  extraordinary riverside setting for weddings and grand events
-                  that deserve nothing less than perfection
+                  Kanjira’s Luxeves Pavilion offers an extraordinary riverside
+                  setting for weddings and grand events that deserve nothing
+                  less than perfection
                 </p>
                 <p>
                   Nestled along the serene Canoly Canal, just minutes away from

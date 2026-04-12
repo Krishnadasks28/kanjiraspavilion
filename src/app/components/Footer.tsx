@@ -1,12 +1,5 @@
 import { motion } from "motion/react";
-import {
-  Facebook,
-  Instagram,
-  Twitter,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router";
 
 const navLinks = [
@@ -25,7 +18,6 @@ const socialLinks = [
     href: "https://www.instagram.com/kanjiras_luxeves_pavilion/",
     label: "Instagram",
   },
-  { icon: Twitter, href: "#", label: "Twitter" },
 ];
 
 export function Footer() {

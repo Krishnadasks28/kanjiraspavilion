@@ -36,8 +36,8 @@ export function Navigation() {
     <>
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled 
-            ? "bg-[#FAF8F0]/98 backdrop-blur-md shadow-md" 
+          isScrolled
+            ? "bg-[#FAF8F0]/98 backdrop-blur-md shadow-md"
             : "bg-transparent"
         }`}
         initial={{ y: -100 }}
@@ -77,9 +77,11 @@ export function Navigation() {
                     to={item.href}
                     className={({ isActive }) =>
                       `text-[13px] transition-colors duration-300 hover:text-accent uppercase tracking-[0.2em] ${
-                        isActive 
-                          ? "text-accent" 
-                          : isScrolled ? "text-primary" : "text-white"
+                        isActive
+                          ? "text-accent"
+                          : isScrolled
+                            ? "text-primary"
+                            : "text-white"
                       }`
                     }
                   >
@@ -104,7 +106,7 @@ export function Navigation() {
         </div>
       </motion.nav>
 
-      {/* Menu - Farside Hotels Style Slide-Out Panel */}
+      {/* Menu - Slide-Out Panel */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <div className="fixed inset-0 z-50 md:hidden">
@@ -122,11 +124,12 @@ export function Navigation() {
             {/* Side Panel */}
             <motion.div
               className="fixed inset-y-0 right-0 w-[85vw] max-w-sm flex flex-col shadow-2xl overflow-y-auto"
-              style={{ 
+              style={{
                 backgroundColor: "#FAF8F0",
-                backgroundImage: "url('/images/texture-destination.png')",
+                backgroundImage:
+                  "linear-gradient(rgba(250, 248, 240, 0.85), rgba(250, 248, 240, 0.85)), url('/images/bg-texture.png')",
                 backgroundSize: "cover",
-                backgroundPosition: "center"
+                backgroundPosition: "center",
               }}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -135,7 +138,8 @@ export function Navigation() {
             >
               {/* Header */}
               <div className="flex items-center justify-between h-20 px-4 sm:px-6 border-b border-accent/20">
-                <div className="w-11" /> {/* Spacer matched to button width to perfectly center logo */}
+                <div className="w-11" />{" "}
+                {/* Spacer matched to button width to perfectly center logo */}
                 <img
                   src="/images/Logo.PNG"
                   alt="Kanjira's Luxeves Pavilion"
@@ -162,8 +166,8 @@ export function Navigation() {
                       to={item.href}
                       className={({ isActive }) =>
                         `block text-3xl font-serif tracking-wide transition-colors duration-300 ${
-                          isActive 
-                            ? "text-accent" 
+                          isActive
+                            ? "text-accent"
                             : "text-primary hover:text-accent"
                         }`
                       }
@@ -177,19 +181,62 @@ export function Navigation() {
               {/* Footer Section */}
               <div className="py-8 mx-8 border-t border-accent/20">
                 <div className="flex justify-center space-x-6 mb-6">
-                  <a href="#" className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-accent hover:border-accent hover:text-white transition-all">
-                    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                  <a
+                    href="#"
+                    className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-accent hover:border-accent hover:text-white transition-all"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="none"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      height="18"
+                      width="18"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
                   </a>
-                  <a href="https://www.instagram.com/kanjiras_luxeves_pavilion/" className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-accent hover:border-accent hover:text-white transition-all">
-                    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                  <a
+                    href="https://www.instagram.com/kanjiras_luxeves_pavilion/"
+                    className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-accent hover:border-accent hover:text-white transition-all"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="none"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      height="18"
+                      width="18"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        width="20"
+                        height="20"
+                        x="2"
+                        y="2"
+                        rx="5"
+                        ry="5"
+                      ></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                    </svg>
                   </a>
                 </div>
-                
+
                 <div className="text-center space-y-2 text-primary/80 mb-6">
-                  <p className="text-sm font-medium tracking-wider">+91 9995427799</p>
-                  <p className="text-sm font-medium tracking-wider">klpthrissur@gmail.com</p>
+                  <p className="text-sm font-medium tracking-wider">
+                    +91 9995427799
+                  </p>
+                  <p className="text-sm font-medium tracking-wider">
+                    klpthrissur@gmail.com
+                  </p>
                 </div>
-                
+
                 <p className="text-center text-xs text-primary/50 uppercase tracking-widest">
                   © Copyright Kanjira
                 </p>

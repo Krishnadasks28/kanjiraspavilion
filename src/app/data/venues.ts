@@ -16,7 +16,7 @@ export const venues: Venue[] = [
   {
     id: 1,
     slug: "grand-lawn",
-    name: "Grand Lawn",
+    name: "Venue 1",
     capacity: 2000,
     tagline: "The Premier Outdoor Wedding Lawn in Kerala",
     description:
@@ -46,7 +46,7 @@ export const venues: Venue[] = [
   {
     id: 2,
     slug: "backwater-pavilion",
-    name: "Backwater Pavilion",
+    name: "Venue 2",
     capacity: 400,
     tagline: "Elegant Covered Venue for Ceremonies & Receptions",
     description:
@@ -76,16 +76,16 @@ export const venues: Venue[] = [
   {
     id: 3,
     slug: "intimate-pavilion",
-    name: "Intimate Pavilion",
+    name: "Venue 3",
     capacity: 100,
     tagline: "Private Celebrations in a Garden Setting",
     description:
       "Smaller venue perfect for engagement, mehndi, and private celebrations",
     longDescription:
       "The Intimate Pavilion is a charming, private event space accommodating up to 100 guests, designed for close-knit celebrations that require an exclusive and personalized setting. Surrounded by lush landscaped gardens and natural backwater views, this venue is ideal for pre-wedding events such as engagement ceremonies, mehendi celebrations, haldi rituals, and bridal brunches. As Kerala's most sought-after intimate wedding venue, it offers flexible seating arrangements, soft natural lighting, and a serene garden atmosphere that transforms every small celebration into a cherished memory.",
-    image: "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp",
+    image: "/images/kanjiras-pavilion-drone-view-backwater-venue.webp",
     gallery: [
-      "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp",
+      "/images/kanjiras-pavilion-drone-view-backwater-venue.webp",
       "/images/kanjiras-luxeves-pavilion-garden.webp",
       "/images/kanjiras-luxeves-pavilion-ear-piercing.webp",
       "/images/kanjiras-pavilion-wedding-ceremony-backwater-view.webp",

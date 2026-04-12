@@ -9,15 +9,14 @@ export function AboutPage() {
   return (
     <main className="">
       <MetaTags />
-      <PageHero 
-        title="Our Story" 
-        subtitle="Heritage, Elegance & Nature" 
-        backgroundImage="/images/kanjiras-pavilion-luxury-wedding-location-kerala.webp" 
+      <PageHero
+        title="Our Story"
+        subtitle="Heritage, Elegance & Nature"
+        backgroundImage="/images/kanjiras-pavilion-luxury-wedding-location-kerala.webp"
       />
       <AboutSection showLink={false} />
       <StatsSection />
       <DestinationSection />
-      <LocationSection />
     </main>
   );
 }

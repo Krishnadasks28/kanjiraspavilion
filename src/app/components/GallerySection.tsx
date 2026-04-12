@@ -14,10 +14,9 @@ const allImages = [
   { id: 1, src: "/images/backwater-wedding-pavilion-kerala-kanjiras.webp", alt: "Kanjira’s Luxeves Pavilion backwater wedding venue", category: "Ceremony" },
   { id: 2, src: "/images/kanjiras-luxeves-pavilion-bridal-entry-wedding.webp", alt: "Destination wedding venue", category: "Ceremony" },
   { id: 3, src: "/images/kanjiras-pavilion-reception-event.webp", alt: "Backwater wedding pavilion", category: "Reception" },
-  { id: 4, src: "/images/kanjiras-pavilion-destination-wedding-venue-thrissur.webp", alt: "Wedding lawn", category: "Venue" },
   { id: 5, src: "/images/kanjiras-luxeves-pavilion-wedding-lawn-thrissur.webp", alt: "Luxury backwater wedding venue", category: "Venue" },
   { id: 6, src: "/images/kanjiras-luxeves-pavilion-wedding-reception-area.webp", alt: "Wedding ceremony setup", category: "Reception" },
-  { id: 7, src: "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp", alt: "Outdoor destination wedding", category: "Ceremony" },
+  { id: 7, src: "/images/kanjiras-pavilion-drone-view-backwater-venue.webp", alt: "Outdoor destination wedding", category: "Ceremony" },
   { id: 8, src: "/images/kanjiras-pavilion-evening-wedding-decoration.webp", alt: "Evening wedding decoration", category: "Reception" },
 ];
 

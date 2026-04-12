@@ -3,8 +3,8 @@ import { motion } from "motion/react";
 const stats = [
   { label: "Events Hosted", value: "500+" },
   { label: "Happy Guests", value: "50k+" },
-  { label: "Years of Excellence", value: "15+" },
-  { label: "Acre Property", value: "5+" },
+  { label: "Guest Capacity", value: "2000+" },
+  { label: "Parking Capacity", value: "200+" },
 ];
 
 export function StatsSection() {

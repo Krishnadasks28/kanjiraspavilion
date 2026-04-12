@@ -57,24 +57,23 @@ export function Footer() {
 
             <div>
               <h4 className="text-accent text-sm mb-3 tracking-wide uppercase">
-                Backwater Wedding Venue
+                Backwater Event Destination
               </h4>
               <p className="text-white/60 text-xs leading-relaxed">
-                Located in the serene Kerala backwater region, our outdoor
-                wedding lawn and elegant covered pavilions create a breathtaking
-                destination wedding venue surrounded by tranquil waters, lush
-                coconut groves, and stunning natural beauty.
+                Set in the serene Kerala backwaters, our expansive outdoor lawn and elegant
+                covered pavilions offer a breathtaking setting for weddings, celebrations,
+                and curated events—surrounded by tranquil waters, lush coconut groves, and
+                timeless natural beauty.
               </p>
             </div>
 
             <div>
               <h4 className="text-accent text-sm mb-3 tracking-wide uppercase">
-                Wedding Events We Host
+                Events We Host
               </h4>
               <p className="text-white/60 text-xs leading-relaxed">
-                Grand wedding ceremonies · Reception dinners · Engagement
-                functions · Mehendi & Haldi events · Sangeet nights · Corporate
-                events · Podcasts · Private celebrations in Kerala.
+                Weddings · Receptions · Engagements · Mehendi & Haldi · Sangeet nights ·
+                Corporate gatherings · Cultural events · Private celebrations · Podcasts and more.
               </p>
             </div>
           </div>
@@ -96,7 +95,7 @@ export function Footer() {
               <div className="flex items-center space-x-3 text-white/80">
                 <MapPin size={18} className="text-accent" />
                 <span className="text-sm">
-                  Boattukadavu Road, Thripreyar, Kerala
+                  Thripreyar, Thrissur, Kerala
                 </span>
               </div>
 
@@ -108,7 +107,7 @@ export function Footer() {
 
               <div className="flex items-center space-x-3 text-white/80">
                 <Mail size={18} className="text-accent" />
-                <span className="text-sm">kanjiraspavilion@gmail.com</span>
+                <span className="text-sm">klpthrissur@gmail.com</span>
               </div>
             </div>
 

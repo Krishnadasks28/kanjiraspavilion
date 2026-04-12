@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
-import { Calendar, Users, Phone, User, Send } from "lucide-react";
+import { Calendar, Users, Phone, User, Send, Mail, MapPin } from "lucide-react";
 import emailjs from "@emailjs/browser"
 
 export function BookingSection() {
@@ -63,16 +63,8 @@ export function BookingSection() {
       ref={ref}
       className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Background with overlay */}
-      <div className="absolute inset-0 bg-primary">
-        {/* Decorative pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-      </div>
+      {/* Light warm overlay to ensure black text readability over the texture */}
+      <div className="absolute inset-0 bg-[#FEFCF6]/80" />
 
       <div className="relative max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -89,38 +81,64 @@ export function BookingSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
             />
 
-            <h2 className="text-4xl md:text-5xl text-white font-serif mb-6">
+            <h2 className="text-4xl md:text-5xl text-primary font-serif mb-6">
               Begin Your Journey
             </h2>
 
-            <p className="text-lg text-white/90 mb-8 leading-relaxed">
-              Let us help you create the wedding of your dreams at Kanjira's
-              Luxeves Pavilion. Our dedicated team is ready to make your
-              celebration extraordinary.
+            <p className="text-lg text-primary/80 mb-8 leading-relaxed">
+              Reach out to us for bookings or inquiries—we’re here to assist.
             </p>
 
             <div className="space-y-4">
-              <div className="flex items-center space-x-4 text-white/90">
+
+              {/* Address */}
+              <div className="flex items-center space-x-4 text-primary/80">
+                <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
+                  <MapPin size={20} className="text-accent" />
+                </div>
+                <div>
+                  <p className="text-sm text-primary/60">Address</p>
+                  <p className="text-lg">
+                    Kanjira’s Luxeves Pavilion,<br />
+                    Opposit to Sree Rama Temple, <br /> Thripreyar, Thrissur , Kerala
+                  </p>
+                </div>
+              </div>
+
+              {/* Phone */}
+              <div className="flex items-center space-x-4 text-primary/80">
                 <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
                   <Phone size={20} className="text-accent" />
                 </div>
                 <div>
-                  <p className="text-sm text-white/70">Call Us</p>
+                  <p className="text-sm text-primary/60">Call Us</p>
                   <p className="text-lg">+91 9995427799</p>
                   <p className="text-lg">+91 9577331122</p>
-
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 text-white/90">
+              {/* Email */}
+              <div className="flex items-center space-x-4 text-primary/80">
+                <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
+                  <Mail size={20} className="text-accent" />
+                </div>
+                <div>
+                  <p className="text-sm text-primary/60">Email</p>
+                  <p className="text-lg">klpthrissur@gmail.com</p>
+                </div>
+              </div>
+
+              {/* Visit Hours */}
+              <div className="flex items-center space-x-4 text-primary/80">
                 <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
                   <Calendar size={20} className="text-accent" />
                 </div>
                 <div>
-                  <p className="text-sm text-white/70">Visit Hours</p>
+                  <p className="text-sm text-primary/60">Visit Hours</p>
                   <p className="text-lg">Mon - Sun: 9 AM - 6 PM</p>
                 </div>
               </div>
+
             </div>
           </motion.div>
 
@@ -130,7 +148,7 @@ export function BookingSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-2xl p-8">
+            <div className="bg-[#FEFCF6]/90 backdrop-blur-sm rounded-lg shadow-xl border border-primary/10 p-8">
               <h3 className="text-2xl text-primary font-serif mb-6">
                 Contact Us
               </h3>

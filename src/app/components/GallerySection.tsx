@@ -11,13 +11,54 @@ import {
 } from "./ui/carousel";
 
 const allImages = [
-  { id: 1, src: "/images/backwater-wedding-pavilion-kerala-kanjiras.webp", alt: "Kanjira’s Luxeves Pavilion backwater wedding venue", category: "Ceremony" },
-  { id: 2, src: "/images/kanjiras-luxeves-pavilion-bridal-entry-wedding.webp", alt: "Destination wedding venue", category: "Ceremony" },
-  { id: 3, src: "/images/kanjiras-pavilion-reception-event.webp", alt: "Backwater wedding pavilion", category: "Reception" },
-  { id: 5, src: "/images/kanjiras-luxeves-pavilion-wedding-lawn-thrissur.webp", alt: "Luxury backwater wedding venue", category: "Venue" },
-  { id: 6, src: "/images/kanjiras-luxeves-pavilion-wedding-reception-area.webp", alt: "Wedding ceremony setup", category: "Reception" },
-  { id: 7, src: "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp", alt: "Outdoor destination wedding", category: "Ceremony" },
-  { id: 8, src: "/images/kanjiras-pavilion-evening-wedding-decoration.webp", alt: "Evening wedding decoration", category: "Reception" },
+  {
+    id: 1,
+    src: "/images/venue1/backwater-wedding-kerala-kanjiras-luxeves-pavilion.webp",
+    alt: "Kanjira’s Luxeves Pavilion backwater wedding venue",
+    category: "Ceremony",
+  },
+  {
+    id: 2,
+    src: "/images/kanjiras-luxeves-pavilion-bridal-entry-wedding.webp",
+    alt: "Destination wedding venue",
+    category: "Ceremony",
+  },
+  {
+    id: 3,
+    src: "/images/venue2/kanjiras-pavilion-reception-event.webp",
+    alt: "Backwater wedding pavilion",
+    category: "Reception",
+  },
+  {
+    id: 5,
+    src: "/images/kanjiras-luxeves-pavilion-wedding-thrissur.webp",
+    alt: "Luxury backwater wedding venue",
+    category: "Venue",
+  },
+  {
+    id: 6,
+    src: "/images/kanjiras-luxeves-pavilion-outdoor-wedding-venue.webp",
+    alt: "Wedding ceremony setup",
+    category: "Reception",
+  },
+  {
+    id: 7,
+    src: "/images/kanjiras--luxeves-pavilion-luxury-wedding-destination-kerala.webp",
+    alt: "Outdoor destination wedding",
+    category: "Ceremony",
+  },
+  {
+    id: 8,
+    src: "/images/thrissur-backwater-destination-wedding-venue.webp",
+    alt: "Evening wedding decoration",
+    category: "Reception",
+  },
+  {
+    id: 9,
+    src: "/images/venue3/kanjiras-luxeves-pavilion-ear-piercing.webp",
+    alt: "Evening wedding decoration",
+    category: "Reception",
+  },
 ];
 
 const categories = ["All", "Ceremony", "Reception", "Venue"];
@@ -32,7 +73,6 @@ export function GallerySection() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
-
 
   // ✅ Sync selection index with Embla API
   useEffect(() => {
@@ -67,7 +107,6 @@ export function GallerySection() {
       : allImages.filter((img) => img.category === activeCategory);
 
   if (isHomePage) {
-
     return (
       <section
         id="gallery"
@@ -132,7 +171,6 @@ export function GallerySection() {
         </div>
       </section>
     );
-
   }
   // Gallery Page Layout remains same...
   return (
@@ -158,7 +196,8 @@ export function GallerySection() {
             Visual Journey
           </motion.h2>
           <motion.p className="text-muted-foreground max-w-3xl mx-auto">
-            Capturing the magic and elegance of celebrations at Kanjira's Luxeves Pavilion
+            Capturing the magic and elegance of celebrations at Kanjira's
+            Luxeves Pavilion
           </motion.p>
         </div>
 
@@ -167,10 +206,11 @@ export function GallerySection() {
             <motion.button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-8 py-3 rounded-full text-[10px] tracking-[0.25em] uppercase transition-all duration-500 ${activeCategory === category
-                ? "bg-accent text-accent-foreground shadow-2xl"
-                : "bg-white/50 backdrop-blur-md text-primary hover:bg-accent/20"
-                }`}
+              className={`px-8 py-3 rounded-full text-[10px] tracking-[0.25em] uppercase transition-all duration-500 ${
+                activeCategory === category
+                  ? "bg-accent text-accent-foreground shadow-2xl"
+                  : "bg-white/50 backdrop-blur-md text-primary hover:bg-accent/20"
+              }`}
             >
               {category}
             </motion.button>

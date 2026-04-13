@@ -6,10 +6,10 @@ export function VenuesPage() {
   return (
     <main className="">
       <MetaTags />
-      <PageHero 
-        title="Our Venues" 
-        subtitle="Extraordinary Spaces for Extraordinary Moments" 
-        backgroundImage="/images/kanjiras-luxeves-pavilion-outdoor-wedding-venue.webp" 
+      <PageHero
+        title="Our Venues"
+        subtitle="Extraordinary Spaces for Extraordinary Moments"
+        backgroundImage="/images/kanjiras-luxeves-pavilion-destination-wedding-venue-thrissur.webp"
       />
       <VenuesSection />
     </main>

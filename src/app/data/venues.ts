@@ -23,12 +23,11 @@ export const venues: Venue[] = [
       "Large outdoor riverside celebration space perfect for grand weddings and receptions",
     longDescription:
       "A grand open venue accommodating up to 2,000 guests, ideal for majestic weddings and large-scale celebrations. Set against a picturesque natural backdrop, it offers an elegant setting for unforgettable moments. Designed for versatility and seamless flow, it effortlessly adapts to both traditional ceremonies and contemporary events.",
-    image: "/images/kanjiras-pavilion-backwater-view-wedding-venue.webp",
+    image:
+      "/images/venue1/kanjiras-luxeves-pavilion-backwater-event-destination.webp",
     gallery: [
-      "/images/kanjiras-pavilion-backwater-view-wedding-venue.webp",
-      "/images/kanjiras-luxeves-pavilion-outdoor-wedding-venue.webp",
-      "/images/kanjiras-luxeves-pavilion-wedding-lawn-thrissur.webp",
-      "/images/kanjiras-pavilion-drone-view-backwater-venue.webp",
+      "/images/venue1/kanjiras-luxeves-pavilion-backwater-event-destination.webp",
+      "/images/venue1/backwater-wedding-kerala-kanjiras-luxeves-pavilion.webp",
     ],
     idealFor: [
       "Grand Evening Weddings",
@@ -48,14 +47,16 @@ export const venues: Venue[] = [
     name: "Venue 2",
     capacity: 400,
     tagline: "Elegant Covered Venue for Ceremonies & Receptions",
-    description: "An elegant glass house venue for up to 400 guests, offering stunning views and a contemporary ambience.",
-    longDescription: "An elegant glass house venue for up to 400 guests, offering stunning views and a contemporary ambience. Surrounded by natural light and scenic backwater vistas, it creates a refined setting for both daytime and evening events. Designed with modern aesthetics and comfort in mind, it delivers an intimate yet sophisticated celebration experience.",
-    image: "/images/kanjiras-pavilion-backwater-wedding-stage.webp",
+    description:
+      "An elegant glass house venue for up to 400 guests, offering stunning views and a contemporary ambience.",
+    longDescription:
+      "An elegant glass house venue for up to 400 guests, offering stunning views and a contemporary ambience. Surrounded by natural light and scenic backwater vistas, it creates a refined setting for both daytime and evening events. Designed with modern aesthetics and comfort in mind, it delivers an intimate yet sophisticated celebration experience.",
+    image: "/images/venue2/kanjiras-luxeves-pavilion-wedding-venue2-area.webp",
     gallery: [
-      "/images/kanjiras-pavilion-backwater-wedding-stage.webp",
-      "/images/backwater-wedding-pavilion-kerala-kanjiras.webp",
-      "/images/luxury-backwater-wedding-venue-kerala-kanjiras.webp",
-      "/images/kanjiras-pavilion-reception-event.webp",
+      "/images/venue2/kanjiras-luxeves-pavilion-venue2.jpg",
+      "/images/venue2/kanjiras-pavilion-backwater-wedding-stage.webp",
+      "/images/venue2/luxury-backwater-wedding-venue-kerala.webp",
+      "/images/venue2/kanjiras-pavilion-reception-event.webp",
     ],
     idealFor: [
       "Wedding Ceremonies",
@@ -78,13 +79,14 @@ export const venues: Venue[] = [
     tagline: "Private Celebrations in a Garden Setting",
     description:
       "An intimate venue for up to 100 guests, perfect for private celebrations.",
-    longDescription: "An intimate venue designed for up to 100 guests, ideal for close-knit ceremonies and private gatherings. The space offers a warm, refined ambiance that enhances every moment. Perfect for those seeking a personal and elegant celebration experience.",
-    image: "/images/kanjiras-luxeves-pavilion-mandap-backwater-kerala.webp",
+    longDescription:
+      "An intimate venue designed for up to 100 guests, ideal for close-knit ceremonies and private gatherings. The space offers a warm, refined ambiance that enhances every moment. Perfect for those seeking a personal and elegant celebration experience.",
+    image: "/images/venue3/kanjiras-luxeves-pavilion-mandapam-kerala.webp",
     gallery: [
-      "/images/kanjiras-pavilion-drone-view-backwater-venue.webp",
-      "/images/kanjiras-luxeves-pavilion-garden.webp",
-      "/images/kanjiras-luxeves-pavilion-ear-piercing.webp",
-      "/images/kanjiras-pavilion-wedding-ceremony-backwater-view.webp",
+      "/images/venue3/kanjiras-luxeves-pavilion-venue3-background.jpg",
+      "/images/venue3/kanjiras-luxeves-pavilion-garden.webp",
+      "/images/venue3/kanjiras-luxeves-pavilion-ear-piercing.webp",
+      "/images/venue3/kanjiras-luxeves-pavilion-venue3-backdrop.webp",
     ],
     idealFor: [
       "Birthday Parties",
@@ -107,13 +109,14 @@ export const venues: Venue[] = [
     tagline: "Luxury Backwater Stay & Boutique Events",
     description:
       "Luxury stay amidst nature, where comfort meets serene surroundings.",
-    longDescription: "Enhance your celebration with our premium riverside villa, featuring two beautifully designed bedrooms, where you can wake up to calming water views and enjoy moments of peace amidst natural elegance.",
-    image: "/images/kanjiras-pavilion-resort-stay.jpeg",
+    longDescription:
+      "Enhance your celebration with our premium riverside villa, featuring two beautifully designed bedrooms, where you can wake up to calming water views and enjoy moments of peace amidst natural elegance.",
+    image: "/images/resort/kanjiras-pavilion-resort-stay.jpeg",
     gallery: [
-      "/images/kanjiras-pavilion-resort-stay.jpeg",
-      "/images/kanjiras-luxeves-pavilion-backwater-resort-stay-thrissur-kerala.webp",
-      "/images/kanjiras-pavilion-luxury-wedding-location-kerala.webp",
-      "/images/BackwaterWeddingDestination.webp",
+      "/images/resort/kanjiras-luxeves-pavilion-backwater-resort-stay-thrissur-kerala.webp",
+      "/images/resort/kanjiras-pavilion-resort-stay.jpeg",
+      "/images/resort/Kanjiras-luxeves-pavilion-resort-window.jpg",
+      "/images/resort/kanjiras-luxeves-luxury-resort.jpeg",
     ],
     idealFor: [
       "Wedding Guest Accommodation",

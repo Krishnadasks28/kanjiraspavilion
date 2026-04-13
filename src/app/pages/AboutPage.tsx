@@ -11,7 +11,7 @@ export function AboutPage() {
       <PageHero
         title="Our Story"
         subtitle="Heritage, Elegance & Nature"
-        backgroundImage="/images/kanjiras-pavilion-luxury-wedding-location-kerala.webp"
+        backgroundImage="/images/kanjiras-luxeves-pavilion-venue3-stage.webp"
       />
       <AboutSection
         showLink={false}

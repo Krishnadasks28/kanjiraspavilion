@@ -59,7 +59,9 @@ export function LocationSection() {
             <div className="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mb-6">
               <MapPin className="text-accent" size={28} />
             </div>
-            <h3 className="text-xl text-primary mb-4 font-normal tracking-tight">Address</h3>
+            <h3 className="text-xl text-primary mb-4 font-normal tracking-tight">
+              Address
+            </h3>
             <p className="text-muted-foreground leading-relaxed">
               Kanjira's Luxeves Pavilion
               <br />
@@ -84,9 +86,9 @@ export function LocationSection() {
             <p className="text-muted-foreground leading-relaxed">
               Easy access from major cities
               <br />
-              90 min from Kochi Airport.
+              30 min from Guruvayoor temple.
               <br />
-              45 min from Thrissur Railway Station.
+              90 min from Kochi Airport.
             </p>
           </motion.div>
 
@@ -99,7 +101,9 @@ export function LocationSection() {
             <div className="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center mb-6">
               <Car className="text-accent" size={28} />
             </div>
-            <h3 className="text-xl text-primary mb-4 font-normal tracking-tight">Parking</h3>
+            <h3 className="text-xl text-primary mb-4 font-normal tracking-tight">
+              Parking
+            </h3>
             <p className="text-muted-foreground leading-relaxed">
               Ample parking space
               <br />

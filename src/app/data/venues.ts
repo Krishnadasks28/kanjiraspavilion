@@ -53,7 +53,7 @@ export const venues: Venue[] = [
       "An elegant glass house venue for up to 400 guests, offering stunning views and a contemporary ambience. Surrounded by natural light and scenic backwater vistas, it creates a refined setting for both daytime and evening events. Designed with modern aesthetics and comfort in mind, it delivers an intimate yet sophisticated celebration experience.",
     image: "/images/venue2/kanjiras-luxeves-pavilion-wedding-venue2-area.webp",
     gallery: [
-      "/images/venue2/kanjiras-luxeves-pavilion-venue2.jpg",
+      "/images/venue2/kanjiras-luxeves-pavilion-venue2.webp",
       "/images/venue2/kanjiras-pavilion-backwater-wedding-stage.webp",
       "/images/venue2/luxury-backwater-wedding-venue-kerala.webp",
       "/images/venue2/kanjiras-pavilion-reception-event.webp",
@@ -83,7 +83,7 @@ export const venues: Venue[] = [
       "An intimate venue designed for up to 100 guests, ideal for close-knit ceremonies and private gatherings. The space offers a warm, refined ambiance that enhances every moment. Perfect for those seeking a personal and elegant celebration experience.",
     image: "/images/venue3/kanjiras-luxeves-pavilion-mandapam-kerala.webp",
     gallery: [
-      "/images/venue3/kanjiras-luxeves-pavilion-venue3-background.jpg",
+      "/images/venue3/kanjiras-luxeves-pavilion-venue3-bride.webp",
       "/images/venue3/kanjiras-luxeves-pavilion-garden.webp",
       "/images/venue3/kanjiras-luxeves-pavilion-ear-piercing.webp",
       "/images/venue3/kanjiras-luxeves-pavilion-venue3-backdrop.webp",

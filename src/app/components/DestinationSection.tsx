@@ -86,7 +86,9 @@ export function DestinationSection() {
                         <Icon className="text-accent" size={24} />
                       </div>
                       <div>
-                        <h3 className="text-primary font-bold mb-1">{exp.title}</h3>
+                        <h3 className="text-primary font-bold mb-1">
+                          {exp.title}
+                        </h3>
                         <p className="text-muted-foreground text-sm">
                           {exp.description}
                         </p>
@@ -115,7 +117,7 @@ export function DestinationSection() {
                   </div>
                   <div className="h-64 rounded-lg overflow-hidden shadow-xl">
                     <ImageWithFallback
-                      src="/images/kanjiras-luxeves-pavilion-garden.webp"
+                      src="/images/venue3/kanjiras-luxeves-pavilion-garden.webp"
                       alt="Kerala backwaters"
                       className="w-full h-full object-cover"
                     />
@@ -124,14 +126,14 @@ export function DestinationSection() {
                 <div className="space-y-4 mt-8">
                   <div className="h-64 rounded-lg overflow-hidden shadow-xl">
                     <ImageWithFallback
-                      src="/images/kanjiras-pavilion-resort-stay.jpeg"
+                      src="/images/resort/kanjiras-pavilion-resort-stay.jpeg"
                       alt="Palm trees"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="h-48 rounded-lg overflow-hidden shadow-xl">
                     <ImageWithFallback
-                      src="/images/kanjiras-pavilion-reception-event.webp"
+                      src="/images/venue2/kanjiras-pavilion-reception-event.webp"
                       alt="Tropical decoration"
                       className="w-full h-full object-cover"
                     />

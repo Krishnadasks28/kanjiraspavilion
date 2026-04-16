@@ -9,7 +9,7 @@ export function VenuesPage() {
       <PageHero
         title="Our Venues"
         subtitle="Extraordinary Spaces for Extraordinary Moments"
-        backgroundImage="/images/kanjiras-luxeves-pavilion-destination-wedding-venue-thrissur.webp"
+        backgroundImage="/images/BackwaterWeddingDestination.webp"
       />
       <VenuesSection />
     </main>
